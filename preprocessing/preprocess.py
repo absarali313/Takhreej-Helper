@@ -8,10 +8,21 @@ from nltk.stem import WordNetLemmatizer
 from gensim.models import Word2Vec
 import pyarabic.araby as araby
 
-
-
+def extract_text_between_quotes(text):
+    # Define a regular expression to match text between double quotes
+    pattern = r'"([^"]*)"'
+    
+    # Search for the pattern in the input text
+    match = re.search(pattern, text)
+    
+    # If a match is found, extract the text between the quotes
+    if match:
+        return match.group(1)
+    else:
+        return ""
 
 def preprocessing(text):
+    text = extract_text_between_quotes(text)
    # Step 1: Remove diacritics, shadda, madd, and additional punctuation
     text = araby.strip_diacritics(text)
     text = araby.strip_shadda(text)
@@ -49,37 +60,3 @@ def preprocessing(text):
     cleaned_text = ''.join([word for word in cleaned_text if not word.isdigit()])
     return cleaned_text
     
-df = pd.read_csv('C:\\Users\\ch-sa\\Downloads\\sanadset.csv')
-
-# Access data from the 4th column
-text_column = df['Matn']
-
-
-cleaned_text = []
-for i in range(2000):
-    print(i)
-    cleaned_text.append(preprocessing(text_column[i]))
-
-# Tokenize the cleaned text
-tokenized_text = [word_tokenize(text) for text in cleaned_text]
-
-# Train a Word2Vec model
-model = Word2Vec(tokenized_text, vector_size=100, window=5, min_count=1, sg=1)
-
-# Save the Word2Vec model
-model.save("word2vec_model.model")
-
-# Create a DataFrame to store word vectors
-word_vectors = pd.DataFrame({word: model.wv[word] for word in model.wv.index_to_key})
-
-# Save word vectors to a CSV file
-word_vectors.to_csv("word_vectors.csv")
-
-
-
-
-
-
-
-   
-
