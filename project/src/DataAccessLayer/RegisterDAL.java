@@ -2,16 +2,18 @@ package DataAccessLayer;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
+import TransferObjects.User;
+
 public class RegisterDAL implements IRegisterDAL {
-	 public Boolean insertUser(String name, String email, String password, String phoneNumber) {
+	 public Boolean insertUser(User user) {
 	        
 		 String insertUserQuery = "INSERT INTO users (name, email, password, phoneNumber) VALUES (?, ?, ?, ?)";
 
 	     	try (PreparedStatement preparedStatement = DBhandler.getInstance().getConnection().prepareStatement(insertUserQuery)) {
-	            preparedStatement.setString(1, name);
-	            preparedStatement.setString(2, email);
-	            preparedStatement.setString(3, password);
-	            preparedStatement.setString(4, phoneNumber);
+	            preparedStatement.setString(1, user.getName());
+	            preparedStatement.setString(2, user.getEmail());
+	            preparedStatement.setString(3, user.getPassword());
+	            preparedStatement.setString(4, user.getPhone());
 	            preparedStatement.executeUpdate();
 	            return true;
 	        } catch (SQLException e) {

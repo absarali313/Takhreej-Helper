@@ -1,5 +1,7 @@
 package DataAccessLayer;
 
+import TransferObjects.User;
+
 public interface IRegisterDAL {
-	 public Boolean insertUser(String name, String email, String password, String phoneNumber);
+	 public Boolean insertUser(User user);
 }

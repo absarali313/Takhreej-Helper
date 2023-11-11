@@ -1,8 +1,7 @@
 package BusinessLogicLayer;
 
-import java.util.List;
-import java.util.Map;
 import DataAccessLayer.IRegisterDAL;
+import TransferObjects.User;
 
 // Business Logic layer
 public class RegistrationService {
@@ -12,11 +11,12 @@ public class RegistrationService {
         this.registerDAL = registerDAL;
     }
 
-    public void registerUser(String name, String email, String password, String phoneNumber) {
+    public void registerUser(String name, String email, String phoneNumber, String password) {
         if (isValidUser(name, email, password, phoneNumber)) {
             PasswordHasher hasher = new PasswordHasher();
             String hashedPassword = hasher.hashPassword(password); // Hash the password
-            registerDAL.insertUser(name, email, hashedPassword, phoneNumber);
+            User user = new User(name,email,phoneNumber,hashedPassword);
+            registerDAL.insertUser(user);
             System.out.println("User " + name + " registered successfully!");
         } else {
             System.out.println("Invalid user information. Registration failed.");
