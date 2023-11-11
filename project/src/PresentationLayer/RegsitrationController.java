@@ -1,9 +1,7 @@
 package PresentationLayer;
 
 import BusinessLogicLayer.RegistrationService;
-import DataAccessLayer.DBhandler;
-import DataAccessLayer.UserDataAccess;
-
+import DataAccessLayer.*;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
@@ -12,10 +10,10 @@ import java.util.Scanner;
 public class RegsitrationController {
     public static void main(String[] args) {
         // Initialize the Data Access layer
-        UserDataAccess userDataAccess = new DBhandler();
+    	IRegisterDAL register = new RegisterDAL();
 
         // Initialize the Business Logic layer
-        RegistrationService registrationService = new RegistrationService(userDataAccess);
+        RegistrationService registrationService = new RegistrationService(register);
 
         // Initialize the Presentation layer
         ConsoleRegistrationController registrationController = new ConsoleRegistrationController(registrationService);
@@ -23,12 +21,7 @@ public class RegsitrationController {
         // Example: Register a user using the Presentation layer
         registrationController.registerUserFromInput();
 
-        // Example: Retrieve and display all users
-        List<Map<String, String>> allUsers = registrationService.getAllUsers();
-        System.out.println("All Users:");
-        for (Map<String, String> user : allUsers) {
-            System.out.println("Name: " + user.get("name") + ", Email: " + user.get("email"));
-        }
+
     }
 }
 
