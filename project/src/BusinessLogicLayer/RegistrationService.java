@@ -13,7 +13,7 @@ public class RegistrationService {
 
     public void registerUser(String name, String email, String phoneNumber, String password) {
         if (isValidUser(name, email, password, phoneNumber)) {
-            PasswordHasher hasher = new PasswordHasher();
+            IPasswordHasher hasher = new PasswordHasher();
             String hashedPassword = hasher.hashPassword(password); // Hash the password
             User user = new User(name,email,phoneNumber,hashedPassword);
             registerDAL.insertUser(user);

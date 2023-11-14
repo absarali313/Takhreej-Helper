@@ -1,4 +1,5 @@
 /BusinessLogicLayer/
 /DataAccessLayer/
-/TransferObjects/
 /PresentationLayer/
+/TransferObjects/
+/config.properties

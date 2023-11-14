@@ -45,7 +45,7 @@ class ConsoleLoginController {
         String recaptchaResponse = scanner.nextLine();
 
         // Delegate login to the Business Logic layer
-        boolean isAuthenticated = loginService.loginUser(username, password, recaptchaResponse);
+        boolean isAuthenticated = loginService.login(username, password);
 
         if (isAuthenticated) {
             System.out.println("User authenticated successfully!");

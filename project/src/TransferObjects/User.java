@@ -5,17 +5,15 @@ public class User {
 	private String email;
 	private String phone;
 	private String password;
-	private boolean rememberMe;
-    private String rememberMeToken;
+
 	
-	public User(String name, String email, String phone, String password, boolean rememberMe, String rememberMeToken) {
+	public User(String name, String email, String phone, String password) {
 		super();
 		this.name = name;
 		this.email = email;
 		this.phone = phone;
 		this.password = password;
-		this.rememberMe = rememberMe;
-        this.rememberMeToken = rememberMeToken;
+
 	}
 	public User() {
 		// TODO Auto-generated constructor stub
@@ -44,17 +42,5 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public boolean isRememberMe() {
-	    return rememberMe;
-    }
-	public void setisRememberMe(boolean rememberMe) {
-		this.rememberMe = rememberMe;
-	}
 
-	 public String getRememberMeToken() {
-	    return rememberMeToken;
-    }
-	 public void setRememberMeToken(String rememberMeToken) {
-		this.rememberMeToken = rememberMeToken;
-		}
 }

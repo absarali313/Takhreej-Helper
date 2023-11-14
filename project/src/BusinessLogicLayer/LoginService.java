@@ -11,10 +11,10 @@ public class LoginService implements ILoginService {
         this.loginDAO = loginDAO;
     }
 
-    public boolean loginUser(String username, String password, String recaptchaResponse) {
+    public boolean login(String email, String password) {
         // Validate the recaptchaResponse using Google Recaptcha API (if implemented)
 
-        User user = loginDAO.getUserByName(username);
+        User user = loginDAO.getUserByEmail(email);
 
         if (user != null && validatePassword(password, user.getPassword())) {
             return true;
@@ -24,7 +24,7 @@ public class LoginService implements ILoginService {
     }
 
     private boolean validatePassword(String inputPassword, String hashedPassword) {
-        PasswordHasher hasher = new PasswordHasher();
+        IPasswordHasher hasher = new PasswordHasher();
 
         // Check if the provided inputPassword matches the hashedPassword
         return hasher.checkPassword(inputPassword, hashedPassword);
