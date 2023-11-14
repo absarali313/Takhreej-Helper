@@ -17,7 +17,19 @@ public class Facade implements IFacade {
     }
 
 	@Override
-	public User getUserByUsername(String username) {
+	public User getUserByName(String name) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void saveRememberMeToken(String name, String token) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public String getRememberMeToken(String name) {
 		// TODO Auto-generated method stub
 		return null;
 	}
