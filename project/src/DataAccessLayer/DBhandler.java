@@ -20,7 +20,8 @@ public class DBhandler {
       url = properties.getProperty("database.url");
       password = properties.getProperty("database.password");
       user = properties.getProperty("database.user");
-      System.out.println(user);
+      //System.out.println(user);
+      Class.forName("com.mysql.jdbc.Driver");
       this.con = DriverManager.getConnection(url, user, password);
     } catch (Exception ex) {
       System.out.println("Something is wrong with the DB connection String : " + ex.getMessage());

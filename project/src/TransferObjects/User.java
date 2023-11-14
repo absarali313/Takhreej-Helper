@@ -6,12 +6,12 @@ public class User {
 	private String phone;
 	private String password;
 	
-	public User(String name, String email, String phone, String password) {
+	public User(String name, String email, String password, String phone) {
 		super();
 		this.name = name;
 		this.email = email;
-		this.phone = phone;
 		this.password = password;
+		this.phone = phone;
 	}
 	public String getName() {
 		return name;

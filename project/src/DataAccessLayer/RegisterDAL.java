@@ -3,7 +3,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 import TransferObjects.User;
-
+import java.util.List;
 public class RegisterDAL implements IRegisterDAL {
 	 public Boolean insertUser(User user) {
 	        
@@ -21,4 +21,5 @@ public class RegisterDAL implements IRegisterDAL {
 	            return false;
 	        }
 	    }
+	
 }
