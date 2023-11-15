@@ -5,6 +5,7 @@ public class User {
 	private String email;
 	private String phone;
 	private String password;
+
 	
 	public User(String name, String email, String password, String phone) {
 		super();
@@ -12,6 +13,11 @@ public class User {
 		this.email = email;
 		this.password = password;
 		this.phone = phone;
+
+	}
+	public User() {
+		// TODO Auto-generated constructor stub
+
 	}
 	public String getName() {
 		return name;

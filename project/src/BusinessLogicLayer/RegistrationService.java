@@ -11,7 +11,7 @@ public class RegistrationService {
     }
 
     public boolean registerUser(String name, String email, String password, String phoneNumber, String verificationCode) {
-        if (isValidUser(name, email,password,phoneNumber) && isValidVerificationCode(verificationCode)) {
+        if (!isEmailRegistered(email)&& isValidUser(name, email,password,phoneNumber) && isValidVerificationCode(verificationCode)) {
             PasswordHasher hasher = new PasswordHasher();
             String hashedPassword = hasher.hashPassword(password);
             User user = new User(name, email,hashedPassword ,phoneNumber);
@@ -25,6 +25,9 @@ public class RegistrationService {
     }
     
 
+    public boolean isEmailRegistered(String email) {
+        return registerDAL.isEmailRegistered(email);
+    }
     public boolean isValidVerificationCode(String verificationCode) {
         // Check if the verification code is not null
         return verificationCode != null;

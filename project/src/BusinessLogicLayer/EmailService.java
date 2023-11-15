@@ -49,12 +49,13 @@ public class EmailService {
             Transport.send(mimeMessage);
 
             System.out.println("Verification email sent successfully");
-            return true;
+            
 
         } catch (MessagingException e) {
             e.printStackTrace();
-            return false;
+            return true;
         }
+		return false;
     }
     public boolean verifyCode(String userEnteredCode) {
         // Compare the stored code with the user-entered code
