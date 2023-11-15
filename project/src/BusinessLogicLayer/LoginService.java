@@ -11,7 +11,7 @@ public class LoginService implements ILoginService {
         this.loginDAO = loginDAO;
     }
 
-    public boolean login(String email, String password) {
+    public boolean login(String email, String password, boolean rememberMe) {
         // Validate the recaptchaResponse using Google Recaptcha API (if implemented)
 
         User user = loginDAO.getUserByEmail(email);

@@ -2,5 +2,5 @@
 package BusinessLogicLayer;
 
 public interface ILoginService {
-    boolean login(String username, String password);
+    boolean login(String username, String password, boolean rememberMe);
 }
