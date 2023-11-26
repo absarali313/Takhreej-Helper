@@ -9,24 +9,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class LoginDAO implements ILoginDAO {
-	 private IRememberMeManager rememberMeManager;
-
-	    public LoginDAO(IRememberMeManager rememberMeManager) {
-	        this.rememberMeManager = rememberMeManager;
-	        }
-	
+	 
     public LoginDAO() {
 			// TODO Auto-generated constructor stub
 		}
 
 	public User getUserByEmail(String email){
     	
-    	// Check if the user is remembered
-        User rememberedUser = rememberMeManager.getUserIfRemembered(email);
-        if (rememberedUser != null) {
-            return rememberedUser;
-        }
-        
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
@@ -56,13 +45,6 @@ public class LoginDAO implements ILoginDAO {
                 // Create a User object with the retrieved data
                 User user = new User(retrievedName, retrievedEmail, retrievedPassword,retrievedPhoneNo);
                 
-                if (this.rememberMeManager != null) {
-                    this.rememberMeManager.getUserIfRemembered(email);
-                   
-                } else {
-                	 System.out.println("Warning: rememberMeManager is null. Remember Me functionality will not work.");
-                }
-                rememberMeManager.rememberUser(user);
                 return user;
             }
         } catch (SQLException e) {
