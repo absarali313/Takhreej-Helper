@@ -30,4 +30,16 @@ public class LoginService implements ILoginService {
         return hasher.checkPassword(inputPassword, hashedPassword);
     }
 
+	@Override
+	public boolean rememberMe(String name, String password, boolean remember) {
+		 // Call DAO to handle remember me functionality
+        return loginDAO.rememberUserCredentials(name, password, remember);
+	}
+
+	@Override
+	public boolean autoLogin() {
+		// Call DAO to handle auto-login functionality
+        return loginDAO.autoLogin();
+	}
+
 }

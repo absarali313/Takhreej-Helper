@@ -3,15 +3,24 @@ package DataAccessLayer;
 
 import TransferObjects.User;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
 
 public class LoginDAO implements ILoginDAO {
 	 
-    public LoginDAO() {
-			// TODO Auto-generated constructor stub
+    private static final String REMEMBER_ME_FILE = "rememberMe.dat";
+
+	public LoginDAO() {
 		}
 
 	public User getUserByEmail(String email){
@@ -61,6 +70,53 @@ public class LoginDAO implements ILoginDAO {
         }
 
         return null; // Return null if the user is not found or an error occurs
+    }
+
+	@Override
+    public boolean rememberUserCredentials(String name, String password, boolean remember) {
+		User user = new User();
+		user = getUserByEmail(name);
+		if(user != null)
+		{
+	        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(REMEMBER_ME_FILE))) {
+	            // Create a map to store hashed credentials
+	            Map<String, String> credentialsMap = new HashMap<>();
+	            // For simplicity, we are using plain text here; in a real scenario, you'd hash the password
+	            credentialsMap.put("username", name);
+	            credentialsMap.put("password", password);
+	            // Write the map to the file
+	            oos.writeObject(credentialsMap);
+	            return true;
+	        } catch (IOException e) {
+	            e.printStackTrace();
+	            return false;
+	        }			
+		}
+		else
+		{
+			return false;
+		}
+    }
+
+    @Override
+    public boolean autoLogin() {
+        File file = new File(REMEMBER_ME_FILE);
+
+        if (file.exists()) {
+            try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(REMEMBER_ME_FILE))) {
+                // Read the map from the file
+                Map<String, String> credentialsMap = (HashMap<String, String>) ois.readObject();
+
+                String storedName = credentialsMap.get("username");
+                String storedPassword = credentialsMap.get("password");
+                
+                return true;
+            } catch (IOException | ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return false;
     }
    
 }
