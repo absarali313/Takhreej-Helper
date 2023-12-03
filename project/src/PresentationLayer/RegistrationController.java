@@ -14,7 +14,7 @@ public class RegistrationController {
         IRegisterDAL register = new RegisterDAL();
 
         // Initialize the Business Logic layer
-        RegistrationService registrationService = new RegistrationService(register);
+        RegistrationService registrationService = new RegistrationService();
 
         // Initialize the Presentation layer
         ConsoleRegistrationController registrationController = new ConsoleRegistrationController(registrationService, email);

@@ -1,13 +1,14 @@
 package BusinessLogicLayer;
 
 import DataAccessLayer.IRegisterDAL;
+import DataAccessLayer.RegisterDAL;
 import TransferObjects.User;
 
 public class RegistrationService {
     private IRegisterDAL registerDAL;
 
-    public RegistrationService(IRegisterDAL registerDAL) {
-        this.registerDAL = registerDAL;
+    public RegistrationService() {
+        this.registerDAL = new RegisterDAL();
     }
 
     public boolean registerUser(String name, String email, String password, String phoneNumber, String verificationCode) {
@@ -39,4 +40,12 @@ public class RegistrationService {
         return name != null && !name.isEmpty() && email != null && !email.isEmpty()
                 && password != null && !password.isEmpty() && phoneNumber != null && !phoneNumber.isEmpty();
     }
+    public boolean validateFields(String name, String email, String phone, String password, String confirmPassword) {
+        return !name.trim().isEmpty() && !email.trim().isEmpty() && !phone.trim().isEmpty() && !password.isEmpty() && !confirmPassword.isEmpty() && confirmPass(password,confirmPassword);
+    }
+	public boolean confirmPass(String pass, String confirmPass) {
+		if(pass.equals(confirmPass))
+			return true;
+		return false;
+	}
 }

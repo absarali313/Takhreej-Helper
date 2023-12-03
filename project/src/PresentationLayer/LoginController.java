@@ -14,7 +14,7 @@ public class LoginController {
         ILoginDAO loginDAO = new LoginDAO();
 
         // Initialize the Business Logic layer
-        ILoginService loginService = new LoginService(loginDAO);
+        ILoginService loginService = new LoginService();
         
         if(loginService.autoLogin())
         {

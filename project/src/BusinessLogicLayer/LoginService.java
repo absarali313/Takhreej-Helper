@@ -2,13 +2,14 @@
 package BusinessLogicLayer;
 
 import DataAccessLayer.ILoginDAO;
+import DataAccessLayer.LoginDAO;
 import TransferObjects.User;
 
 public class LoginService implements ILoginService {
     private ILoginDAO loginDAO;
 
-    public LoginService(ILoginDAO loginDAO) {
-        this.loginDAO = loginDAO;
+    public LoginService() {
+        this.loginDAO = new LoginDAO();
     }
 
     public boolean login(String email, String password) {
