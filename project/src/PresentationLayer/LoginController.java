@@ -2,7 +2,9 @@
 package PresentationLayer;
 
 import BusinessLogicLayer.ILoginService;
+import BusinessLogicLayer.ILogoutService;
 import BusinessLogicLayer.LoginService;
+import BusinessLogicLayer.LogoutService;
 import DataAccessLayer.ILoginDAO;
 import DataAccessLayer.LoginDAO;
 
@@ -15,10 +17,15 @@ public class LoginController {
 
         // Initialize the Business Logic layer
         ILoginService loginService = new LoginService(loginDAO);
+        LogoutService logoutService = new LogoutService();
+
         
         if(loginService.autoLogin())
         {
         	System.out.println("User Login successfully!");
+        	ConsoleLogoutController logoutController = new ConsoleLogoutController(logoutService);
+        	logoutController.logoutUserFromInput();
+        	
         }
         else
         {
@@ -34,6 +41,7 @@ public class LoginController {
 // Presentation layer (Console)
 class ConsoleLoginController {
     private ILoginService loginService;
+    private LogoutController logout;
 
     public ConsoleLoginController(ILoginService loginService) {
         this.loginService = loginService;
@@ -63,6 +71,29 @@ class ConsoleLoginController {
             System.out.println("User " + name + " Login successfully!");
         } else {
             System.out.println("Invalid credentials. Login failed.");
+        }
+        
+    }
+}
+
+
+class ConsoleLogoutController {
+	LogoutController logout;
+    public ConsoleLogoutController(LogoutService logoutService) {
+    	logout = new LogoutController(logoutService);
+    }
+
+    public void logoutUserFromInput() {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Do you want to logout? (yes/no): ");
+        String rememberChoice = scanner.nextLine().toLowerCase();
+
+        boolean logoutInput = rememberChoice.equals("yes");
+        // Delegate login to the Business Logic layer
+        if(logoutInput)
+        {
+        	logout.logoutUser();
         }
     }
 }
