@@ -2,13 +2,15 @@ package PresentationLayer;
 
 import BusinessLogicLayer.EmailService;
 import BusinessLogicLayer.RegistrationService;
+import CustomException.EmailServiceException;
+import CustomException.RegisterationException;
 import DataAccessLayer.IRegisterDAL;
 import DataAccessLayer.RegisterDAL;
 
 import java.util.Scanner;
 
 public class RegistrationController {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws RegisterationException, EmailServiceException {
         // Initialize the Data Access layer
         EmailService email = new EmailService();
         IRegisterDAL register = new RegisterDAL();
@@ -33,7 +35,7 @@ class ConsoleRegistrationController {
         this.emailService = emailService;
     }
 
-    public void registerUserFromInput() {
+    public void registerUserFromInput() throws RegisterationException, EmailServiceException {
         Scanner scanner = new Scanner(System.in);
 
         // Prompt user to enter their name

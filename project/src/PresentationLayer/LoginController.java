@@ -5,13 +5,14 @@ import BusinessLogicLayer.ILoginService;
 
 import BusinessLogicLayer.LoginService;
 import BusinessLogicLayer.LogoutService;
+import CustomException.AuthenticationException;
 import DataAccessLayer.ILoginDAO;
 import DataAccessLayer.LoginDAO;
 
 import java.util.Scanner;
 
 public class LoginController {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws AuthenticationException {
         // Initialize the Data Access layer
         ILoginDAO loginDAO = new LoginDAO();
 
@@ -51,7 +52,7 @@ class ConsoleLoginController {
         this.loginService = loginService;
     }
 
-    public void loginUserFromInput() {
+    public void loginUserFromInput() throws AuthenticationException {
         Scanner scanner = new Scanner(System.in);
 
         System.out.print("Enter Your Email: ");

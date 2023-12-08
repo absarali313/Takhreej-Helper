@@ -3,6 +3,9 @@ package BusinessLogicLayer;
 import java.util.Properties;
 import javax.mail.*;
 import javax.mail.internet.*;
+
+import CustomException.EmailServiceException;
+
 import java.util.Random;
 
 public class EmailService {
@@ -16,7 +19,7 @@ public class EmailService {
 	        return lastGeneratedVerificationCode;
 	    }
 
-    public boolean sendVerificationEmail(String recipientEmail) {
+    public boolean sendVerificationEmail(String recipientEmail) throws EmailServiceException {
         String senderEmail = "manalq2023@outlook.com";
         String senderPassword = "MAnal@12345";
         String subject = "Verification Code for Registration";
@@ -53,7 +56,7 @@ public class EmailService {
 
         } catch (MessagingException e) {
             e.printStackTrace();
-            return false;
+            throw new EmailServiceException("Error sending verification email: " + e.getMessage());
         }
     }
     public boolean verifyCode(String userEnteredCode) {

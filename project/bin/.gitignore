@@ -1,10 +1,4 @@
-<<<<<<< HEAD
-/PresentationLayer/
-/Image/
 /BusinessLogicLayer/
-=======
-/BusinessLogicLayer/
+/CustomException/
 /DataAccessLayer/
 /PresentationLayer/
-/TransferObjects/
->>>>>>> 9a625fb9e481e85f609cc4fcb32916c401181f00

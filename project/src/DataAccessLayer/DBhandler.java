@@ -6,6 +6,8 @@ import java.sql.SQLException;
 import java.io.InputStream;
 import java.util.Properties;
 
+import CustomException.DBConnectionException;
+
 public class DBhandler {
   private static DBhandler instance;
   private Connection con;
@@ -14,28 +16,36 @@ public class DBhandler {
   String password;
   private static final String CONFIG_FILE = "config.properties";
   
-  private DBhandler() throws SQLException {
+  private DBhandler() throws DBConnectionException {
     try {
       Properties properties = loadProperties();
       url = properties.getProperty("database.url");
       password = properties.getProperty("database.password");
       user = properties.getProperty("database.user");
-      //System.out.println(user);
       Class.forName("com.mysql.jdbc.Driver");
       this.con = DriverManager.getConnection(url, user, password);
     } catch (Exception ex) {
-      System.out.println("Something is wrong with the DB connection String : " + ex.getMessage());
+    	throw new DBConnectionException("Error establishing database connection: " + ex.getMessage(), ex);
     }
   }
   public Connection getConnection() {
     return con;
   }
-  public static DBhandler getInstance() throws SQLException {
+  public static DBhandler getInstance() throws DBConnectionException {
     if (instance == null) {
       instance = new DBhandler();
-    } else if (instance.getConnection().isClosed()) {
-      instance = new DBhandler();
-    }
+    } else
+		try {
+			if (instance.getConnection().isClosed()) {
+			  instance = new DBhandler();
+			}
+		} catch (DBConnectionException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     return instance;
   }
   

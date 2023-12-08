@@ -16,6 +16,8 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
+import CustomException.AuthenticationException;
+
 public class LoginDAO implements ILoginDAO {
 	 
     private static final String REMEMBER_ME_FILE = "rememberMe.dat";
@@ -73,7 +75,7 @@ public class LoginDAO implements ILoginDAO {
     }
 
 	@Override
-    public boolean rememberUserCredentials(String name, String password, boolean remember) {
+    public boolean rememberUserCredentials(String name, String password, boolean remember) throws AuthenticationException {
 		User user = new User();
 		user = getUserByEmail(name);
 		if(user != null)
@@ -88,8 +90,8 @@ public class LoginDAO implements ILoginDAO {
 	            oos.writeObject(credentialsMap);
 	            return true;
 	        } catch (IOException e) {
-	            e.printStackTrace();
-	            return false;
+	        	 // Catch the custom exception and handle it
+	            throw new AuthenticationException("Error saving credentials for user: " + name);
 	        }			
 		}
 		else
@@ -99,7 +101,7 @@ public class LoginDAO implements ILoginDAO {
     }
 
     @Override
-    public boolean autoLogin() {
+    public boolean autoLogin() throws AuthenticationException {
         File file = new File(REMEMBER_ME_FILE);
 
         if (file.exists()) {
@@ -111,8 +113,19 @@ public class LoginDAO implements ILoginDAO {
                 String storedPassword = credentialsMap.get("password");
                 
                 return true;
+             /* Retrieve the user from the database based on the stored username
+                User user = getUserByEmail(storedName);
+
+                if (user != null && storedPassword.equals(user.getPassword())) {
+                    // Auto-login successful
+                    return true;
+                } else {
+                    // Credentials don't match or user not found
+                    throw new AuthenticationException("Auto-login failed: Invalid credentials");
+                }*/
             } catch (IOException | ClassNotFoundException e) {
-                e.printStackTrace();
+                // Catch the custom exception and handle it
+                throw new AuthenticationException("Error reading auto-login credentials");
             }
         }
 

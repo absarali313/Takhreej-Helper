@@ -1,24 +1,16 @@
 package PresentationLayer;
 
-import java.awt.EventQueue;
-
 import net.miginfocom.swing.MigLayout;
 
 
 import java.awt.*;
 import javax.swing.*;
-import java.awt.CardLayout;
-import java.awt.Font;
-import java.awt.Image;
 
 import com.formdev.flatlaf.FlatDarkLaf;
 import com.formdev.flatlaf.FlatLightLaf;
 
 import BusinessLogicLayer.LoginService;
-
-import java.awt.FlowLayout;
-import java.awt.BorderLayout;
-
+import CustomException.AuthenticationException;
 import javaswingdev.drawer.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -65,8 +57,10 @@ public class LoginPage {
 
 	/**
 	 * Create the application.
+	 * @throws AuthenticationException 
+	 * @throws HeadlessException 
 	 */
-	public LoginPage() {
+	public LoginPage() throws HeadlessException, AuthenticationException {
 		loginService = new LoginService();
 		initialize();
 		drawer = Drawer.newDrawer(frame)
@@ -138,7 +132,7 @@ public class LoginPage {
 		loginBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				boolean rememberMe = rememberMeCheck.isEnabled();
-		        boolean isAuthenticated = loginService.login(emailTextField.getText(),passTextField.getText());
+		        /*boolean isAuthenticated = loginService.login(emailTextField.getText(),passTextField.getText());
 				
 		        if(isAuthenticated){
 		        	if(rememberMe) {
@@ -148,7 +142,22 @@ public class LoginPage {
 				}
 				
 			}
-		});
+		});*/
+				 try {
+			            boolean isAuthenticated = loginService.login(emailTextField.getText(), passTextField.getText());
+
+			            if (isAuthenticated) {
+			                if (rememberMe) {
+			                    loginService.rememberMe(emailTextField.getText(), passTextField.getText(), rememberMe);
+			                }
+			                JOptionPane.showMessageDialog(null, "Logged In Successfully !");
+			            }
+			        } catch (AuthenticationException ex) {
+			            // Handle the authentication exception (e.g., show an error dialog or log the error)
+			            ex.printStackTrace();
+			        }
+			    }
+			});
 		loginBtn.setBackground(Color.WHITE);
 		panel_1.add(loginBtn, "cell 11 17 1 2,growx,aligny bottom");
 		btnNewButton.addActionListener(new ActionListener() {

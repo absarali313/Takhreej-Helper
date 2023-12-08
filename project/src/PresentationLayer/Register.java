@@ -8,11 +8,15 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import java.awt.Font;
+import java.awt.HeadlessException;
+
 import javax.swing.JTextField;
 
 import TransferObjects.User;
 import BusinessLogicLayer.EmailService;
 import BusinessLogicLayer.RegistrationService;
+import CustomException.EmailServiceException;
+import CustomException.RegisterationException;
 
 import java.awt.Color;
 import javax.swing.JButton;
@@ -101,23 +105,39 @@ public class Register extends JPanel {
 		registerBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				if(registerService.validateFields(nameTextField.getText(),emailTextField.getText(),phoneTextField.getText(),passTextField.getText(),confirmTextField.getText())) {
-					System.out.println("Sending Email");
-					EmailService emailService = new EmailService();
-					if(emailService.sendVerificationEmail(emailTextField.getText()))
-					{
-						otptextField.setVisible(true);
-						submitBtn.setVisible(true);
-						
+				try {
+					if(registerService.validateFields(nameTextField.getText(),emailTextField.getText(),phoneTextField.getText(),passTextField.getText(),confirmTextField.getText())) {
+						System.out.println("Sending Email");
+						EmailService emailService = new EmailService();
+						try {
+							if(emailService.sendVerificationEmail(emailTextField.getText()))
+							{
+								otptextField.setVisible(true);
+								submitBtn.setVisible(true);
+								
+							}
+							
+							else {
+								
+								JOptionPane.showMessageDialog(null, "Email failed to send! Make sure you entered the correct email. ");
+							}
+						} catch (HeadlessException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						} catch (EmailServiceException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
 					}
-					
 					else {
-						
-						JOptionPane.showMessageDialog(null, "Email failed to send! Make sure you entered the correct email. ");
+						JOptionPane.showMessageDialog(null, "Please fill all fields");
 					}
-				}
-				else {
-					JOptionPane.showMessageDialog(null, "Please fill all fields");
+				} catch (HeadlessException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (RegisterationException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
 				}
 			}
 			
@@ -135,12 +155,19 @@ public class Register extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if(registerService.registerUser(nameTextField.getText(), emailTextField.getText(), passTextField.getText(), phoneTextField.getText(), otpTextField.getText())) {
+				try{
+					if(registerService.registerUser(nameTextField.getText(), emailTextField.getText(), passTextField.getText(), phoneTextField.getText(), otpTextField.getText())) {
+				
 					JOptionPane.showMessageDialog(null, "Registered Successfully! Please Login ");
 				}
 				else {
 					JOptionPane.showMessageDialog(null, "Invalid user information or verification code. Registration failed.");
 				}
+				}
+				catch (RegisterationException ex) {
+                    // Handle the custom exception (e.g., log, display an error message, etc.)
+                    JOptionPane.showMessageDialog(null, "Registration failed: " + ex.getMessage());
+                }
 			}
 				
 			
