@@ -23,7 +23,7 @@ public class LoginPage {
 	private LoginService loginService;
 	private JFrame frame;
 	private JTextField emailTextField;
-	private JTextField passTextField;
+	private JPasswordField passTextField;
 	private JPanel loginPanel;
 	private JPanel panel_1;
 	private JPanel sidePanel;
@@ -117,7 +117,7 @@ public class LoginPage {
 		passwordLbl.setFont(new Font("Tahoma", Font.BOLD, 18));
 		panel_1.add(passwordLbl, "cell 11 10,alignx right");
 		
-		passTextField = new JTextField();
+		passTextField = new JPasswordField();
 		panel_1.add(passTextField, "cell 11 11,alignx center");
 		passTextField.setColumns(30);
 		
