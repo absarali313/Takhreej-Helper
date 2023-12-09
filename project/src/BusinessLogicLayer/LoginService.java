@@ -47,5 +47,18 @@ public class LoginService implements ILoginService {
         return loginDAO.autoLogin();
 	}
 
-	
+	 public void resetPassword(String email, String newPassword, String storedOtp, String userEnteredCode) throws EmailServiceException {
+	        // Check if both codes match using the verifyCode method
+	        if (verifyCode(userEnteredCode, storedOtp)) {
+	            // Call the reset password method in LoginDAO
+	            loginDAO.resetPassword(email, newPassword);
+	            System.out.println("Password reset successfully for email: " + email);
+	        } else {
+	            throw new EmailServiceException("Invalid verification code. Password reset failed.");
+	        }
+	    }
+
+	    private boolean verifyCode(String userEnteredCode, String storedOtp) {
+	        return storedOtp != null && storedOtp.equals(userEnteredCode);
+	    }
 }
