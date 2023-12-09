@@ -133,7 +133,41 @@ public class LoginDAO implements ILoginDAO {
     }
  // Inside the LoginDAO class
 
-  
+    public void resetPassword(String email, String newPassword) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        try {
+            // Establish a database connection (replace with your database connection logic)
+            connection = DBhandler.getInstance().getConnection();
+
+            // SQL query to update the user's password
+            String query = "UPDATE users SET password = ? WHERE email = ?";
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, newPassword);
+            preparedStatement.setString(2, email);
+
+            // Execute the update
+            int rowsAffected = preparedStatement.executeUpdate();
+
+            if (rowsAffected > 0) {
+                System.out.println("Password reset successfully for email: " + email);
+            } else {
+                System.out.println("User not found. Password reset failed.");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            // Close resources (statement and connection)
+            try {
+                if (preparedStatement != null) preparedStatement.close();
+                if (connection != null) connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
    
 }
 
