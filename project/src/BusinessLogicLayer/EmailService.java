@@ -1,38 +1,56 @@
 package BusinessLogicLayer;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.Properties;
 import javax.mail.*;
 import javax.mail.internet.*;
 
 import CustomException.EmailServiceException;
+import DataAccessLayer.LoginDAO;
 
 import java.util.Random;
 
 public class EmailService {
-	  private String lastGeneratedVerificationCode;
+    private String lastGeneratedVerificationCode;
 
-	    public String generateVerificationCode() {
-	        // Generate a random 6-digit verification code
-	        Random random = new Random();
-	        int verificationCode = 100000 + random.nextInt(900000);
-	        lastGeneratedVerificationCode = String.valueOf(verificationCode);
-	        return lastGeneratedVerificationCode;
-	    }
+    private String senderEmail;
+    private String senderPassword;
 
-    public boolean sendVerificationEmail(String recipientEmail) throws EmailServiceException {
-        String senderEmail = "manalq2023@outlook.com";
-        String senderPassword = "MAnal@12345";
-        String subject = "Verification Code for Registration";
-        String verificationCode = generateVerificationCode();
-        String message = "Your verification code is: " + verificationCode;
+    public EmailService() {
+        // Load email properties from a file
+        loadEmailProperties();
+    }
 
+    private void loadEmailProperties() {
+        try (InputStream input = getClass().getClassLoader().getResourceAsStream("email.properties")) {
+            Properties prop = new Properties();
+            prop.load(input);
+
+            senderEmail = prop.getProperty("sender.email");
+            senderPassword = prop.getProperty("sender.password");
+
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            throw new RuntimeException("Error loading email properties");
+        }
+    }
+
+    // Existing code for generating verification code
+    public String generateVerificationCode() {
+        Random random = new Random();
+        int verificationCode = 100000 + random.nextInt(900000);
+        lastGeneratedVerificationCode = String.valueOf(verificationCode);
+        return lastGeneratedVerificationCode;
+    }
+
+    // Generic method to send an email with a verification code
+    private boolean sendEmail(String recipientEmail) throws EmailServiceException {
         Properties props = new Properties();
-        // Disable SSL/TLS certificate validation
         props.put("mail.smtp.ssl.trust", "*");
-
         props.put("mail.smtp.auth", "true");
         props.put("mail.smtp.starttls.enable", "true");
-        props.put("mail.smtp.host", "smtp.office365.com"); // Outlook SMTP server
+        props.put("mail.smtp.host", "smtp.office365.com");
         props.put("mail.smtp.port", "587");
 
         Session session = Session.getInstance(props,
@@ -46,21 +64,54 @@ public class EmailService {
             Message mimeMessage = new MimeMessage(session);
             mimeMessage.setFrom(new InternetAddress(senderEmail));
             mimeMessage.setRecipients(Message.RecipientType.TO, InternetAddress.parse(recipientEmail));
-            mimeMessage.setSubject(subject);
-            mimeMessage.setText(message);
+           
 
             Transport.send(mimeMessage);
 
-            System.out.println("Verification email sent successfully");
+            System.out.println("Email sent successfully");
             return true;
 
         } catch (MessagingException e) {
             e.printStackTrace();
-            throw new EmailServiceException("Error sending verification email: " + e.getMessage());
+            throw new EmailServiceException("Error sending email: " + e.getMessage());
         }
     }
+
+    // Method for sending verification code for user registration
+    public boolean sendVerificationEmail(String recipientEmail) throws EmailServiceException {
+        String subject = "Verification Code for Registration";
+        String verificationCode = generateVerificationCode();
+        String message = "Your verification code is: " + verificationCode;
+
+        return sendEmail(recipientEmail);
+    }
+
+    // Method for sending random OTP for forgot password
+    public String sendForgotPasswordOTP(String recipientEmail) throws EmailServiceException {
+        String subject = "Forgot Password OTP";
+        String otp = generateVerificationCode();
+        String message = "Your OTP for resetting the password is: " + otp;
+
+        // Save the generated OTP before sending the email
+        String storedOTP = otp;
+
+        if (sendEmail(recipientEmail)) {
+            return storedOTP; // Return the stored OTP if the email is sent successfully
+        } else {
+            return null; // Return null or handle the case where the email sending fails
+        }
+    }
+ // Inside the EmailService class
+
+   
+
+ // Inside the EmailService class
+
+ // Inside the EmailService class
+
+  
+
     public boolean verifyCode(String userEnteredCode) {
-        // Compare the stored code with the user-entered code
         return lastGeneratedVerificationCode != null && lastGeneratedVerificationCode.equals(userEnteredCode);
     }
 }

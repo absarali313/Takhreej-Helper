@@ -74,6 +74,8 @@ class ConsoleLoginController {
        
         if (isAuthenticated) {
             System.out.println("User " + name + " Login successfully!");
+            
+            
         } else {
             System.out.println("Invalid credentials. Login failed.");
         }

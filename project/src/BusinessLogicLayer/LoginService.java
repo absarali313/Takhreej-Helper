@@ -2,6 +2,7 @@
 package BusinessLogicLayer;
 
 import CustomException.AuthenticationException;
+import CustomException.EmailServiceException;
 import DataAccessLayer.ILoginDAO;
 import DataAccessLayer.LoginDAO;
 import TransferObjects.User;
@@ -46,4 +47,5 @@ public class LoginService implements ILoginService {
         return loginDAO.autoLogin();
 	}
 
+	
 }
