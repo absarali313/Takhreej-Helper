@@ -1,4 +1,4 @@
-/PresentationLayer/
+/log4j2.xml
+/CustomLogger/
 /BusinessLogicLayer/
 /DataAccessLayer/
-/email.properties

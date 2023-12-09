@@ -5,10 +5,11 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.io.InputStream;
 import java.util.Properties;
-
+import CustomLogger.AppLogger;
 import CustomException.DBConnectionException;
 
 public class DBhandler {
+  private static final AppLogger logger = new AppLogger(); // Use the logger instance from AppLogger
   private static DBhandler instance;
   private Connection con;
   String url;
@@ -25,6 +26,7 @@ public class DBhandler {
       Class.forName("com.mysql.jdbc.Driver");
       this.con = DriverManager.getConnection(url, user, password);
     } catch (Exception ex) {
+    	logger.getLogger().error("Error establishing database connection: {}", ex.getMessage());
     	throw new DBConnectionException("Error establishing database connection: " + ex.getMessage(), ex);
     }
   }
@@ -44,7 +46,8 @@ public class DBhandler {
 			e.printStackTrace();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			 logger.getLogger().error("Error checking database connection status: {}", e.getMessage());
+			 throw new DBConnectionException("Error checking database connection status: " + e.getMessage(), e);
 		}
     return instance;
   }
@@ -54,7 +57,7 @@ public class DBhandler {
 
       try (InputStream input = DBhandler.class.getClassLoader().getResourceAsStream(CONFIG_FILE)) {
           if (input == null) {
-              System.out.println("Sorry, unable to find " + CONFIG_FILE);
+        	  logger.getLogger().error("Sorry, unable to find {}", CONFIG_FILE);
               return properties;
           }
 
@@ -62,7 +65,8 @@ public class DBhandler {
           properties.load(input);
 
       } catch (Exception e) {
-          e.printStackTrace();
+    	  logger.getLogger().error("Error loading properties: {}", e.getMessage());
+          e.printStackTrace(); // Log the stack trace to console for now
       }
 
       return properties;

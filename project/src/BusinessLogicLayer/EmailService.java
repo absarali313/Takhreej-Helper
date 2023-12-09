@@ -5,15 +5,14 @@ import java.io.InputStream;
 import java.util.Properties;
 import javax.mail.*;
 import javax.mail.internet.*;
-
+import CustomLogger.AppLogger;
 import CustomException.EmailServiceException;
-import DataAccessLayer.LoginDAO;
-
 import java.util.Random;
 
 public class EmailService {
+	private static final AppLogger logger = new AppLogger(); // Use the logger instance from AppLogger
+	
     private String lastGeneratedVerificationCode;
-
     private String senderEmail;
     private String senderPassword;
 
@@ -23,6 +22,7 @@ public class EmailService {
     }
 
     private void loadEmailProperties() {
+    	logger.getLogger().info("Calling loadEmailProperties Function");
         try (InputStream input = getClass().getClassLoader().getResourceAsStream("email.properties")) {
             Properties prop = new Properties();
             prop.load(input);
@@ -31,13 +31,14 @@ public class EmailService {
             senderPassword = prop.getProperty("sender.password");
 
         } catch (IOException ex) {
-            ex.printStackTrace();
+        	 logger.getLogger().error("Error loading email properties", ex);
             throw new RuntimeException("Error loading email properties");
         }
     }
 
     // Existing code for generating verification code
     public String generateVerificationCode() {
+    	logger.getLogger().info("Calling generateVerificationCode Function");
         Random random = new Random();
         int verificationCode = 100000 + random.nextInt(900000);
         lastGeneratedVerificationCode = String.valueOf(verificationCode);
@@ -46,6 +47,7 @@ public class EmailService {
 
     // Generic method to send an email with a verification code
     private boolean sendEmail(String recipientEmail) throws EmailServiceException {
+    	logger.getLogger().info("Calling sendEmail Function");
         Properties props = new Properties();
         props.put("mail.smtp.ssl.trust", "*");
         props.put("mail.smtp.auth", "true");
@@ -68,17 +70,18 @@ public class EmailService {
 
             Transport.send(mimeMessage);
 
-            System.out.println("Email sent successfully");
+            logger.getLogger().info("Email sent successfully to {}", recipientEmail);
             return true;
 
         } catch (MessagingException e) {
-            e.printStackTrace();
+        	 logger.getLogger().error("Error sending email", e);
             throw new EmailServiceException("Error sending email: " + e.getMessage());
         }
     }
 
     // Method for sending verification code for user registration
     public boolean sendVerificationEmail(String recipientEmail) throws EmailServiceException {
+    	logger.getLogger().info("Calling sendVerificationEmail Function");
         String subject = "Verification Code for Registration";
         String verificationCode = generateVerificationCode();
         String message = "Your verification code is: " + verificationCode;
@@ -88,6 +91,7 @@ public class EmailService {
 
     // Method for sending random OTP for forgot password
     public String sendForgotPasswordOTP(String recipientEmail) throws EmailServiceException {
+    	logger.getLogger().info("Calling sendForgotPasswordOTP Function");
         String subject = "Forgot Password OTP";
         String otp = generateVerificationCode();
         String message = "Your OTP for resetting the password is: " + otp;
@@ -96,22 +100,16 @@ public class EmailService {
         String storedOTP = otp;
 
         if (sendEmail(recipientEmail)) {
+        	 logger.getLogger().info("Forgot Password OTP sent successfully");
             return storedOTP; // Return the stored OTP if the email is sent successfully
         } else {
+        	 logger.getLogger().error("Error sending Forgot Password OTP");
             return null; // Return null or handle the case where the email sending fails
         }
     }
- // Inside the EmailService class
-
-   
-
- // Inside the EmailService class
-
- // Inside the EmailService class
-
-  
 
     public boolean verifyCode(String userEnteredCode) {
+    	logger.getLogger().info("Calling verifyCode Function");
         return lastGeneratedVerificationCode != null && lastGeneratedVerificationCode.equals(userEnteredCode);
     }
 }

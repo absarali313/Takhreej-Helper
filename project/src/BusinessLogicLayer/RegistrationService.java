@@ -1,11 +1,12 @@
 package BusinessLogicLayer;
-
+import CustomLogger.AppLogger;
 import CustomException.RegisterationException;
 import DataAccessLayer.IRegisterDAL;
 import DataAccessLayer.RegisterDAL;
 import TransferObjects.User;
 
 public class RegistrationService {
+	private static final AppLogger logger = new AppLogger(); // Use the logger instance from AppLogger
     private IRegisterDAL registerDAL;
 
     public RegistrationService() {
@@ -19,13 +20,14 @@ public class RegistrationService {
             String hashedPassword = hasher.hashPassword(password);
             User user = new User(name, email,hashedPassword ,phoneNumber);
             registerDAL.insertUser(user);
-            System.out.println("User " + name + " registered successfully!");
+            logger.getLogger().info("User {} registered successfully!", name);
             return true;
         } else {
         	throw new RegisterationException("Invalid user information or verification code. Registration failed.");
         	}
         	}
         	catch (Exception e) {
+        		logger.getLogger().error("Error during registration: {}", e.getMessage());
                 throw new RegisterationException("Error during registration: " + e.getMessage());
             }
         }
@@ -54,6 +56,7 @@ public class RegistrationService {
                 throw new RegisterationException("Invalid input fields. Registration failed.");
             }
         } catch (Exception e) {
+        	logger.getLogger().error("Error validating input fields: {}", e.getMessage());
             throw new RegisterationException("Error validating input fields: " + e.getMessage());
         }
     }
