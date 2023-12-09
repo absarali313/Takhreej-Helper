@@ -16,15 +16,18 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
+import BusinessLogicLayer.PasswordHasher;
 import CustomException.AuthenticationException;
 
 public class LoginDAO implements ILoginDAO {
 	 
     private static final String REMEMBER_ME_FILE = "rememberMe.dat";
+    private PasswordHasher passwordHasher;
 
+	
 	public LoginDAO() {
-		}
-
+        this.passwordHasher = new PasswordHasher();
+    }
 	public User getUserByEmail(String email){
     	
         Connection connection = null;
@@ -141,10 +144,13 @@ public class LoginDAO implements ILoginDAO {
             // Establish a database connection (replace with your database connection logic)
             connection = DBhandler.getInstance().getConnection();
 
+            // Hash the new password
+            String hashedPassword = passwordHasher.hashPassword(newPassword);
+
             // SQL query to update the user's password
             String query = "UPDATE users SET password = ? WHERE email = ?";
             preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setString(1, newPassword);
+            preparedStatement.setString(1, hashedPassword);
             preparedStatement.setString(2, email);
 
             // Execute the update
