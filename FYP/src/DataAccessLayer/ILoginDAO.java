@@ -2,7 +2,7 @@
 package DataAccessLayer;
 
 import CustomException.AuthenticationException;
-import TransferObjects.User;
+import TransferObject.User;
 
 public interface ILoginDAO {
 	User getUserByEmail(String name);

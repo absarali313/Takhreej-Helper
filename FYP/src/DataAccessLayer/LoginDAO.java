@@ -1,7 +1,7 @@
 // LoginDAO.java
 package DataAccessLayer;
 
-import TransferObjects.User;
+import TransferObject.User;
 
 import java.io.File;
 import java.io.FileInputStream;

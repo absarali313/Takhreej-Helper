@@ -1,6 +1,6 @@
 package BusinessLogicLayer;
 
-import TransferObjects.User;
+import TransferObject.User;
 
 /**
  *
