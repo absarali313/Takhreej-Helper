@@ -4,23 +4,42 @@
  */
 package PresentationLayer;
 
+
 import BusinessLogicLayer.LoginService;
 import BusinessLogicLayer.UserSession;
+
+
+import BusinessLogicLayer.UserProfile;
+import CustomException.DBConnectionException;
+import CustomException.ProfileUpdateException;
+import TransferObject.User;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author ch-sa
  */
 public class MainFrame extends javax.swing.JFrame {
-
+    
+    private UserProfile userProfile;
     /**
      * Creates new form MainFrame
      */
     public MainFrame() {
+
         initComponents();
         emailTextField.setText(UserSession.loggedUser.getEmail());
         nameTextField.setText(UserSession.loggedUser.getName());
         phoneTextField.setText(UserSession.loggedUser.getPhone());
+
+       initComponents();
+    try {
+        userProfile = new UserProfile();
+    } catch (DBConnectionException e) {
+        // Handle database connection exception, e.g., show an error message
+        e.printStackTrace();
+    }
+
     }
 
     /**
@@ -90,10 +109,10 @@ public class MainFrame extends javax.swing.JFrame {
         jPanel5.setBackground(new java.awt.Color(109, 139, 116));
         jPanel5.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(58, 77, 57), 2, true));
 
+        emailTextField.setEditable(false);
         emailTextField.setBackground(new java.awt.Color(58, 77, 57));
         emailTextField.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
         emailTextField.setForeground(new java.awt.Color(255, 255, 255));
-        emailTextField.setEnabled(false);
 
         emailLbl.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
         emailLbl.setForeground(new java.awt.Color(255, 255, 255));
@@ -117,8 +136,8 @@ public class MainFrame extends javax.swing.JFrame {
 
         jButton1.setBackground(new java.awt.Color(123, 162, 137));
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Update");
+        jButton1.setEnabled(false);
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton1MouseClicked(evt);
@@ -359,6 +378,29 @@ public class MainFrame extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
         // TODO add your handling code here:
+        
+        try {
+        String newName = nameTextField.getText();
+        String newPhoneNumber = phoneTextField.getText();
+
+        boolean updateSuccess = userProfile.updateUserProfile(newName, newPhoneNumber);
+
+        if (updateSuccess) {
+            // Update successful
+            JOptionPane.showMessageDialog(this, "User profile updated successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
+
+            // Perform any additional actions if needed
+        } else {
+            // Update failed
+            JOptionPane.showMessageDialog(this, "Failed to update user profile. Please check the provided information.", "Error", JOptionPane.ERROR_MESSAGE);
+
+            // Handle other error scenarios or perform additional actions
+        }
+    } catch (ProfileUpdateException e) {
+        // Handle profile update exception
+        e.printStackTrace();
+        JOptionPane.showMessageDialog(this, "Error during profile update: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+    }
       
     }//GEN-LAST:event_jButton1ActionPerformed
 

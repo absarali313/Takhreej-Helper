@@ -56,7 +56,6 @@ public class ForgetPasswordFrame extends javax.swing.JFrame {
         emailTextField.setBackground(new java.awt.Color(18, 38, 32));
         emailTextField.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         emailTextField.setForeground(new java.awt.Color(255, 255, 255));
-        emailTextField.setText("Enter Email");
         emailTextField.setBorder(null);
         emailTextField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -78,7 +77,6 @@ public class ForgetPasswordFrame extends javax.swing.JFrame {
 
         passwordField.setBackground(new java.awt.Color(18, 38, 32));
         passwordField.setForeground(new java.awt.Color(255, 255, 255));
-        passwordField.setText("Enter Password");
         passwordField.setBorder(null);
         passwordField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {

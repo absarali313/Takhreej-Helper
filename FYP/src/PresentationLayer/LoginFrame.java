@@ -363,7 +363,7 @@ public class LoginFrame extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         
 	 // TODO add your handling code here:
-        boolean rememberMe = rememberMeCheck.isEnabled();
+        boolean rememberMe = rememberMeCheck.isSelected();
         String email = emailTextField.getText();
         String password = passwordField.getText();
     
@@ -402,7 +402,7 @@ public class LoginFrame extends javax.swing.JFrame {
        if(!((emailTextField.getText().equals("Enter Email") ||emailTextField.getText().equals("")) && (passwordField.getText().equals("12345") || passwordField.getText().equals(""))) )
        {
            boolean rememberMe = rememberMeCheck.isEnabled();
-       
+           
 		 try {
 	            boolean isAuthenticated = loginService.login(emailTextField.getText(), passwordField.getText());
 

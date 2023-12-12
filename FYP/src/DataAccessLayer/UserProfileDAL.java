@@ -27,7 +27,7 @@ public class UserProfileDAL implements IUserProfileDAL {
     public void updateUserProfile(String email, String newName, String newPhoneNumber) {
         // Actual database update logic goes here
         try {
-            String updateQuery = "UPDATE user_profiles SET name=?, phone=? WHERE email=?";
+            String updateQuery = "UPDATE users SET name=?, phone=? WHERE email=?";
             try (PreparedStatement preparedStatement = connection.prepareStatement(updateQuery)) {
                 preparedStatement.setString(1, newName);
                 preparedStatement.setString(2, newPhoneNumber);
@@ -37,14 +37,14 @@ public class UserProfileDAL implements IUserProfileDAL {
                 System.out.println("Rows affected: " + rowsAffected);
             }
         } catch (SQLException e) {
-            e.printStackTrace(); // Handle the exception according to your application's error-handling strategy
+            System.out.println(e.getMessage()); // Handle the exception according to your application's error-handling strategy
         }
     }
 
     // This is a placeholder method to simulate retrieving user profile from a database
     @Override
     public User getUserProfile(String email) throws SQLException {
-        String query = "SELECT * FROM user_profiles WHERE email=?";
+        String query = "SELECT * FROM users WHERE email=?";
         try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
             preparedStatement.setString(1, email);
 
