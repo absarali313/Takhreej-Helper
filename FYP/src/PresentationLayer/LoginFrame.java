@@ -403,7 +403,7 @@ public class LoginFrame extends javax.swing.JFrame {
                 }
        }
        else{
-           JOptionPane.showMessageDialog(null,"User not Found ", "Invalid email or password !", JOptionPane.ERROR_MESSAGE);
+           JOptionPane.showMessageDialog(null,"Empty Fields", "Please fill all the fields", JOptionPane.ERROR_MESSAGE);
               
        }
     }//GEN-LAST:event_jButton1MouseClicked

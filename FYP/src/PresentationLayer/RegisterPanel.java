@@ -354,7 +354,8 @@ public class RegisterPanel extends javax.swing.JPanel {
 		try {
                     if(emailService.sendVerificationEmail(emailTextField.getText())){
                         otp =   JOptionPane.showInputDialog("Enter OTP Code : ");
-			registerService.registerUser(nameTextField.getText(), emailTextField.getText(), passwordField.getText(), phoneTextField.getText(), otp);
+			if(registerService.registerUser(nameTextField.getText(), emailTextField.getText(), passwordField.getText(), phoneTextField.getText(), otp))
+                           JOptionPane.showMessageDialog(null, "Please login now." , "Successfully Registered !", JOptionPane.INFORMATION_MESSAGE);
                     }
 							
                     else {
