@@ -6,9 +6,13 @@ import CustomException.EmailServiceException;
 import DataAccessLayer.ILoginDAO;
 import DataAccessLayer.LoginDAO;
 import TransferObjects.User;
+import java.io.File;
+
 
 public class LoginService implements ILoginService {
 	private static AppLogger logger = new AppLogger(); // Use the logger instance from AppLogger
+        private static final String REMEMBER_ME_FILE = "rememberMe.dat";
+
 	static {
 	logger.classChange(LoginService.class.getName());
 	}
@@ -65,6 +69,13 @@ public class LoginService implements ILoginService {
 	            throw new EmailServiceException("Invalid verification code. Password reset failed.");
 	        }
 	    }
+        
+         public void logout() {
+            File rememberMeFile = new File(REMEMBER_ME_FILE);
+            if (rememberMeFile.exists()) {
+             rememberMeFile.delete();
+        }
+    }
 
 	    private boolean verifyCode(String userEnteredCode, String storedOtp) {
 	        return storedOtp != null && storedOtp.equals(userEnteredCode);
