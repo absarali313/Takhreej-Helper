@@ -1,4 +1,4 @@
-package TransferObjects;
+package TransferObject;
 
 public class User {
 	private String name;
@@ -19,6 +19,13 @@ public class User {
 		// TODO Auto-generated constructor stub
 
 	}
+        
+        // Constructor with two parameters
+    public User(String email, String phone) {
+        this.email = email;
+        this.phone = phone;
+    }
+    
 	public String getName() {
 		return name;
 	}

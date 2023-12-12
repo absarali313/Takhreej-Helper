@@ -3,7 +3,7 @@ import CustomLogger.AppLogger;
 import CustomException.RegisterationException;
 import DataAccessLayer.IRegisterDAL;
 import DataAccessLayer.RegisterDAL;
-import TransferObjects.User;
+import TransferObject.User;
 
 public class RegistrationService {
 	private static final AppLogger logger = new AppLogger(); // Use the logger instance from AppLogger

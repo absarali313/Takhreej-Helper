@@ -76,7 +76,6 @@ public class RegisterPanel extends javax.swing.JPanel {
         emailTextField.setBackground(new java.awt.Color(18, 38, 32));
         emailTextField.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         emailTextField.setForeground(new java.awt.Color(255, 255, 255));
-        emailTextField.setText("abc@gmail.om");
         emailTextField.setBorder(null);
         emailTextField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -98,7 +97,6 @@ public class RegisterPanel extends javax.swing.JPanel {
 
         passwordField.setBackground(new java.awt.Color(18, 38, 32));
         passwordField.setForeground(new java.awt.Color(255, 255, 255));
-        passwordField.setText("Enter Password");
         passwordField.setBorder(null);
         passwordField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -139,7 +137,6 @@ public class RegisterPanel extends javax.swing.JPanel {
         phoneTextField.setBackground(new java.awt.Color(18, 38, 32));
         phoneTextField.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         phoneTextField.setForeground(new java.awt.Color(255, 255, 255));
-        phoneTextField.setText("+93000000000");
         phoneTextField.setBorder(null);
         phoneTextField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -167,7 +164,6 @@ public class RegisterPanel extends javax.swing.JPanel {
         nameTextField.setBackground(new java.awt.Color(18, 38, 32));
         nameTextField.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         nameTextField.setForeground(new java.awt.Color(255, 255, 255));
-        nameTextField.setText("Enter Name");
         nameTextField.setBorder(null);
         nameTextField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {

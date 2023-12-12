@@ -3,7 +3,7 @@ import java.sql.PreparedStatement;
 import CustomLogger.AppLogger;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import TransferObjects.User;
+import TransferObject.User;
 
 public class RegisterDAL implements IRegisterDAL {
 	private static final AppLogger logger = new AppLogger(); // Use the logger instance from AppLogger

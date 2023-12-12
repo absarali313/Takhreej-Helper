@@ -1,6 +1,6 @@
 package DataAccessLayer;
 
-import TransferObjects.User;
+import TransferObject.User;
 
 public interface IRegisterDAL {
 	 public Boolean insertUser(User user);

@@ -1,26 +1,27 @@
-
 package BusinessLogicLayer;
 
+import CustomException.DBConnectionException;
 import CustomException.ProfileUpdateException;
 import DataAccessLayer.IUserProfileDAL;
 import DataAccessLayer.UserProfileDAL;
-import TransferObjects.User;
+import TransferObject.User;
+import java.sql.SQLException;
 
 public class UserProfile {
-    private IUserProfileDAL userProfileDAL;
+    private UserProfileDAL userProfileDAL;
 
-    public UserProfile() {
+    public UserProfile() throws DBConnectionException {
         this.userProfileDAL = new UserProfileDAL();
     }
 
-    public User getUserProfile(String email) {
+    public User getUserProfile(String email) throws SQLException {
         return userProfileDAL.getUserProfile(email);
     }
 
-    public boolean updateUserProfile(String email, String newName, String newPhoneNumber) throws ProfileUpdateException {
+    public boolean updateUserProfile(String newName, String newPhoneNumber) throws ProfileUpdateException {
         try {
-            if (isValidUser(newName, email, newPhoneNumber)) {
-                userProfileDAL.updateUserProfile(email, newName, newPhoneNumber);
+            if (isValidUser(newName, UserSession.getSession().getEmail(), newPhoneNumber)) {
+                userProfileDAL.updateUserProfile(UserSession.getSession().getEmail(), newName, newPhoneNumber);
                 System.out.println("User profile updated successfully!");
                 return true;
             } else {
