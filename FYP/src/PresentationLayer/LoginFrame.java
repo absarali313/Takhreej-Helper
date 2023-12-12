@@ -49,6 +49,7 @@ public class LoginFrame extends javax.swing.JFrame {
 	} catch (HeadlessException | AuthenticationException e) {
 			// TODO Auto-generated catch block
             e.printStackTrace();
+            
 	}
         // TODO Auto-generated catch block
         
@@ -379,6 +380,9 @@ public class LoginFrame extends javax.swing.JFrame {
 	        if (rememberMe) {
 	            loginService.rememberMe(emailTextField.getText(), passwordField.getText(), rememberMe);
 	        }
+                 MainFrame mainFrame = new MainFrame();
+                 mainFrame.setVisible(true);
+                 this.dispose();
 	        JOptionPane.showMessageDialog(null, "Logged In Successfully !");
 	    }
 	} catch (AuthenticationException ex) {
@@ -407,8 +411,12 @@ public class LoginFrame extends javax.swing.JFrame {
 	            if (isAuthenticated) {
 	                if (rememberMe) {
 	                    loginService.rememberMe(emailTextField.getText(), passwordField.getText(), rememberMe);
-	                }
+                            
+                        }
 	                JOptionPane.showMessageDialog(null, "Logged In Successfully !");
+                        MainFrame mainFrame = new MainFrame();
+                        mainFrame.setVisible(true);
+                        System.out.println("Logged in");
 	            }
                     
                    
