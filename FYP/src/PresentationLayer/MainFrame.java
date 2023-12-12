@@ -4,6 +4,9 @@
  */
 package PresentationLayer;
 
+import BusinessLogicLayer.LoginService;
+import BusinessLogicLayer.UserSession;
+
 /**
  *
  * @author ch-sa
@@ -15,6 +18,9 @@ public class MainFrame extends javax.swing.JFrame {
      */
     public MainFrame() {
         initComponents();
+        emailTextField.setText(UserSession.loggedUser.getEmail());
+        nameTextField.setText(UserSession.loggedUser.getName());
+        phoneTextField.setText(UserSession.loggedUser.getPhone());
     }
 
     /**
@@ -38,7 +44,7 @@ public class MainFrame extends javax.swing.JFrame {
         nameTextField = new javax.swing.JTextField();
         nameLbl = new javax.swing.JLabel();
         nameLbl1 = new javax.swing.JLabel();
-        nameTextField1 = new javax.swing.JTextField();
+        phoneTextField = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
         emailTextField1 = new javax.swing.JTextField();
@@ -48,6 +54,7 @@ public class MainFrame extends javax.swing.JFrame {
         nameLbl3 = new javax.swing.JLabel();
         nameTextField3 = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
+        logoutBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -95,7 +102,6 @@ public class MainFrame extends javax.swing.JFrame {
         nameTextField.setBackground(new java.awt.Color(58, 77, 57));
         nameTextField.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
         nameTextField.setForeground(new java.awt.Color(255, 255, 255));
-        nameTextField.setEnabled(false);
 
         nameLbl.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
         nameLbl.setForeground(new java.awt.Color(255, 255, 255));
@@ -105,10 +111,9 @@ public class MainFrame extends javax.swing.JFrame {
         nameLbl1.setForeground(new java.awt.Color(255, 255, 255));
         nameLbl1.setText("Phone Number");
 
-        nameTextField1.setBackground(new java.awt.Color(58, 77, 57));
-        nameTextField1.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
-        nameTextField1.setForeground(new java.awt.Color(255, 255, 255));
-        nameTextField1.setEnabled(false);
+        phoneTextField.setBackground(new java.awt.Color(58, 77, 57));
+        phoneTextField.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
+        phoneTextField.setForeground(new java.awt.Color(255, 255, 255));
 
         jButton1.setBackground(new java.awt.Color(123, 162, 137));
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -133,7 +138,7 @@ public class MainFrame extends javax.swing.JFrame {
                 .addContainerGap(94, Short.MAX_VALUE)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(nameLbl1)
-                    .addComponent(nameTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(phoneTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(nameLbl)
                     .addComponent(nameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(emailLbl)
@@ -158,7 +163,7 @@ public class MainFrame extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(nameLbl1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(nameTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(phoneTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addContainerGap())
@@ -251,13 +256,33 @@ public class MainFrame extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        logoutBtn.setBackground(new java.awt.Color(123, 162, 137));
+        logoutBtn.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        logoutBtn.setForeground(new java.awt.Color(255, 255, 255));
+        logoutBtn.setText("Logout");
+        logoutBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                logoutBtnMouseClicked(evt);
+            }
+        });
+        logoutBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logoutBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(48, 48, 48)
-                .addComponent(jLabel1)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(48, 48, 48)
+                        .addComponent(jLabel1))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(90, 90, 90)
+                        .addComponent(logoutBtn)))
                 .addGap(42, 42, 42)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(48, 48, 48)
@@ -271,7 +296,9 @@ public class MainFrame extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(1, 1, 1)
-                        .addComponent(jLabel1))
+                        .addComponent(jLabel1)
+                        .addGap(18, 18, 18)
+                        .addComponent(logoutBtn))
                     .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -343,6 +370,19 @@ public class MainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void logoutBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutBtnMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_logoutBtnMouseClicked
+
+    private void logoutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutBtnActionPerformed
+        // TODO add your handling code here:
+        LoginService loginService = new LoginService();
+        loginService.logout();
+        this.dispose();
+        LoginFrame loginFrame = new LoginFrame();
+        loginFrame.setVisible(true);
+    }//GEN-LAST:event_logoutBtnActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -393,13 +433,14 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
+    private javax.swing.JButton logoutBtn;
     private javax.swing.JLabel nameLbl;
     private javax.swing.JLabel nameLbl1;
     private javax.swing.JLabel nameLbl2;
     private javax.swing.JLabel nameLbl3;
     private javax.swing.JTextField nameTextField;
-    private javax.swing.JTextField nameTextField1;
     private javax.swing.JTextField nameTextField2;
     private javax.swing.JTextField nameTextField3;
+    private javax.swing.JTextField phoneTextField;
     // End of variables declaration//GEN-END:variables
 }

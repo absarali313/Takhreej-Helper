@@ -1,6 +1,7 @@
 // LoginDAO.java
 package DataAccessLayer;
 
+import BusinessLogicLayer.LoginService;
 import TransferObject.User;
 
 import java.io.File;
@@ -118,7 +119,8 @@ public class LoginDAO implements ILoginDAO {
 
                 String storedName = credentialsMap.get("username");
                 String storedPassword = credentialsMap.get("password");
-                
+                LoginService loginService = new LoginService();
+                loginService.login(storedName, storedPassword);
                 return true;
              /* Retrieve the user from the database based on the stored username
                 User user = getUserByEmail(storedName);

@@ -12,6 +12,7 @@ package PresentationLayer;
 import BusinessLogicLayer.EmailService;
 import BusinessLogicLayer.LoginService;
 import BusinessLogicLayer.RegistrationService;
+import BusinessLogicLayer.UserSession;
 import CustomException.AuthenticationException;
 import CustomException.EmailServiceException;
 import java.awt.Color;
@@ -42,21 +43,15 @@ public class LoginFrame extends javax.swing.JFrame {
 		.leftDrawer(false)
 		.build();
 
-        try {
-            if(loginService.autoLogin()){
-		JOptionPane.showMessageDialog(null, "Logged In Successfully !");
-            }
-	} catch (HeadlessException | AuthenticationException e) {
-			// TODO Auto-generated catch block
-            e.printStackTrace();
-            
-	}
+        
         // TODO Auto-generated catch block
         
 		
         
     }
-
+    private void autoDispose(){
+        this.dispose();
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -86,8 +81,13 @@ public class LoginFrame extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         forgetPassLbl1 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(58, 77, 57));
 
@@ -446,6 +446,22 @@ public class LoginFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_passwordFieldActionPerformed
 
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        // TODO add your handling code here:
+        try {
+            if(loginService.autoLogin()){
+		JOptionPane.showMessageDialog(null, "Logged In Successfully !");
+                MainFrame mainFrame = new MainFrame();
+                mainFrame.setVisible(true);
+                autoDispose();
+            }
+	} catch (HeadlessException | AuthenticationException e) {
+			// TODO Auto-generated catch block
+            e.printStackTrace();
+            
+	}
+    }//GEN-LAST:event_formWindowActivated
+
     /**
      * @param args the command line arguments
      */
@@ -484,6 +500,7 @@ public class LoginFrame extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new LoginFrame().setVisible(true);
+                
             }
         });
     }
