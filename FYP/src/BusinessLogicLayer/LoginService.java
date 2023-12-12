@@ -26,12 +26,12 @@ public class LoginService implements ILoginService {
         if (user != null && validatePassword(password, user.getPassword())) {
             return true;
         }
-        else{
+       
 
      // If authentication fails, throw the custom exception
         logger.getLogger().error("Authentication failed for user: {}", email);
         throw new AuthenticationException("Exception - Authentication failed for user: " + email);
-        }
+        
     }
 
     private boolean validatePassword(String inputPassword, String hashedPassword) {

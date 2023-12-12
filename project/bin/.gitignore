@@ -2,3 +2,5 @@
 /CustomLogger/
 /BusinessLogicLayer/
 /DataAccessLayer/
+/CustomException/
+/PresentationLayer/

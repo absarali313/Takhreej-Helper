@@ -16,7 +16,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 
-public class LoginPage {
+public class LoginFrame {
 
 	private DrawerController drawer;
 	private DrawerController drawer2;
@@ -46,7 +46,7 @@ public class LoginPage {
 					} catch( Exception ex ) {
 					    System.err.println( "Failed to initialize LaF" );
 					}
-					LoginPage window = new LoginPage();
+					LoginFrame window = new LoginFrame();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -60,7 +60,7 @@ public class LoginPage {
 	 * @throws AuthenticationException 
 	 * @throws HeadlessException 
 	 */
-	public LoginPage() throws HeadlessException, AuthenticationException {
+	public LoginFrame() throws HeadlessException, AuthenticationException {
 		loginService = new LoginService();
 		initialize();
 		drawer = Drawer.newDrawer(frame)
@@ -182,7 +182,7 @@ public class LoginPage {
 		sidePanel.add(lblNewLabel_2, "cell 4 2,growx");
 		
 		lblNewLabel_1 = new JLabel("");
-		lblNewLabel_1.setIcon(new ImageIcon(LoginPage.class.getResource("/Image/bookImg.jpg")));
+		lblNewLabel_1.setIcon(new ImageIcon(LoginFrame.class.getResource("/Image/bookImg.jpg")));
 		sidePanel.add(lblNewLabel_1, "cell 4 6,growx,aligny top");
 		
 		lblNewLabel_3 = new JLabel("\u062A\u062C\u0639\u0644 \u0627\u0644\u062A\u062E\u0631\u064A\u062C \u0623\u0633\u0647\u0644 \u0645\u0646 \u0623\u064A \u0648\u0642\u062A \u0645\u0636\u0649");
