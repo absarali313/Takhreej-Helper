@@ -76,7 +76,7 @@ public class RegisterPanel extends javax.swing.JPanel {
         emailTextField.setBackground(new java.awt.Color(18, 38, 32));
         emailTextField.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         emailTextField.setForeground(new java.awt.Color(255, 255, 255));
-        emailTextField.setText("Enter Email");
+        emailTextField.setText("abc@gmail.om");
         emailTextField.setBorder(null);
         emailTextField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -189,7 +189,6 @@ public class RegisterPanel extends javax.swing.JPanel {
 
         passwordField1.setBackground(new java.awt.Color(18, 38, 32));
         passwordField1.setForeground(new java.awt.Color(255, 255, 255));
-        passwordField1.setText("Enter Password");
         passwordField1.setBorder(null);
         passwordField1.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -243,16 +242,16 @@ public class RegisterPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(35, 35, 35)
                 .addComponent(nameLbl)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                 .addComponent(nameLbl1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(nameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(nameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(4, 4, 4)
                 .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(11, 11, 11)
-                .addComponent(emailLbl)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(emailTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(emailLbl)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(emailTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -295,8 +294,21 @@ public class RegisterPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_emailTextFieldActionPerformed
 
+    private boolean isValidEmail(String email) {
+    // Regular expression for a valid email format
+    String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
+    return email.matches(emailRegex);
+}
+    
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+         String email = emailTextField.getText();
+        String password = passwordField.getText();
+    
+         if (!isValidEmail(email)) {
+        JOptionPane.showMessageDialog(null, "Enter a valid email address!", "Invalid Email", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void phoneTextFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_phoneTextFieldFocusGained

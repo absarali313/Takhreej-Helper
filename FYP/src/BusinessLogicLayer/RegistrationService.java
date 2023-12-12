@@ -65,7 +65,7 @@ public class RegistrationService {
             }
         } catch (Exception e) {
         	logger.getLogger().error("Error validating input fields: {}", e.getMessage());
-            throw new RegisterationException("Error validating input fields: " + e.getMessage());
+                throw new RegisterationException("Password doesn't match: " + e.getMessage());
         }
     }
 
