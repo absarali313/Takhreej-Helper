@@ -382,7 +382,7 @@ public class LoginFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_forgetPassLblMouseClicked
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-       if((emailTextField.getText().equals("Enter Email") ||emailTextField.getText().equals("")) && (passwordField.getText().equals("12345") || passwordField.getText().equals("")) )
+       if(!((emailTextField.getText().equals("Enter Email") ||emailTextField.getText().equals("")) && (passwordField.getText().equals("12345") || passwordField.getText().equals(""))) )
        {
            boolean rememberMe = rememberMeCheck.isEnabled();
        
@@ -401,6 +401,10 @@ public class LoginFrame extends javax.swing.JFrame {
 	            // Handle the authentication exception (e.g., show an error dialog or log the error)
 	        JOptionPane.showMessageDialog(null,"User not Found ", "Invalid email or password !", JOptionPane.ERROR_MESSAGE);
                 }
+       }
+       else{
+           JOptionPane.showMessageDialog(null,"User not Found ", "Invalid email or password !", JOptionPane.ERROR_MESSAGE);
+              
        }
     }//GEN-LAST:event_jButton1MouseClicked
 
