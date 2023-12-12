@@ -354,10 +354,24 @@ public class LoginFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_rememberMeCheckActionPerformed
 
+      private boolean isValidEmail(String email) {
+    // Regular expression for a valid email format
+    String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
+    return email.matches(emailRegex);
+}
+
+      
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         
 	 // TODO add your handling code here:
         boolean rememberMe = rememberMeCheck.isEnabled();
+         String email = emailTextField.getText();
+         String password = passwordField.getText();
+         
+          if (!isValidEmail(email)) {
+        JOptionPane.showMessageDialog(null, "Enter a valid email address!", "Invalid Email", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
         try {
 	    boolean isAuthenticated = loginService.login(emailTextField.getText(), passwordField.getText());
 	    if (isAuthenticated) {
@@ -381,6 +395,7 @@ public class LoginFrame extends javax.swing.JFrame {
         
     }//GEN-LAST:event_forgetPassLblMouseClicked
 
+    
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
        if(!((emailTextField.getText().equals("Enter Email") ||emailTextField.getText().equals("")) && (passwordField.getText().equals("12345") || passwordField.getText().equals(""))) )
        {
@@ -403,7 +418,7 @@ public class LoginFrame extends javax.swing.JFrame {
                 }
        }
        else{
-           JOptionPane.showMessageDialog(null,"User not Found ", "Invalid email or password !", JOptionPane.ERROR_MESSAGE);
+           JOptionPane.showMessageDialog(null,"Empty Fields", "Please fill all the fields", JOptionPane.ERROR_MESSAGE);
               
        }
     }//GEN-LAST:event_jButton1MouseClicked
