@@ -6,17 +6,17 @@ import TransferObjects.User;
  *
  * @author ch-sa
  */
-public class Session {
+public class UserSession {
     public static User loggedUser;
     
-    public Session(User user){
-        Session.loggedUser  = user;
+    public UserSession(User user){
+        UserSession.loggedUser  = user;
     }
     
     public static User getSession(){
         return loggedUser;
     }
     public static void setSession(User user){
-       Session.loggedUser = user;
+       UserSession.loggedUser = user;
     }
 }

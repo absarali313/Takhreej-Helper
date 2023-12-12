@@ -28,7 +28,7 @@ public class LoginService implements ILoginService {
         User user = loginDAO.getUserByEmail(email);
 
         if (user != null && validatePassword(password, user.getPassword())) {
-            Session.setSession(user);
+            UserSession.setSession(user);
             return true;
         }
        
