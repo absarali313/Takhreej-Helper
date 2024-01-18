@@ -1,6 +1,6 @@
 // LoginService.java
 package BusinessLogicLayer;
-import CustomLogger.AppLogger;
+import CustomLogger.Log;
 import CustomException.AuthenticationException;
 import CustomException.EmailServiceException;
 import DataAccessLayer.ILoginDAO;
@@ -10,11 +10,10 @@ import java.io.File;
 
 
 public class LoginService implements ILoginService {
-	private static AppLogger logger = new AppLogger(); // Use the logger instance from AppLogger
         private static final String REMEMBER_ME_FILE = "rememberMe.dat";
 
 	static {
-	logger.classChange(LoginService.class.getName());
+	Log.classChange(LoginService.class.getName());
 	}
     private ILoginDAO loginDAO;
 
@@ -34,7 +33,7 @@ public class LoginService implements ILoginService {
        
 
      // If authentication fails, throw the custom exception
-        logger.getLogger().error("Authentication failed for user: {}", email);
+        Log.getLogger().error("Authentication failed for user: {}", email);
         throw new AuthenticationException("Exception - Authentication failed for user: " + email);
         
     }
@@ -63,9 +62,9 @@ public class LoginService implements ILoginService {
 	        if (verifyCode(userEnteredCode, storedOtp)) {
 	            // Call the reset password method in LoginDAO
 	            loginDAO.resetPassword(email, newPassword);
-	            logger.getLogger().info("Password reset successfully for email: {}", email);
+	            Log.getLogger().info("Password reset successfully for email: {}", email);
 	        } else {
-	        	logger.getLogger().error("Invalid verification code. Password reset failed for email: {}", email);
+	        	Log.getLogger().error("Invalid verification code. Password reset failed for email: {}", email);
 	            throw new EmailServiceException("Invalid verification code. Password reset failed.");
 	        }
 	    }

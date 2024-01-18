@@ -8,16 +8,26 @@ import java.util.ArrayList;
  */
 public class Hadith {
     private int index;
+    private int id;
     private String matn;
     private String bookName;
     private ArrayList<String> Narrators;
     
     
-    public Hadith(int index, String matn, String bookName, ArrayList<String> Narrators) {
+    public Hadith(int index,int id, String matn, String bookName, ArrayList<String> Narrators) {
         this.index = index;
+        this.id = id;
         this.matn = matn;
         this.bookName = bookName;
         this.Narrators = Narrators;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getIndex() {

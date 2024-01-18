@@ -16,12 +16,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
-import CustomLogger.AppLogger;
+import CustomLogger.Log;
 import BusinessLogicLayer.PasswordHasher;
 import CustomException.AuthenticationException;
 
 public class LoginDAO implements ILoginDAO {
-	private static final AppLogger logger = new AppLogger(); // Use the logger instance from AppLogger
+	
     private static final String REMEMBER_ME_FILE = "rememberMe.dat";
     private PasswordHasher passwordHasher;
 
@@ -63,7 +63,7 @@ public class LoginDAO implements ILoginDAO {
                 return user;
             }
         } catch (SQLException e) {
-        	logger.getLogger().error("Error getting user by email: {}", e.getMessage());
+        	Log.getLogger().error("Error getting user by email: {}", e.getMessage());
             e.printStackTrace();
         } finally {
             // Close resources (result set, statement, and connection)
@@ -72,7 +72,7 @@ public class LoginDAO implements ILoginDAO {
                 if (preparedStatement != null) preparedStatement.close();
                 if (connection != null) connection.close();
             } catch (SQLException e) {
-            	logger.getLogger().error("Error closing resources: {}", e.getMessage());
+            	Log.getLogger().error("Error closing resources: {}", e.getMessage());
                 e.printStackTrace();
             }
         }
@@ -96,14 +96,14 @@ public class LoginDAO implements ILoginDAO {
 	            oos.writeObject(credentialsMap);
 	            return true;
 	        } catch (IOException e) {
-	        	 logger.getLogger().error("Error saving credentials for user: {}", name);
+	        	 Log.getLogger().error("Error saving credentials for user: {}", name);
 	        	 // Catch the custom exception and handle it
 	            throw new AuthenticationException("Error saving credentials for user: " + name);
 	        }			
 		}
 		else
 		{
-			 logger.getLogger().error("User not found. Cannot remember credentials.");
+			 Log.getLogger().error("User not found. Cannot remember credentials.");
 			return false;
 		}
     }
@@ -134,7 +134,7 @@ public class LoginDAO implements ILoginDAO {
                 }*/
             } catch (IOException | ClassNotFoundException e) {
                 // Catch the custom exception and handle it
-            	 logger.getLogger().error("Error reading auto-login credentials: {}", e.getMessage());
+            	 Log.getLogger().error("Error reading auto-login credentials: {}", e.getMessage());
                 throw new AuthenticationException("Error reading auto-login credentials");
             }
         }
@@ -164,12 +164,12 @@ public class LoginDAO implements ILoginDAO {
             int rowsAffected = preparedStatement.executeUpdate();
 
             if (rowsAffected > 0) {
-            	 logger.getLogger().info("Password reset successfully for email: {}", email);
+            	 Log.getLogger().info("Password reset successfully for email: {}", email);
             } else {
-            	 logger.getLogger().error("User not found. Password reset failed.");
+            	 Log.getLogger().error("User not found. Password reset failed.");
             }
         } catch (SQLException e) {
-        	  logger.getLogger().error("Error resetting password: {}", e.getMessage());
+        	  Log.getLogger().error("Error resetting password: {}", e.getMessage());
             e.printStackTrace();
         } finally {
             // Close resources (statement and connection)
@@ -177,7 +177,7 @@ public class LoginDAO implements ILoginDAO {
                 if (preparedStatement != null) preparedStatement.close();
                 if (connection != null) connection.close();
             } catch (SQLException e) {
-            	logger.getLogger().error("Error closing resources: {}", e.getMessage());
+            	Log.getLogger().error("Error closing resources: {}", e.getMessage());
                 e.printStackTrace();
             }
         }

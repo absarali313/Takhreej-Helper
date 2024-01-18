@@ -20,8 +20,8 @@ public class LogoutService implements ILogoutService {
     public String redirectToLogin() {
         return "/login";
     }
-    
-   /* public void actionPerformed(ActionEvent e) {
+
+    /* public void actionPerformed(ActionEvent e) {
     	this.setVisible(false);
     	String operation = e.getActionCommand();
     	switch(operation)

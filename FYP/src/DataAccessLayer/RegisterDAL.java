@@ -1,12 +1,11 @@
 package DataAccessLayer;
 import java.sql.PreparedStatement;
-import CustomLogger.AppLogger;
+import CustomLogger.Log;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import TransferObject.User;
 
 public class RegisterDAL implements IRegisterDAL {
-	private static final AppLogger logger = new AppLogger(); // Use the logger instance from AppLogger
 	
 	public boolean isEmailRegistered(String email) {
         String checkEmailQuery = "SELECT * FROM users WHERE email = ? ";
@@ -18,7 +17,7 @@ public class RegisterDAL implements IRegisterDAL {
                 return resultSet.next(); // Returns true if there are rows, indicating email is registered
             }
         } catch (SQLException e) {
-        	logger.getLogger().error("Error checking if email is registered: {}", e.getMessage());
+        	Log.getLogger().error("Error checking if email is registered: {}", e.getMessage());
             e.printStackTrace();
         }
 
@@ -26,7 +25,7 @@ public class RegisterDAL implements IRegisterDAL {
     }
 	 public Boolean insertUser(User user) {
 		  if (isEmailRegistered(user.getEmail())) {
-			  logger.getLogger().error("Error: Email is already registered");
+			  Log.getLogger().error("Error: Email is already registered");
 	            return false;
 	        }
 		 String insertUserQuery = "INSERT INTO users (name, email, password, phoneNumber) VALUES (?, ?, ?, ?)";
@@ -39,7 +38,7 @@ public class RegisterDAL implements IRegisterDAL {
 	            preparedStatement.executeUpdate();
 	            return true;
 	        } catch (SQLException e) {
-	        	logger.getLogger().error("Error inserting user: {}", e.getMessage());
+	        	Log.getLogger().error("Error inserting user: {}", e.getMessage());
 	            e.printStackTrace();
 	            return false;
 	        }
