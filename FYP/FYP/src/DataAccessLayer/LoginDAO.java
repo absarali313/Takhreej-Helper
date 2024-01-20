@@ -17,6 +17,7 @@ import java.util.HashMap;
 import java.util.Map;
 import CustomLogger.AppLogger;
 import BusinessLogicLayer.PasswordHasher;
+import BusinessLogicLayer.LoginService;
 import CustomException.AuthenticationException;
 
 public class LoginDAO implements ILoginDAO {
@@ -79,32 +80,33 @@ public class LoginDAO implements ILoginDAO {
         return null; // Return null if the user is not found or an error occurs
     }
 
-	@Override
+	public Map<String, String> readRememberMeFile() throws AuthenticationException {
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(REMEMBER_ME_FILE))) {
+            return (HashMap<String, String>) ois.readObject();
+        } catch (IOException | ClassNotFoundException e) {
+            logger.getLogger().error("Error reading rememberMe file: {}", e.getMessage());
+            throw new AuthenticationException("Error reading rememberMe file");
+        }
+    }
+
+    @Override
     public boolean rememberUserCredentials(String name, String password, boolean remember) throws AuthenticationException {
-		User user = new User();
-		user = getUserByEmail(name);
-		if(user != null)
-		{
-	        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(REMEMBER_ME_FILE))) {
-	            // Create a map to store hashed credentials
-	            Map<String, String> credentialsMap = new HashMap<>();
-	            // For simplicity, we are using plain text here; in a real scenario, you'd hash the password
-	            credentialsMap.put("username", name);
-	            credentialsMap.put("password", password);
-	            // Write the map to the file
-	            oos.writeObject(credentialsMap);
-	            return true;
-	        } catch (IOException e) {
-	        	 logger.getLogger().error("Error saving credentials for user: {}", name);
-	        	 // Catch the custom exception and handle it
-	            throw new AuthenticationException("Error saving credentials for user: " + name);
-	        }			
-		}
-		else
-		{
-			 logger.getLogger().error("User not found. Cannot remember credentials.");
-			return false;
-		}
+        User user = getUserByEmail(name);
+        if (user != null) {
+            try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(REMEMBER_ME_FILE))) {
+                Map<String, String> credentialsMap = new HashMap<>();
+                credentialsMap.put("username", name);
+                credentialsMap.put("password", password);
+                oos.writeObject(credentialsMap);
+                return true;
+            } catch (IOException e) {
+                logger.getLogger().error("Error saving credentials for user: {}", name);
+                throw new AuthenticationException("Error saving credentials for user: " + name);
+            }
+        } else {
+            logger.getLogger().error("User not found. Cannot remember credentials.");
+            return false;
+        }
     }
 
     @Override
@@ -112,34 +114,22 @@ public class LoginDAO implements ILoginDAO {
         File file = new File(REMEMBER_ME_FILE);
 
         if (file.exists()) {
-            try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(REMEMBER_ME_FILE))) {
-                // Read the map from the file
-                Map<String, String> credentialsMap = (HashMap<String, String>) ois.readObject();
+            try {
+                Map<String, String> credentialsMap = readRememberMeFile();
 
                 String storedName = credentialsMap.get("username");
                 String storedPassword = credentialsMap.get("password");
-                
-                return true;
-             /* Retrieve the user from the database based on the stored username
-                User user = getUserByEmail(storedName);
 
-                if (user != null && storedPassword.equals(user.getPassword())) {
-                    // Auto-login successful
-                    return true;
-                } else {
-                    // Credentials don't match or user not found
-                    throw new AuthenticationException("Auto-login failed: Invalid credentials");
-                }*/
-            } catch (IOException | ClassNotFoundException e) {
-                // Catch the custom exception and handle it
-            	 logger.getLogger().error("Error reading auto-login credentials: {}", e.getMessage());
-                throw new AuthenticationException("Error reading auto-login credentials");
+                LoginService loginService = new LoginService();
+                return loginService.login(storedName, storedPassword);
+            } catch (AuthenticationException e) {
+                throw e;
             }
         }
 
         return false;
     }
- // Inside the LoginDAO class
+
 
     public void resetPassword(String email, String newPassword) {
         Connection connection = null;
