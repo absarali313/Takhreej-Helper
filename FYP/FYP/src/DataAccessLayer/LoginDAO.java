@@ -1,6 +1,7 @@
 // LoginDAO.java
 package DataAccessLayer;
 
+import BusinessLogicLayer.ILoginService;
 import TransferObjects.User;
 
 import java.io.File;
@@ -21,6 +22,20 @@ import BusinessLogicLayer.LoginService;
 import CustomException.AuthenticationException;
 
 public class LoginDAO implements ILoginDAO {
+
+    /**
+     * @return the passwordHasher
+     */
+    public PasswordHasher getPasswordHasher() {
+        return passwordHasher;
+    }
+
+    /**
+     * @param passwordHasher the passwordHasher to set
+     */
+    public void setPasswordHasher(PasswordHasher passwordHasher) {
+        this.passwordHasher = passwordHasher;
+    }
 	private static final AppLogger logger = new AppLogger(); // Use the logger instance from AppLogger
     private static final String REMEMBER_ME_FILE = "rememberMe.dat";
     private PasswordHasher passwordHasher;
@@ -82,7 +97,7 @@ public class LoginDAO implements ILoginDAO {
 
 	public Map<String, String> readRememberMeFile() throws AuthenticationException {
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(REMEMBER_ME_FILE))) {
-            return (HashMap<String, String>) ois.readObject();
+            return (Map<String, String>) ois.readObject();
         } catch (IOException | ClassNotFoundException e) {
             logger.getLogger().error("Error reading rememberMe file: {}", e.getMessage());
             throw new AuthenticationException("Error reading rememberMe file");
@@ -120,7 +135,7 @@ public class LoginDAO implements ILoginDAO {
                 String storedName = credentialsMap.get("username");
                 String storedPassword = credentialsMap.get("password");
 
-                LoginService loginService = new LoginService();
+                ILoginService loginService = new LoginService();
                 return loginService.login(storedName, storedPassword);
             } catch (AuthenticationException e) {
                 throw e;
@@ -140,7 +155,7 @@ public class LoginDAO implements ILoginDAO {
             connection = DBhandler.getInstance().getConnection();
 
             // Hash the new password
-            String hashedPassword = passwordHasher.hashPassword(newPassword);
+            String hashedPassword = getPasswordHasher().hashPassword(newPassword);
 
             // SQL query to update the user's password
             String query = "UPDATE users SET password = ? WHERE email = ?";

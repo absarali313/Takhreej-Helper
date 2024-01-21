@@ -9,5 +9,4 @@ public interface ILoginService {
     boolean rememberMe(String name, String password, boolean remember) throws AuthenticationException;
     boolean autoLogin() throws AuthenticationException;
     void logout();
-	//void resetPassword(String name, String string, String storedOTP, String userEnteredCode) throws EmailServiceException;
 }

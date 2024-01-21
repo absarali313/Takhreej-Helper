@@ -10,6 +10,7 @@ package PresentationLayer;
  * @author ch-sa
  */
 import BusinessLogicLayer.EmailService;
+import BusinessLogicLayer.ILoginService;
 import BusinessLogicLayer.LoginService;
 import BusinessLogicLayer.RegistrationService;
 import CustomException.AuthenticationException;
@@ -489,5 +490,5 @@ public class LoginFrame extends javax.swing.JFrame {
     private javax.swing.JCheckBox rememberMeCheck;
     // End of variables declaration//GEN-END:variables
     private DrawerController drawer;
-    public LoginService loginService;
+    public ILoginService loginService;
 }

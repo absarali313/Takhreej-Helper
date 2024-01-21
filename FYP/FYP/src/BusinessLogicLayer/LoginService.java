@@ -10,6 +10,20 @@ import java.io.File;
 
 
 public class LoginService implements ILoginService {
+
+    /**
+     * @return the loginDAO
+     */
+    public ILoginDAO getLoginDAO() {
+        return loginDAO;
+    }
+
+    /**
+     * @param loginDAO the loginDAO to set
+     */
+    public void setLoginDAO(ILoginDAO loginDAO) {
+        this.loginDAO = loginDAO;
+    }
 	private static AppLogger logger = new AppLogger(); // Use the logger instance from AppLogger
         private static final String REMEMBER_ME_FILE = "rememberMe.dat";
 
@@ -25,7 +39,7 @@ public class LoginService implements ILoginService {
     public boolean login(String email, String password) throws AuthenticationException {
        
 
-        User user = loginDAO.getUserByEmail(email);
+        User user = getLoginDAO().getUserByEmail(email);
 
         if (user != null && validatePassword(password, user.getPassword())) {
             UserSession.setSession(user);
@@ -49,20 +63,20 @@ public class LoginService implements ILoginService {
 	@Override
 	public boolean rememberMe(String name, String password, boolean remember) throws AuthenticationException {
 		 // Call DAO to handle remember me functionality
-        return loginDAO.rememberUserCredentials(name, password, remember);
+        return getLoginDAO().rememberUserCredentials(name, password, remember);
 	}
 
 	@Override
 	public boolean autoLogin() throws AuthenticationException {
 		// Call DAO to handle auto-login functionality
-        return loginDAO.autoLogin();
+        return getLoginDAO().autoLogin();
 	}
 
 	 public void resetPassword(String email, String newPassword, String storedOtp, String userEnteredCode) throws EmailServiceException {
 	        // Check if both codes match using the verifyCode method
 	        if (verifyCode(userEnteredCode, storedOtp)) {
 	            // Call the reset password method in LoginDAO
-	            loginDAO.resetPassword(email, newPassword);
+	            getLoginDAO().resetPassword(email, newPassword);
 	            logger.getLogger().info("Password reset successfully for email: {}", email);
 	        } else {
 	        	logger.getLogger().error("Invalid verification code. Password reset failed for email: {}", email);
