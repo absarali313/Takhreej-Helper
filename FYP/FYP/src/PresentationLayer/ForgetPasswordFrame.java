@@ -5,6 +5,7 @@
 package PresentationLayer;
 
 import BusinessLogicLayer.EmailService;
+import BusinessLogicLayer.IRegistrationService;
 import BusinessLogicLayer.LoginService;
 import BusinessLogicLayer.RegistrationService;
 import CustomException.EmailServiceException;
@@ -181,7 +182,7 @@ public class ForgetPasswordFrame extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        RegistrationService registerService = new RegistrationService();
+        IRegistrationService registerService = new RegistrationService();
         EmailService emailService = new EmailService();
         if(registerService.isEmailRegistered(emailTextField.getText())){
             try {

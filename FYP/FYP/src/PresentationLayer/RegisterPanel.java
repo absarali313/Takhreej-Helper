@@ -1,6 +1,7 @@
 package PresentationLayer;
 
 import BusinessLogicLayer.EmailService;
+import BusinessLogicLayer.IRegistrationService;
 import BusinessLogicLayer.RegistrationService;
 import CustomException.EmailServiceException;
 import CustomException.RegisterationException;
@@ -424,6 +425,6 @@ public class RegisterPanel extends javax.swing.JPanel {
     private javax.swing.JLabel phoneLbl;
     private javax.swing.JTextField phoneTextField;
     // End of variables declaration//GEN-END:variables
-    private RegistrationService registerService;
+    private IRegistrationService registerService;
 }
 

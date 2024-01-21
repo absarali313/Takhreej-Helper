@@ -6,7 +6,21 @@ import java.sql.SQLException;
 import TransferObjects.User;
 
 public class RegisterDAL implements IRegisterDAL {
-	private static final AppLogger logger = new AppLogger(); // Use the logger instance from AppLogger
+
+    /**
+     * @return the logger
+     */
+    public static AppLogger getLogger() {
+        return logger;
+    }
+
+    /**
+     * @param aLogger the logger to set
+     */
+    public static void setLogger(AppLogger aLogger) {
+        logger = aLogger;
+    }
+	private static AppLogger logger = new AppLogger(); // Use the logger instance from AppLogger
 	
 	public boolean isEmailRegistered(String email) {
         String checkEmailQuery = "SELECT * FROM users WHERE email = ? ";
@@ -18,7 +32,7 @@ public class RegisterDAL implements IRegisterDAL {
                 return resultSet.next(); // Returns true if there are rows, indicating email is registered
             }
         } catch (SQLException e) {
-        	logger.getLogger().error("Error checking if email is registered: {}", e.getMessage());
+        	getLogger().getLogger().error("Error checking if email is registered: {}", e.getMessage());
             e.printStackTrace();
         }
 
@@ -26,7 +40,7 @@ public class RegisterDAL implements IRegisterDAL {
     }
 	 public Boolean insertUser(User user) {
 		  if (isEmailRegistered(user.getEmail())) {
-			  logger.getLogger().error("Error: Email is already registered");
+			  getLogger().getLogger().error("Error: Email is already registered");
 	            return false;
 	        }
 		 String insertUserQuery = "INSERT INTO users (name, email, password, phoneNumber) VALUES (?, ?, ?, ?)";
@@ -39,7 +53,7 @@ public class RegisterDAL implements IRegisterDAL {
 	            preparedStatement.executeUpdate();
 	            return true;
 	        } catch (SQLException e) {
-	        	logger.getLogger().error("Error inserting user: {}", e.getMessage());
+	        	getLogger().getLogger().error("Error inserting user: {}", e.getMessage());
 	            e.printStackTrace();
 	            return false;
 	        }
