@@ -2,11 +2,13 @@ package DataAccessLayer;
 
 import CustomException.ResearchAlreadyExistsException;
 import CustomLogger.Log;
+import TransferObject.Hadith;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 /**
  *
@@ -64,7 +66,7 @@ public class ResearchDAO implements IResearchDAO {
             return false;
         }
     }
-
+    @Override
     public boolean deleteResearch(int id) {
         
         String query = "DELETE FROM research WHERE id = ?";
@@ -83,5 +85,7 @@ public class ResearchDAO implements IResearchDAO {
             return false;
         }
     }
+   
+
 
 }

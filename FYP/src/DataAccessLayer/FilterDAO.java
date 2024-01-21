@@ -18,11 +18,13 @@ public class FilterDAO implements IFilterDAO {
     
     
     @Override
-    public boolean insertFilter(String expression){
+    public boolean insertFilter(int researchId, int orderNo,String expression){
         
-        String query = "INSERT INTO filter(expression) Values(?) ";
+        String query = "INSERT INTO filter(researchId,orderNo,expression) Values(?,?,?) ";
         try (java.sql.PreparedStatement preparedStatement = DBhandler.getInstance().getConnection().prepareStatement(query)) {
-            preparedStatement.setString(1, expression);
+            preparedStatement.setInt(1, researchId);
+            preparedStatement.setInt(2, orderNo);
+            preparedStatement.setString(3, expression);
             preparedStatement.executeUpdate();
             return true;
         } catch (SQLException e) {
@@ -33,12 +35,13 @@ public class FilterDAO implements IFilterDAO {
     
     
     @Override
-     public boolean updateFilter(int id, String filter) {
+     public boolean updateFilter(int id, int orderNo, String filter) {
         
-        String query = "UPDATE filter SET expression = ? WHERE id = ?";
+        String query = "UPDATE filter SET expression = ?, orderNo = ? WHERE id = ?";
         try (PreparedStatement preparedStatement = DBhandler.getInstance().getConnection().prepareStatement(query)) {
             preparedStatement.setString(1, filter);
-            preparedStatement.setInt(2, id);
+            preparedStatement.setInt(2, orderNo);
+            preparedStatement.setInt(3, id);
             int rowsAffected = preparedStatement.executeUpdate();
 
             if (rowsAffected > 0) {

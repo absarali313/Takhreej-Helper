@@ -11,10 +11,10 @@ public class Hadith {
     private int id;
     private String matn;
     private String bookName;
-    private ArrayList<String> Narrators;
+    private ArrayList<Narrator> Narrators;
     
     
-    public Hadith(int index,int id, String matn, String bookName, ArrayList<String> Narrators) {
+    public Hadith(int index,int id, String matn, String bookName, ArrayList<Narrator> Narrators) {
         this.index = index;
         this.id = id;
         this.matn = matn;
@@ -54,17 +54,14 @@ public class Hadith {
         this.bookName = bookName;
     }
 
-    public ArrayList<String> getNarrators() {
+    public ArrayList<Narrator> getNarrators() {
         return Narrators;
     }
 
-    public void setNarrators(ArrayList<String> Narrators) {
+    public void setNarrators(ArrayList<Narrator> Narrators) {
         this.Narrators = Narrators;
     }
     
-    public void addNarrator(String narratorName){
-        this.Narrators.add(narratorName);
-    }
     
     
 }

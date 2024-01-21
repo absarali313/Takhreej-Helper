@@ -6,10 +6,10 @@ package BusinessLogicLayer;
  */
 public interface IFilterBO {
 
-    boolean createFilter(String expression);
+    boolean createFilter(int researchId, int orderNo, String expression);
 
     boolean deleteFilter(int id);
 
-    boolean updateFilterExpression(int id, String expression);
+    boolean updateFilterExpression(int id,int orderNo, String expression);
     
 }

@@ -29,13 +29,13 @@ public class FascadeDAO implements IFascadedao {
     }
     
      @Override
-    public boolean insertFilter(String expression) {
-       return filterDAO.insertFilter(expression);
+    public boolean insertFilter(int researchId, int orderNo, String expression) {
+       return filterDAO.insertFilter(researchId,orderNo,expression);
     }
 
     @Override
-    public boolean updateFilter(int id, String filter) {
-       return filterDAO.updateFilter(id, filter);
+    public boolean updateFilter(int id, int orderNo, String filter) {
+       return filterDAO.updateFilter(id,orderNo, filter);
     }
 
     @Override
