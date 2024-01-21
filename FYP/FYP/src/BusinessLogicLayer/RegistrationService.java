@@ -20,7 +20,7 @@ public class RegistrationService implements IRegistrationService {
                 throw new RegisterationException("User already Exists");
         	if (!isEmailRegistered(email)&& isValidUser(name, email,password,phoneNumber) && isValidVerificationCode(verificationCode)) {
                     
-                    PasswordHasher hasher = new PasswordHasher();
+                    IPasswordHasher hasher = new PasswordHasher();
                     String hashedPassword = hasher.hashPassword(password);
                     User user = new User(name, email,hashedPassword ,phoneNumber);
                     getRegisterDAL().insertUser(user);

@@ -8,14 +8,70 @@ import java.util.Properties;
 import CustomLogger.AppLogger;
 import CustomException.DBConnectionException;
 
-public class DBhandler {
+public class DBhandler implements IDBhandler {
+
+    /**
+     * @return the con
+     */
+    public Connection getCon() {
+        return con;
+    }
+
+    /**
+     * @param con the con to set
+     */
+    public void setCon(Connection con) {
+        this.con = con;
+    }
+
+    /**
+     * @return the user
+     */
+    public String getUser() {
+        return user;
+    }
+
+    /**
+     * @param user the user to set
+     */
+    public void setUser(String user) {
+        this.user = user;
+    }
+
+    /**
+     * @return the password
+     */
+    public String getPassword() {
+        return password;
+    }
+
+    /**
+     * @param password the password to set
+     */
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    /**
+     * @return the CONFIG_FILE
+     */
+    public static String getCONFIG_FILE() {
+        return CONFIG_FILE;
+    }
+
+    /**
+     * @param aCONFIG_FILE the CONFIG_FILE to set
+     */
+    public static void setCONFIG_FILE(String aCONFIG_FILE) {
+        CONFIG_FILE = aCONFIG_FILE;
+    }
   private static final AppLogger logger = new AppLogger(); // Use the logger instance from AppLogger
   private static DBhandler instance;
   private Connection con;
   String url;
-  String user;
-  String password;
-  private static final String CONFIG_FILE = "config.properties";
+  private String user;
+  private String password;
+  private static String CONFIG_FILE = "config.properties";
   
   private DBhandler() throws DBConnectionException {
     try {
@@ -30,8 +86,9 @@ public class DBhandler {
     	throw new DBConnectionException("Error establishing database connection: " + ex.getMessage(), ex);
     }
   }
+    @Override
   public Connection getConnection() {
-    return con;
+    return getCon();
   }
   public static DBhandler getInstance() throws DBConnectionException {
     if (instance == null) {
@@ -55,9 +112,9 @@ public class DBhandler {
   public static Properties loadProperties() {
       Properties properties = new Properties();
 
-      try (InputStream input = DBhandler.class.getClassLoader().getResourceAsStream(CONFIG_FILE)) {
+      try (InputStream input = DBhandler.class.getClassLoader().getResourceAsStream(getCONFIG_FILE())) {
           if (input == null) {
-        	  logger.getLogger().error("Sorry, unable to find {}", CONFIG_FILE);
+        	  logger.getLogger().error("Sorry, unable to find {}", getCONFIG_FILE());
               return properties;
           }
 

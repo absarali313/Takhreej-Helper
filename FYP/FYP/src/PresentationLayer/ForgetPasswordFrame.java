@@ -5,6 +5,7 @@
 package PresentationLayer;
 
 import BusinessLogicLayer.EmailService;
+import BusinessLogicLayer.IEmailService;
 import BusinessLogicLayer.IRegistrationService;
 import BusinessLogicLayer.LoginService;
 import BusinessLogicLayer.RegistrationService;
@@ -183,7 +184,7 @@ public class ForgetPasswordFrame extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         IRegistrationService registerService = new RegistrationService();
-        EmailService emailService = new EmailService();
+        IEmailService emailService = new EmailService();
         if(registerService.isEmailRegistered(emailTextField.getText())){
             try {
                 String orignalOtp = emailService.sendForgotPasswordOTP(emailTextField.getText());

@@ -1,6 +1,7 @@
 package PresentationLayer;
 
 import BusinessLogicLayer.EmailService;
+import BusinessLogicLayer.IEmailService;
 import BusinessLogicLayer.IRegistrationService;
 import BusinessLogicLayer.RegistrationService;
 import CustomException.EmailServiceException;
@@ -350,7 +351,7 @@ public class RegisterPanel extends javax.swing.JPanel {
             if(registerService.validateFields(nameTextField.getText(),emailTextField.getText(),phoneTextField.getText(),passwordField.getText(),passwordField1.getText())) {
                 System.out.println("Sending Email");
                 String otp;
-		EmailService emailService = new EmailService();
+		IEmailService emailService = new EmailService();
 		try {
                     if(emailService.sendVerificationEmail(emailTextField.getText())){
                         otp =   JOptionPane.showInputDialog("Enter OTP Code : ");

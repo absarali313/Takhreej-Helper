@@ -9,7 +9,7 @@ import CustomLogger.AppLogger;
 import CustomException.EmailServiceException;
 import java.util.Random;
 
-public class EmailService {
+public class EmailService implements IEmailService {
 	private static final AppLogger logger = new AppLogger(); // Use the logger instance from AppLogger
 	
     private String lastGeneratedVerificationCode;
@@ -27,9 +27,9 @@ public class EmailService {
             Properties prop = new Properties();
             prop.load(input);
 
-            senderEmail = prop.getProperty("sender.email");
-            senderPassword = prop.getProperty("sender.password");
-            System.out.println(senderEmail);
+            setSenderEmail(prop.getProperty("sender.email"));
+            setSenderPassword(prop.getProperty("sender.password"));
+            System.out.println(getSenderEmail());
 
         } catch (IOException ex) {
         	 logger.getLogger().error("Error loading email properties", ex);
@@ -38,12 +38,13 @@ public class EmailService {
     }
 
     // Existing code for generating verification code
+    @Override
     public String generateVerificationCode() {
     	logger.getLogger().info("Calling generateVerificationCode Function");
         Random random = new Random();
         int verificationCode = 100000 + random.nextInt(900000);
-        lastGeneratedVerificationCode = String.valueOf(verificationCode);
-        return lastGeneratedVerificationCode;
+        setLastGeneratedVerificationCode(String.valueOf(verificationCode));
+        return getLastGeneratedVerificationCode();
     }
 
     // Generic method to send an email with a verification code
@@ -60,13 +61,13 @@ private boolean sendEmail(String recipientEmail, String subject, String message)
     Session session = Session.getInstance(props, new javax.mail.Authenticator() {
         @Override
         protected PasswordAuthentication getPasswordAuthentication() {
-            return new PasswordAuthentication(senderEmail, senderPassword);
+            return new PasswordAuthentication(getSenderEmail(), getSenderPassword());
         }
     });
 
     try {
         Message mimeMessage = new MimeMessage(session);
-        mimeMessage.setFrom(new InternetAddress(senderEmail));
+        mimeMessage.setFrom(new InternetAddress(getSenderEmail()));
         mimeMessage.setRecipients(Message.RecipientType.TO, InternetAddress.parse(recipientEmail));
         mimeMessage.setSubject(subject); // Set the subject of the email
         mimeMessage.setText(message);   // Set the content of the email
@@ -84,6 +85,7 @@ private boolean sendEmail(String recipientEmail, String subject, String message)
 
 
     // Method for sending verification code for user registration
+    @Override
     public boolean sendVerificationEmail(String recipientEmail) throws EmailServiceException {
     	logger.getLogger().info("Calling sendVerificationEmail Function");
         String subject = "Verification Code for Registration";
@@ -94,6 +96,7 @@ private boolean sendEmail(String recipientEmail, String subject, String message)
     }
 
     // Method for sending random OTP for forgot password
+    @Override
     public String sendForgotPasswordOTP(String recipientEmail) throws EmailServiceException {
     	logger.getLogger().info("Calling sendForgotPasswordOTP Function");
         String subject = "Forgot Password OTP";
@@ -112,8 +115,51 @@ private boolean sendEmail(String recipientEmail, String subject, String message)
         }
     }
 
+    @Override
     public boolean verifyCode(String userEnteredCode) {
     	logger.getLogger().info("Calling verifyCode Function");
-        return lastGeneratedVerificationCode != null && lastGeneratedVerificationCode.equals(userEnteredCode);
+        return getLastGeneratedVerificationCode() != null && getLastGeneratedVerificationCode().equals(userEnteredCode);
+    }
+
+    /**
+     * @return the lastGeneratedVerificationCode
+     */
+    public String getLastGeneratedVerificationCode() {
+        return lastGeneratedVerificationCode;
+    }
+
+    /**
+     * @param lastGeneratedVerificationCode the lastGeneratedVerificationCode to set
+     */
+    public void setLastGeneratedVerificationCode(String lastGeneratedVerificationCode) {
+        this.lastGeneratedVerificationCode = lastGeneratedVerificationCode;
+    }
+
+    /**
+     * @return the senderEmail
+     */
+    public String getSenderEmail() {
+        return senderEmail;
+    }
+
+    /**
+     * @param senderEmail the senderEmail to set
+     */
+    public void setSenderEmail(String senderEmail) {
+        this.senderEmail = senderEmail;
+    }
+
+    /**
+     * @return the senderPassword
+     */
+    public String getSenderPassword() {
+        return senderPassword;
+    }
+
+    /**
+     * @param senderPassword the senderPassword to set
+     */
+    public void setSenderPassword(String senderPassword) {
+        this.senderPassword = senderPassword;
     }
 }
