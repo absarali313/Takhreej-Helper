@@ -11,8 +11,9 @@ import java.util.ArrayList;
  *
  * @author ch-sa
  */
-public class BookDAO {
+public class BookDAO implements IBookDAO {
 
+    @Override
     public Book getBook(int id) {
         String query = "SELECT * FROM book WHERE id = ?";
         Book book = null;

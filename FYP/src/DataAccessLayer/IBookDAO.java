@@ -4,10 +4,14 @@
  */
 package DataAccessLayer;
 
+import TransferObject.Book;
+
 /**
  *
  * @author ch-sa
  */
-public interface IFascadeDAO extends IResearchDAO, IFilterDAO, INarratorsDAO, IBookDAO, IHadithDAO{
+public interface IBookDAO {
+
+    Book getBook(int id);
     
 }

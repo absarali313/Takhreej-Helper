@@ -4,10 +4,19 @@
  */
 package DataAccessLayer;
 
+import TransferObject.Hadith;
+import java.util.ArrayList;
+
 /**
  *
  * @author ch-sa
  */
-public interface IFascadeDAO extends IResearchDAO, IFilterDAO, INarratorsDAO, IBookDAO, IHadithDAO{
+public interface IHadithDAO {
+
+    ArrayList<Integer> getAllHadithIds();
+
+    Hadith getHadithById(int index);
+
+    ArrayList<Hadith> getHadiths(ArrayList<Integer> serials);
     
 }

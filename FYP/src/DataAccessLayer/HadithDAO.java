@@ -12,7 +12,7 @@ import java.util.ArrayList;
  *
  * @author Manal Saqib
  */
-public class HadithDAO {
+public class HadithDAO implements IHadithDAO {
 
     private BookDAO bookDAO;
     private NarratorsDAO narratorsDAO;
@@ -22,6 +22,7 @@ public class HadithDAO {
         this.narratorsDAO = narratorsDAO;
     }
 
+    @Override
     public Hadith getHadithById(int index) {
         String query = "SELECT * FROM hadith WHERE serial = ?";
         Hadith hadith = null;
@@ -52,6 +53,7 @@ public class HadithDAO {
         return hadith;
     }
 
+    @Override
     public ArrayList<Integer> getAllHadithIds() {
         ArrayList<Integer> hadiths = new ArrayList<>();
 
@@ -78,6 +80,7 @@ public class HadithDAO {
         return hadiths;
     }
 
+    @Override
     public ArrayList<Hadith> getHadiths(ArrayList<Integer> serials) {
         ArrayList<Hadith> hadiths = new ArrayList<Hadith>();
         for (int serial : serials) {
