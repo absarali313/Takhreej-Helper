@@ -12,8 +12,9 @@ import java.util.ArrayList;
  *
  * @author Manal Saqid
  */
-public class NarratorsDAO {
+public class NarratorsDAO implements INarratorsDAO {
 
+    @Override
     public ArrayList<Narrator> getNarrator(int id) {
         String query = "SELECT * FROM narrator WHERE id = ?";
         ArrayList<Narrator> narrators = new ArrayList<Narrator>();

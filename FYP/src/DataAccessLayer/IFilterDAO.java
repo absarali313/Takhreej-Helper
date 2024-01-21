@@ -4,6 +4,9 @@
  */
 package DataAccessLayer;
 
+import TransferObject.Filter;
+import java.util.ArrayList;
+
 /**
  *
  * @author ch-sa
@@ -15,5 +18,7 @@ public interface IFilterDAO {
     boolean insertFilter(int researchId, int orderNo, String filter);
 
     boolean updateFilter(int id,int orderNo, String filter);
+    
+    public ArrayList<Filter> getFilters(int researchId);
     
 }

@@ -8,6 +8,6 @@ package DataAccessLayer;
  *
  * @author ch-sa
  */
-public interface IFascadedao extends IResearchDAO, IFilterDAO{
+public interface IFascadeDAO extends IResearchDAO, IFilterDAO, INarratorsDAO{
     
 }

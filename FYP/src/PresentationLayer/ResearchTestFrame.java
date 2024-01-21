@@ -4,23 +4,30 @@
  */
 package PresentationLayer;
 
+import DataAccessLayer.*;
+import TransferObject.Research;
 import com.formdev.flatlaf.themes.FlatMacLightLaf;
 import java.awt.Color;
 import java.awt.Insets;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author syeda
  */
 public class ResearchTestFrame extends javax.swing.JFrame {
-
+    ResearchDAO researchDAO = new ResearchDAO(new FilterDAO());
+    FilterDAO filterDAO = new FilterDAO();
+    private Research research = new Research(1,"test",researchDAO.getResearchBaselineIds(1),filterDAO.getFilters(1));
     /**
      * Creates new form TestFrame
      */
     public ResearchTestFrame() {
         initComponents();
+      
+       
     }
 
     /**

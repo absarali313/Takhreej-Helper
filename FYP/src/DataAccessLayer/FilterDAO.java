@@ -6,20 +6,21 @@ package DataAccessLayer;
 
 import CustomException.ResearchAlreadyExistsException;
 import CustomLogger.Log;
+import TransferObject.Filter;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 /**
  *
  * @author ch-sa
  */
 public class FilterDAO implements IFilterDAO {
-    
-    
-    
+
     @Override
-    public boolean insertFilter(int researchId, int orderNo,String expression){
-        
+    public boolean insertFilter(int researchId, int orderNo, String expression) {
+
         String query = "INSERT INTO filter(researchId,orderNo,expression) Values(?,?,?) ";
         try (java.sql.PreparedStatement preparedStatement = DBhandler.getInstance().getConnection().prepareStatement(query)) {
             preparedStatement.setInt(1, researchId);
@@ -32,11 +33,10 @@ public class FilterDAO implements IFilterDAO {
             return false;
         }
     }
-    
-    
+
     @Override
-     public boolean updateFilter(int id, int orderNo, String filter) {
-        
+    public boolean updateFilter(int id, int orderNo, String filter) {
+
         String query = "UPDATE filter SET expression = ?, orderNo = ? WHERE id = ?";
         try (PreparedStatement preparedStatement = DBhandler.getInstance().getConnection().prepareStatement(query)) {
             preparedStatement.setString(1, filter);
@@ -57,8 +57,8 @@ public class FilterDAO implements IFilterDAO {
     }
 
     @Override
-     public boolean deleteFilter(int id) {
-        
+    public boolean deleteFilter(int id) {
+
         String query = "DELETE FROM filter WHERE id = ?";
         try (PreparedStatement preparedStatement = DBhandler.getInstance().getConnection().prepareStatement(query)) {
             preparedStatement.setInt(1, id);
@@ -74,5 +74,32 @@ public class FilterDAO implements IFilterDAO {
             Log.getLogger().error("Error in deleting Filter", e.getMessage());
             return false;
         }
+    }
+
+    public ArrayList<Filter> getFilters(int researchId) {
+        ArrayList<Filter> filters = new ArrayList<Filter>();
+
+        String query = "SELECT * FROM filter where researchId = ?";
+
+        try (PreparedStatement preparedStatement = DBhandler.getInstance().getConnection().prepareStatement(query); ResultSet resultSet = preparedStatement.executeQuery()) {
+            preparedStatement.setInt(1,researchId);
+            while (resultSet.next()) {
+                int id = resultSet.getInt("id");
+                int orderNo = resultSet.getInt("orderNo");
+                String expression = resultSet.getString("expression");
+                filters.add(new Filter(id,orderNo,expression));
+            }
+
+            if (filters.isEmpty()) {
+                Log.getLogger().info("No filter found in the database.");
+            }
+
+        } catch (SQLException e) {
+            Log.getLogger().error("Error in retrieving filter", e.getMessage());
+        } catch (Exception e) {
+            Log.getLogger().error("Error while getting filter from database: " + e.getMessage());
+        }
+
+        return filters;
     }
 }

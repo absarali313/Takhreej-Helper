@@ -1,9 +1,5 @@
-03:05:59.723 [AWT-EventQueue-0] ERROR BusinessLogicLayer.LoginService - Authentication failed for user: Enter Email
-03:06:01.778 [AWT-EventQueue-0] ERROR BusinessLogicLayer.LoginService - Authentication failed for user: Enter Email
-03:06:14.937 [AWT-EventQueue-0] ERROR BusinessLogicLayer.LoginService - Authentication failed for user: Enter Email
-03:06:14.958 [AWT-EventQueue-0] ERROR BusinessLogicLayer.LoginService - Authentication failed for user: Enter Email
-03:06:37.912 [AWT-EventQueue-0] ERROR BusinessLogicLayer.LoginService - Authentication failed for user: Enter Email
-03:06:37.930 [AWT-EventQueue-0] ERROR BusinessLogicLayer.LoginService - Authentication failed for user: Enter Email
-03:06:57.974 [AWT-EventQueue-0] ERROR BusinessLogicLayer.LoginService - Authentication failed for user: Enter Email
-03:06:57.989 [AWT-EventQueue-0] ERROR BusinessLogicLayer.LoginService - Authentication failed for user: Enter Email
-03:07:27.654 [AWT-EventQueue-0] ERROR BusinessLogicLayer.LoginService - Error validating input fields: Invalid input fields. Registration failed.
+20:20:23.536 [AWT-EventQueue-0] ERROR BusinessLogicLayer.LoginService - Authentication failed for user: absar0306@gmail.com
+00:08:38.825 [AWT-EventQueue-0] ERROR org.apache.logging.log4j.Logger - Error while getting hadith from database: Table 'fyp.researchbaseline' doesn't exist
+00:08:38.843 [AWT-EventQueue-0] ERROR org.apache.logging.log4j.Logger - Error in retrieving filter
+00:09:08.520 [AWT-EventQueue-0] ERROR org.apache.logging.log4j.Logger - Error while getting hadith from database: Table 'fyp.researchbaseline' doesn't exist
+00:09:08.531 [AWT-EventQueue-0] ERROR org.apache.logging.log4j.Logger - Error in retrieving filter

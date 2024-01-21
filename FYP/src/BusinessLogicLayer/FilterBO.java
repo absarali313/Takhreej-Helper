@@ -1,7 +1,7 @@
 package BusinessLogicLayer;
 
 import CustomException.ResearchAlreadyExistsException;
-import DataAccessLayer.IFascadedao;
+import DataAccessLayer.IFascadeDAO;
 
 /**
  *
@@ -9,9 +9,9 @@ import DataAccessLayer.IFascadedao;
  */
 public class FilterBO implements IFilterBO {
 
-    IFascadedao fascadeDAO;
+    IFascadeDAO fascadeDAO;
 
-    public FilterBO(IFascadedao fascade) {
+    public FilterBO(IFascadeDAO fascade) {
         fascadeDAO = fascade;
     }
 

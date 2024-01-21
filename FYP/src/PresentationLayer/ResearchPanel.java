@@ -288,7 +288,7 @@ public class ResearchPanel extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTable ahadeesInResearchTable;
+    public javax.swing.JTable ahadeesInResearchTable;
     private javax.swing.JPanel ahadeesInResearchTablePanel;
     private javax.swing.JScrollPane ahadeesInResearchTableScrollPane;
     private javax.swing.JPanel allFiltersBackPanel;

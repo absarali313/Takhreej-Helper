@@ -2,7 +2,7 @@ package BusinessLogicLayer;
 
 import CustomException.ResearchAlreadyExistsException;
 import DataAccessLayer.FascadeDAO;
-import DataAccessLayer.IFascadedao;
+import DataAccessLayer.IFascadeDAO;
 
 /**
  *
@@ -10,9 +10,9 @@ import DataAccessLayer.IFascadedao;
  */
 public class ResearchBO implements IResearchBO {
 
-    IFascadedao fascadeDAO;
+    IFascadeDAO fascadeDAO;
 
-    public ResearchBO(IFascadedao fascade) {
+    public ResearchBO(IFascadeDAO fascade) {
         fascadeDAO = fascade;
     }
 

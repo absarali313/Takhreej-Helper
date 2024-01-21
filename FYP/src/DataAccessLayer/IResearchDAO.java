@@ -5,6 +5,9 @@
 package DataAccessLayer;
 
 import CustomException.ResearchAlreadyExistsException;
+import TransferObject.Filter;
+import TransferObject.Research;
+import java.util.ArrayList;
 
 /**
  *
@@ -17,5 +20,14 @@ public interface IResearchDAO {
     boolean updateResearch(int id, String newName);
     
     boolean deleteResearch(int id);
+    
+    boolean insertResearch(String name,Filter filter) throws ResearchAlreadyExistsException;
+    
+    ArrayList<Integer> getResearchBaselineIds(int researchId);
+    
+    public Research getResearchById(int id);
+    
+    ArrayList<Research> getAllResearch();
+    
     
 }
