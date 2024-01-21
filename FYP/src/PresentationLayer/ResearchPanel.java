@@ -36,13 +36,12 @@ public class ResearchPanel extends javax.swing.JPanel {
         newFilterRadioBtn = new javax.swing.JRadioButton();
         existingFilterRadioBtn = new javax.swing.JRadioButton();
 
-        setBackground(new java.awt.Color(7, 7, 57));
+        setBackground(new java.awt.Color(182, 141, 64));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        newFilterBackPanel.setBackground(new java.awt.Color(47, 18, 76));
+        newFilterBackPanel.setBackground(new java.awt.Color(244, 235, 208));
         newFilterBackPanel.setAllCornersRound(25);
 
-        filterTxtField.setBackground(new java.awt.Color(196, 182, 182));
         filterTxtField.setFont(new java.awt.Font("Calibri", 0, 12)); // NOI18N
         filterTxtField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -51,17 +50,14 @@ public class ResearchPanel extends javax.swing.JPanel {
         });
 
         filterLbl.setFont(new java.awt.Font("Calibri", 1, 15)); // NOI18N
-        filterLbl.setForeground(new java.awt.Color(254, 194, 96));
+        filterLbl.setForeground(new java.awt.Color(46, 103, 90));
         filterLbl.setText("Filter:");
 
-        finalFilterTxtField.setBackground(new java.awt.Color(196, 182, 182));
         finalFilterTxtField.setFont(new java.awt.Font("Calibri", 0, 12)); // NOI18N
 
-        wordNegateChckBox.setBackground(new java.awt.Color(47, 18, 76));
-
-        applyFilterBtn.setBackground(new java.awt.Color(254, 194, 96));
+        applyFilterBtn.setBackground(new java.awt.Color(244, 235, 208));
         applyFilterBtn.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
-        applyFilterBtn.setForeground(new java.awt.Color(59, 24, 95));
+        applyFilterBtn.setForeground(new java.awt.Color(46, 103, 90));
         applyFilterBtn.setText("Apply");
         applyFilterBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -69,7 +65,6 @@ public class ResearchPanel extends javax.swing.JPanel {
             }
         });
 
-        filterOperatorsComboBox.setBackground(new java.awt.Color(196, 182, 182));
         filterOperatorsComboBox.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         filterOperatorsComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " ", "AND", "OR" }));
         filterOperatorsComboBox.addActionListener(new java.awt.event.ActionListener() {
@@ -122,7 +117,7 @@ public class ResearchPanel extends javax.swing.JPanel {
 
         ahadeesInResearchTablePanel.setBackground(new java.awt.Color(244, 235, 208));
 
-        ahadeesInResearchTable.setBackground(new java.awt.Color(196, 182, 182));
+        ahadeesInResearchTable.setBackground(new java.awt.Color(244, 235, 208));
         ahadeesInResearchTable.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         ahadeesInResearchTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -134,15 +129,7 @@ public class ResearchPanel extends javax.swing.JPanel {
             new String [] {
                 "Book", "Hadith ID", "Hadith", "Sanad"
             }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
+        ));
         ahadeesInResearchTableScrollPane.setViewportView(ahadeesInResearchTable);
 
         javax.swing.GroupLayout ahadeesInResearchTablePanelLayout = new javax.swing.GroupLayout(ahadeesInResearchTablePanel);
@@ -160,25 +147,23 @@ public class ResearchPanel extends javax.swing.JPanel {
 
         add(ahadeesInResearchTablePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 170, 870, 330));
 
-        allFiltersBackPanel.setBackground(new java.awt.Color(47, 18, 76));
+        allFiltersBackPanel.setBackground(new java.awt.Color(244, 235, 208));
         allFiltersBackPanel.setAllCornersRound(25);
 
-        filterNumComboBox.setBackground(new java.awt.Color(196, 182, 182));
         filterNumComboBox.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         filterNumComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0" }));
 
-        filterOutputTxtField.setBackground(new java.awt.Color(196, 182, 182));
         filterOutputTxtField.setFont(new java.awt.Font("Calibri", 0, 12)); // NOI18N
 
         filterTypeBtnGroup.add(newFilterRadioBtn);
         newFilterRadioBtn.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
-        newFilterRadioBtn.setForeground(new java.awt.Color(254, 194, 96));
+        newFilterRadioBtn.setForeground(new java.awt.Color(46, 103, 90));
         newFilterRadioBtn.setSelected(true);
         newFilterRadioBtn.setText("New");
 
         filterTypeBtnGroup.add(existingFilterRadioBtn);
         existingFilterRadioBtn.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
-        existingFilterRadioBtn.setForeground(new java.awt.Color(254, 194, 96));
+        existingFilterRadioBtn.setForeground(new java.awt.Color(46, 103, 90));
         existingFilterRadioBtn.setText("Existing");
 
         javax.swing.GroupLayout allFiltersBackPanelLayout = new javax.swing.GroupLayout(allFiltersBackPanel);
