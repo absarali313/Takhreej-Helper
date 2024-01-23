@@ -1,5 +1,1 @@
-20:20:23.536 [AWT-EventQueue-0] ERROR BusinessLogicLayer.LoginService - Authentication failed for user: absar0306@gmail.com
-00:08:38.825 [AWT-EventQueue-0] ERROR org.apache.logging.log4j.Logger - Error while getting hadith from database: Table 'fyp.researchbaseline' doesn't exist
-00:08:38.843 [AWT-EventQueue-0] ERROR org.apache.logging.log4j.Logger - Error in retrieving filter
-00:09:08.520 [AWT-EventQueue-0] ERROR org.apache.logging.log4j.Logger - Error while getting hadith from database: Table 'fyp.researchbaseline' doesn't exist
-00:09:08.531 [AWT-EventQueue-0] ERROR org.apache.logging.log4j.Logger - Error in retrieving filter
+04:33:18.173 [AWT-EventQueue-0] ERROR org.apache.logging.log4j.Logger - Error in retrieving filter

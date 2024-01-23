@@ -35,6 +35,11 @@ public class ResearchPanel extends javax.swing.JPanel {
         filterOutputTxtField = new javax.swing.JTextField();
         newFilterRadioBtn = new javax.swing.JRadioButton();
         existingFilterRadioBtn = new javax.swing.JRadioButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTextArea2 = new javax.swing.JTextArea();
+        applyFilterBtn1 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(7, 7, 57));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -154,11 +159,11 @@ public class ResearchPanel extends javax.swing.JPanel {
         ahadeesInResearchTablePanelLayout.setVerticalGroup(
             ahadeesInResearchTablePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ahadeesInResearchTablePanelLayout.createSequentialGroup()
-                .addComponent(ahadeesInResearchTableScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(ahadeesInResearchTableScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 355, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        add(ahadeesInResearchTablePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 170, 870, 330));
+        add(ahadeesInResearchTablePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 170, 870, 350));
 
         allFiltersBackPanel.setBackground(new java.awt.Color(47, 18, 76));
         allFiltersBackPanel.setAllCornersRound(25);
@@ -214,6 +219,31 @@ public class ResearchPanel extends javax.swing.JPanel {
         );
 
         add(allFiltersBackPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 30, 400, 120));
+
+        jTextArea1.setBackground(new java.awt.Color(196, 182, 182));
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jScrollPane1.setViewportView(jTextArea1);
+
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 330, 270, 150));
+
+        jTextArea2.setBackground(new java.awt.Color(196, 182, 182));
+        jTextArea2.setColumns(20);
+        jTextArea2.setRows(5);
+        jScrollPane2.setViewportView(jTextArea2);
+
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 170, 270, 150));
+
+        applyFilterBtn1.setBackground(new java.awt.Color(254, 194, 96));
+        applyFilterBtn1.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        applyFilterBtn1.setForeground(new java.awt.Color(59, 24, 95));
+        applyFilterBtn1.setText("Translate");
+        applyFilterBtn1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                applyFilterBtn1ActionPerformed(evt);
+            }
+        });
+        add(applyFilterBtn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1100, 490, 110, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void applyFilterBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_applyFilterBtnActionPerformed
@@ -286,6 +316,10 @@ public class ResearchPanel extends javax.swing.JPanel {
         filterOperatorsComboBox.setSelectedIndex(0);
     }//GEN-LAST:event_filterOperatorsComboBoxActionPerformed
 
+    private void applyFilterBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_applyFilterBtn1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_applyFilterBtn1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JTable ahadeesInResearchTable;
@@ -293,6 +327,7 @@ public class ResearchPanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane ahadeesInResearchTableScrollPane;
     private javax.swing.JPanel allFiltersBackPanel;
     private javax.swing.JButton applyFilterBtn;
+    private javax.swing.JButton applyFilterBtn1;
     private javax.swing.JRadioButton existingFilterRadioBtn;
     private javax.swing.JLabel filterLbl;
     private javax.swing.JComboBox<String> filterNumComboBox;
@@ -301,6 +336,10 @@ public class ResearchPanel extends javax.swing.JPanel {
     private javax.swing.JTextField filterTxtField;
     private javax.swing.ButtonGroup filterTypeBtnGroup;
     private javax.swing.JTextField finalFilterTxtField;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextArea jTextArea2;
     private javax.swing.JPanel newFilterBackPanel;
     private javax.swing.JRadioButton newFilterRadioBtn;
     private javax.swing.JCheckBox wordNegateChckBox;
