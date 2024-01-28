@@ -1,5 +1,6 @@
 package DataAccessLayer;
 
+import CustomException.NoResearchFoundException;
 import CustomException.ResearchAlreadyExistsException;
 import CustomLogger.Log;
 import TransferObject.Filter;
@@ -176,7 +177,8 @@ public class ResearchDAO implements IResearchDAO {
         return research;
     }
 
-    public ArrayList<Research> getAllResearch() {
+    @Override
+    public ArrayList<Research> getAllResearch()throws NoResearchFoundException {
         ArrayList<Research> researches = new ArrayList<Research>();
 
         String query = "SELECT * FROM research";
@@ -192,7 +194,8 @@ public class ResearchDAO implements IResearchDAO {
             }
 
             if (researches.isEmpty()) {
-                Log.getLogger().info("No Hadith found in the database.");
+               
+                throw new NoResearchFoundException("No Research Found");
             }
 
         } catch (SQLException e) {

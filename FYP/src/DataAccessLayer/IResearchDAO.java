@@ -4,6 +4,7 @@
  */
 package DataAccessLayer;
 
+import CustomException.NoResearchFoundException;
 import CustomException.ResearchAlreadyExistsException;
 import TransferObject.Filter;
 import TransferObject.Research;
@@ -27,7 +28,7 @@ public interface IResearchDAO {
     
     public Research getResearchById(int id);
     
-    ArrayList<Research> getAllResearch();
+    ArrayList<Research> getAllResearch() throws NoResearchFoundException;
     
     
 }

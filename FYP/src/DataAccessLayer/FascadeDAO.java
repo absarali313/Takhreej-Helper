@@ -1,5 +1,6 @@
 package DataAccessLayer;
 
+import CustomException.NoResearchFoundException;
 import CustomException.ResearchAlreadyExistsException;
 import TransferObject.Book;
 import TransferObject.Filter;
@@ -59,7 +60,7 @@ public class FascadeDAO implements IFascadeDAO {
     }
 
     @Override
-    public ArrayList<Research> getAllResearch() {
+    public ArrayList<Research> getAllResearch() throws NoResearchFoundException {
         return researchDAO.getAllResearch();
     }
 

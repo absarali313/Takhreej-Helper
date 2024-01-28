@@ -4,6 +4,9 @@
  */
 package BusinessLogicLayer;
 
+import TransferObject.Research;
+import java.util.ArrayList;
+
 /**
  *
  * @author ch-sa
@@ -15,5 +18,7 @@ public interface IResearchBO {
     boolean deleteResearch(int id);
 
     boolean updateResearchName(int id, String name);
+    
+    ArrayList<Research> getAllResearches();
     
 }

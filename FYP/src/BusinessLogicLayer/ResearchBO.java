@@ -1,8 +1,12 @@
 package BusinessLogicLayer;
 
+import CustomException.NoResearchFoundException;
 import CustomException.ResearchAlreadyExistsException;
+import CustomLogger.Log;
 import DataAccessLayer.FascadeDAO;
 import DataAccessLayer.IFascadeDAO;
+import TransferObject.Research;
+import java.util.ArrayList;
 
 /**
  *
@@ -27,11 +31,11 @@ public class ResearchBO implements IResearchBO {
         }
         return false;
     }
-    
+
     @Override
-    public boolean updateResearchName(int id, String name){
-         try {
-            if (fascadeDAO.updateResearch(id,name)) {
+    public boolean updateResearchName(int id, String name) {
+        try {
+            if (fascadeDAO.updateResearch(id, name)) {
                 return true;
             }
         } catch (Exception e) {
@@ -39,10 +43,10 @@ public class ResearchBO implements IResearchBO {
         }
         return false;
     }
-    
+
     @Override
-     public boolean deleteResearch(int id){
-         try {
+    public boolean deleteResearch(int id) {
+        try {
             if (fascadeDAO.deleteResearch(id)) {
                 return true;
             }
@@ -50,6 +54,17 @@ public class ResearchBO implements IResearchBO {
             return false;
         }
         return false;
+    }
+
+    @Override
+    public ArrayList<Research> getAllResearches() {
+        ArrayList<Research> researches = new ArrayList<Research>();
+        try {
+            researches = fascadeDAO.getAllResearch();
+        } catch (NoResearchFoundException e) {
+            Log.getLogger().info("No Research found in the database.");
+        }
+        return researches;
     }
 
 }

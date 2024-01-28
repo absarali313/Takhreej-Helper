@@ -81,13 +81,16 @@ public class FilterDAO implements IFilterDAO {
 
         String query = "SELECT * FROM filter where researchId = ?";
 
-        try (PreparedStatement preparedStatement = DBhandler.getInstance().getConnection().prepareStatement(query); ResultSet resultSet = preparedStatement.executeQuery()) {
-            preparedStatement.setInt(1,researchId);
-            while (resultSet.next()) {
-                int id = resultSet.getInt("id");
-                int orderNo = resultSet.getInt("orderNo");
-                String expression = resultSet.getString("expression");
-                filters.add(new Filter(id,orderNo,expression));
+        try (PreparedStatement preparedStatement = DBhandler.getInstance().getConnection().prepareStatement(query)) {
+            preparedStatement.setInt(1, researchId);
+
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
+                    int id = resultSet.getInt("id");
+                    int orderNo = resultSet.getInt("orderNo");
+                    String expression = resultSet.getString("expression");
+                    filters.add(new Filter(id, orderNo, expression));
+                }
             }
 
             if (filters.isEmpty()) {
@@ -97,9 +100,10 @@ public class FilterDAO implements IFilterDAO {
         } catch (SQLException e) {
             Log.getLogger().error("Error in retrieving filter", e.getMessage());
         } catch (Exception e) {
-            Log.getLogger().error("Error while getting filter from database: " + e.getMessage());
+            Log.getLogger().error("Error while getting filter from the database: " + e.getMessage());
         }
 
         return filters;
     }
+
 }
