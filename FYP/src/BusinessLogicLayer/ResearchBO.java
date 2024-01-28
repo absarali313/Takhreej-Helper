@@ -17,7 +17,7 @@ public class ResearchBO implements IResearchBO {
     IFascadeDAO fascadeDAO;
 
     public ResearchBO(IFascadeDAO fascade) {
-        fascadeDAO = fascade;
+        this.fascadeDAO = fascade;
     }
 
     @Override
@@ -65,6 +65,17 @@ public class ResearchBO implements IResearchBO {
             Log.getLogger().info("No Research found in the database.");
         }
         return researches;
+    }
+    @Override
+    public Research getResearch(String name){
+        Research research = null;
+         try {
+            research = fascadeDAO.getResearchByName(name);
+        } catch (Exception e) {
+            Log.getLogger().info("No Research found in the database.");
+            return research;
+        }
+        return research;
     }
 
 }

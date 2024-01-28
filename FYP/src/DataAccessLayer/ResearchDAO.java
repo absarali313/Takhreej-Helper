@@ -40,9 +40,9 @@ public class ResearchDAO implements IResearchDAO {
             return false;
         }
     }
-    
+
     @Override
-    public boolean insertResearch(String name,Filter filter) throws ResearchAlreadyExistsException {
+    public boolean insertResearch(String name, Filter filter) throws ResearchAlreadyExistsException {
         if (researchExists(name)) {
             throw new ResearchAlreadyExistsException("Research with this name already exists ");
         }
@@ -50,17 +50,17 @@ public class ResearchDAO implements IResearchDAO {
         try (java.sql.PreparedStatement preparedStatement = DBhandler.getInstance().getConnection().prepareStatement(query)) {
             preparedStatement.setString(1, name);
             preparedStatement.executeUpdate();
-            if(filterDAO.insertFilter(filter.getId(), filter.getOrderNo(), filter.getExpression()))
+            if (filterDAO.insertFilter(filter.getId(), filter.getOrderNo(), filter.getExpression())) {
                 return true;
-            else 
+            } else {
                 return false;
+            }
         } catch (SQLException e) {
             Log.getLogger().error("Error in creating new research", e.getMessage());
             return false;
         }
     }
 
-    
     private boolean researchExists(String name) {
         String query = "SELECT COUNT(*) FROM research WHERE name = ?";
         try (PreparedStatement preparedStatement = DBhandler.getInstance().getConnection().prepareStatement(query)) {
@@ -133,38 +133,37 @@ public class ResearchDAO implements IResearchDAO {
                     hadithSerials.add(serial);
                 }
 
-                if (hadithSerials.isEmpty()) {
-                    HadithDAO hadithDAO = new HadithDAO(new BookDAO(), new NarratorsDAO());
-                    hadithSerials = hadithDAO.getAllHadithIds();
-                }
             } catch (Exception e) {
-                Log.getLogger().error("Error while getting hadith from database: " + e.getMessage());
+                Log.getLogger().info("There is no pre-staged hadiths for this research" + e.getMessage());
             }
         } catch (SQLException e) {
             Log.getLogger().error("Error in retrieving Hadith", e.getMessage());
         }
-
+        if (hadithSerials.isEmpty()) {
+            HadithDAO hadithDAO = new HadithDAO(new BookDAO(), new NarratorsDAO());
+            hadithSerials = hadithDAO.getAllHadithIds();
+        }
         return hadithSerials;
     }
 
     @Override
-    public Research getResearchById(int id) {
-        String query = "SELECT * FROM research WHERE id = ?";
+    public Research getResearchByName(String name) {
+        String query = "SELECT * FROM research WHERE name = ?";
         Research research = null;
 
         try (PreparedStatement preparedStatement = DBhandler.getInstance().getConnection().prepareStatement(query)) {
-            preparedStatement.setInt(1, id);
+            preparedStatement.setString(1, name);
 
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 if (resultSet.next()) {
                     // Retrieve data from the result set and construct a Hadith object
-                    String name = resultSet.getString("name");
+                    int id = resultSet.getInt("id");
                     ArrayList<Filter> filters = filterDAO.getFilters(id);
                     ArrayList<Integer> baseLine = getResearchBaselineIds(id);
                     research = new Research(id, name, baseLine, filters);
 
                 } else {
-                    Log.getLogger().info("No research found with id: " + id);
+                    Log.getLogger().info("No research found with name : " + name);
                 }
             } catch (Exception e) {
                 Log.getLogger().info("Error while getting research from database : " + e.getMessage());
@@ -178,7 +177,7 @@ public class ResearchDAO implements IResearchDAO {
     }
 
     @Override
-    public ArrayList<Research> getAllResearch()throws NoResearchFoundException {
+    public ArrayList<Research> getAllResearch() throws NoResearchFoundException {
         ArrayList<Research> researches = new ArrayList<Research>();
 
         String query = "SELECT * FROM research";
@@ -194,7 +193,7 @@ public class ResearchDAO implements IResearchDAO {
             }
 
             if (researches.isEmpty()) {
-               
+
                 throw new NoResearchFoundException("No Research Found");
             }
 

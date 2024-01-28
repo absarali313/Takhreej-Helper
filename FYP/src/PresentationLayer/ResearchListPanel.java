@@ -9,6 +9,7 @@ import TransferObject.Research;
 import java.awt.CardLayout;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -47,12 +48,20 @@ public class ResearchListPanel extends javax.swing.JPanel {
         mergeResearchBtn = new javax.swing.JButton();
         actionPanel = new javax.swing.JPanel();
         blankPanel = new javax.swing.JPanel();
+        deletePanel = new PresentationLayer.PanelRound();
+        deleteBtn = new javax.swing.JButton();
+        deleteBackBtn = new javax.swing.JButton();
+        createResearchLbl7 = new javax.swing.JLabel();
+        createResearchLbl8 = new javax.swing.JLabel();
+        deleteResearchNameTextField = new javax.swing.JTextField();
         updatePanel = new PresentationLayer.PanelRound();
-        openAddBtn1 = new javax.swing.JButton();
-        openBackBtn1 = new javax.swing.JButton();
-        jTextField3 = new javax.swing.JTextField();
+        updateBtn = new javax.swing.JButton();
+        updateBackBtn = new javax.swing.JButton();
+        newNameTextField = new javax.swing.JTextField();
         createResearchLbl4 = new javax.swing.JLabel();
         createResearchLbl5 = new javax.swing.JLabel();
+        researchUpdateNameTextField = new javax.swing.JTextField();
+        createResearchLbl6 = new javax.swing.JLabel();
         createPanel = new PresentationLayer.PanelRound();
         createAddBtn = new javax.swing.JButton();
         createBackBtn = new javax.swing.JButton();
@@ -70,6 +79,7 @@ public class ResearchListPanel extends javax.swing.JPanel {
         setBackground(new java.awt.Color(7, 7, 57));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        researchTable.setAutoCreateRowSorter(true);
         researchTable.setBackground(new java.awt.Color(196, 182, 182));
         researchTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -172,33 +182,109 @@ public class ResearchListPanel extends javax.swing.JPanel {
 
         actionPanel.add(blankPanel, "blankPanel");
 
-        updatePanel.setBackground(new java.awt.Color(47, 18, 76));
+        deletePanel.setBackground(new java.awt.Color(47, 18, 76));
         openPanel.setAllCornersRound(40);
 
-        openAddBtn1.setBackground(new java.awt.Color(254, 194, 96));
-        openAddBtn1.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
-        openAddBtn1.setForeground(new java.awt.Color(59, 24, 95));
-        openAddBtn1.setText("ADD");
-        openAddBtn1.addActionListener(new java.awt.event.ActionListener() {
+        deleteBtn.setBackground(new java.awt.Color(254, 194, 96));
+        deleteBtn.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        deleteBtn.setForeground(new java.awt.Color(59, 24, 95));
+        deleteBtn.setText("Delete");
+        deleteBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                openAddBtn1ActionPerformed(evt);
+                deleteBtnActionPerformed(evt);
             }
         });
 
-        openBackBtn1.setBackground(new java.awt.Color(254, 194, 96));
-        openBackBtn1.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
-        openBackBtn1.setForeground(new java.awt.Color(59, 24, 95));
-        openBackBtn1.setText("BACK");
-        openBackBtn1.addActionListener(new java.awt.event.ActionListener() {
+        deleteBackBtn.setBackground(new java.awt.Color(254, 194, 96));
+        deleteBackBtn.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        deleteBackBtn.setForeground(new java.awt.Color(59, 24, 95));
+        deleteBackBtn.setText("BACK");
+        deleteBackBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                openBackBtn1ActionPerformed(evt);
+                deleteBackBtnActionPerformed(evt);
             }
         });
 
-        jTextField3.setBackground(new java.awt.Color(196, 182, 182));
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+        createResearchLbl7.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        createResearchLbl7.setForeground(new java.awt.Color(254, 194, 96));
+        createResearchLbl7.setText("Select Research");
+
+        createResearchLbl8.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        createResearchLbl8.setForeground(new java.awt.Color(254, 194, 96));
+        createResearchLbl8.setText("Delete Research");
+
+        deleteResearchNameTextField.setEditable(false);
+        deleteResearchNameTextField.setBackground(new java.awt.Color(196, 182, 182));
+        deleteResearchNameTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
+                deleteResearchNameTextFieldActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout deletePanelLayout = new javax.swing.GroupLayout(deletePanel);
+        deletePanel.setLayout(deletePanelLayout);
+        deletePanelLayout.setHorizontalGroup(
+            deletePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(deletePanelLayout.createSequentialGroup()
+                .addGroup(deletePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(deletePanelLayout.createSequentialGroup()
+                        .addGap(60, 60, 60)
+                        .addGroup(deletePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(createResearchLbl7)
+                            .addGroup(deletePanelLayout.createSequentialGroup()
+                                .addComponent(deleteBackBtn)
+                                .addGap(129, 129, 129)
+                                .addComponent(deleteBtn))
+                            .addComponent(deleteResearchNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(deletePanelLayout.createSequentialGroup()
+                        .addGap(106, 106, 106)
+                        .addComponent(createResearchLbl8)))
+                .addContainerGap(87, Short.MAX_VALUE))
+        );
+        deletePanelLayout.setVerticalGroup(
+            deletePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(deletePanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(createResearchLbl8)
+                .addGap(57, 57, 57)
+                .addComponent(createResearchLbl7)
+                .addGap(18, 18, 18)
+                .addComponent(deleteResearchNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(77, 77, 77)
+                .addGroup(deletePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(deleteBackBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(deleteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        );
+
+        actionPanel.add(deletePanel, "deletePanel");
+
+        updatePanel.setBackground(new java.awt.Color(47, 18, 76));
+        updatePanel.setAllCornersRound(40);
+
+        updateBtn.setBackground(new java.awt.Color(254, 194, 96));
+        updateBtn.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        updateBtn.setForeground(new java.awt.Color(59, 24, 95));
+        updateBtn.setText("ADD");
+        updateBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateBtnActionPerformed(evt);
+            }
+        });
+
+        updateBackBtn.setBackground(new java.awt.Color(254, 194, 96));
+        updateBackBtn.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        updateBackBtn.setForeground(new java.awt.Color(59, 24, 95));
+        updateBackBtn.setText("BACK");
+        updateBackBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateBackBtnActionPerformed(evt);
+            }
+        });
+
+        newNameTextField.setBackground(new java.awt.Color(196, 182, 182));
+        newNameTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                newNameTextFieldActionPerformed(evt);
             }
         });
 
@@ -209,6 +295,18 @@ public class ResearchListPanel extends javax.swing.JPanel {
         createResearchLbl5.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         createResearchLbl5.setForeground(new java.awt.Color(254, 194, 96));
         createResearchLbl5.setText("Update Research");
+
+        researchUpdateNameTextField.setEditable(false);
+        researchUpdateNameTextField.setBackground(new java.awt.Color(196, 182, 182));
+        researchUpdateNameTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                researchUpdateNameTextFieldActionPerformed(evt);
+            }
+        });
+
+        createResearchLbl6.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        createResearchLbl6.setForeground(new java.awt.Color(254, 194, 96));
+        createResearchLbl6.setText("Research Selected");
 
         javax.swing.GroupLayout updatePanelLayout = new javax.swing.GroupLayout(updatePanel);
         updatePanel.setLayout(updatePanelLayout);
@@ -221,15 +319,18 @@ public class ResearchListPanel extends javax.swing.JPanel {
                         .addComponent(createResearchLbl5))
                     .addGroup(updatePanelLayout.createSequentialGroup()
                         .addGap(60, 60, 60)
-                        .addComponent(createResearchLbl4))
-                    .addGroup(updatePanelLayout.createSequentialGroup()
-                        .addGap(60, 60, 60)
                         .addGroup(updatePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(updatePanelLayout.createSequentialGroup()
-                                .addComponent(openBackBtn1)
+                                .addComponent(updateBackBtn)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(openAddBtn1))
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(updateBtn))
+                            .addComponent(newNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(updatePanelLayout.createSequentialGroup()
+                        .addGap(60, 60, 60)
+                        .addGroup(updatePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(createResearchLbl6)
+                            .addComponent(researchUpdateNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(createResearchLbl4))))
                 .addGap(87, 87, 87))
         );
         updatePanelLayout.setVerticalGroup(
@@ -237,14 +338,18 @@ public class ResearchListPanel extends javax.swing.JPanel {
             .addGroup(updatePanelLayout.createSequentialGroup()
                 .addGap(10, 10, 10)
                 .addComponent(createResearchLbl5)
-                .addGap(58, 58, 58)
+                .addGap(29, 29, 29)
+                .addComponent(createResearchLbl6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(researchUpdateNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(createResearchLbl4)
-                .addGap(15, 15, 15)
-                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(75, 75, 75)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(newNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29)
                 .addGroup(updatePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(openBackBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(openAddBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(updateBackBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(updateBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         actionPanel.add(updatePanel, "updatePanel");
@@ -273,6 +378,7 @@ public class ResearchListPanel extends javax.swing.JPanel {
         });
 
         createResearchNameTextField.setBackground(new java.awt.Color(196, 182, 182));
+        createResearchNameTextField.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         createResearchNameTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 createResearchNameTextFieldActionPerformed(evt);
@@ -423,11 +529,13 @@ public class ResearchListPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_createResearchBtnActionPerformed
 
     private void updateResearchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateResearchBtnActionPerformed
-        // TODO add your handling code here:
+        CardLayout cardLayout = (CardLayout) actionPanel.getLayout();
+        cardLayout.show(actionPanel, "updatePanel");
     }//GEN-LAST:event_updateResearchBtnActionPerformed
 
     private void deleteResearchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteResearchBtnActionPerformed
-        // TODO add your handling code here:
+        CardLayout cardLayout = (CardLayout) actionPanel.getLayout();
+        cardLayout.show(actionPanel, "deletePanel");
     }//GEN-LAST:event_deleteResearchBtnActionPerformed
 
     private void mergeResearchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mergeResearchBtnActionPerformed
@@ -435,8 +543,14 @@ public class ResearchListPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_mergeResearchBtnActionPerformed
 
     private void openResearchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openResearchBtnActionPerformed
-        CardLayout cardLayout = (CardLayout) actionPanel.getLayout();
-        cardLayout.show(actionPanel, "openPanel");
+        JPanel mainPanel = (JPanel) this.getParent();
+        LandingPage landingPage = (LandingPage) mainPanel.getTopLevelAncestor();
+        CardLayout cardLayout = (CardLayout) mainPanel.getLayout();
+        cardLayout.show(mainPanel, "research");
+        Research research = fascadeBLL.getResearch(openResearchNameTextField.getText());
+        landingPage.researchPanel1.setReseach(research);
+        
+        
     }//GEN-LAST:event_openResearchBtnActionPerformed
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
@@ -445,13 +559,20 @@ public class ResearchListPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_backBtnActionPerformed
 
     private void openAddBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openAddBtnActionPerformed
-        // TODO add your handling code here:
+        JPanel mainPanel = (JPanel) this.getParent();
+        LandingPage landingPage = (LandingPage) mainPanel.getParent().getParent();
+        CardLayout cardLayout = (CardLayout) mainPanel.getLayout();
+        cardLayout.show(mainPanel, "mainPanel");
+        Research research = fascadeBLL.getResearch(openResearchNameTextField.getText());
+        landingPage.researchPanel1.setReseach(research);
+        
     }//GEN-LAST:event_openAddBtnActionPerformed
 
     private void createAddBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createAddBtnActionPerformed
-        if (fascadeBLL.createResearch(createResearchNameTextField.getText())) {
+        if (fascadeBLL.createResearch(createResearchNameTextField.getText().toString())) {
+          
             populateResearchTable(fascadeBLL.getAllResearches());
-            JOptionPane.showMessageDialog(null, "Research Created .", "New Research", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Research Created ." + createResearchNameTextField.getText().toString(), "New Research", JOptionPane.INFORMATION_MESSAGE);
 
         } else {
             JOptionPane.showMessageDialog(null, "Reseach with this name already exists.", "Warning", JOptionPane.WARNING_MESSAGE);
@@ -468,28 +589,78 @@ public class ResearchListPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_createResearchNameTextFieldActionPerformed
 
-    private void openAddBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openAddBtn1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_openAddBtn1ActionPerformed
+    private void updateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateBtnActionPerformed
+        String newName = newNameTextField.getText();
+        String oldName = researchUpdateNameTextField.getText();
+        String newNameCleaned = newName.replaceAll(" ", "");
+        if (!oldName.equals("") && !newNameCleaned.equals("")) {
 
-    private void openBackBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openBackBtn1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_openBackBtn1ActionPerformed
+            Research research = fascadeBLL.getResearch(oldName);
+            if (fascadeBLL.updateResearchName(research.getResearchId(), newName)) {
+                populateResearchTable(fascadeBLL.getAllResearches());
+                JOptionPane.showMessageDialog(null, "Research name updated", "Successful", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(null, "Error in updating research name", "Warning", JOptionPane.WARNING_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Please select a research from table and enter new name ", "Warning", JOptionPane.WARNING_MESSAGE);
 
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+        }
+
+
+    }//GEN-LAST:event_updateBtnActionPerformed
+
+    private void updateBackBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateBackBtnActionPerformed
+        CardLayout cardLayout = (CardLayout) actionPanel.getLayout();
+        cardLayout.show(actionPanel, "blankPanel");
+    }//GEN-LAST:event_updateBackBtnActionPerformed
+
+    private void newNameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newNameTextFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
+    }//GEN-LAST:event_newNameTextFieldActionPerformed
 
     private void researchTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_researchTableMouseClicked
         JTable source = (JTable) evt.getSource();
         int row = source.rowAtPoint(evt.getPoint());
         String researchName = researchTable.getValueAt(row, 1).toString();
         openResearchNameTextField.setText(researchName);
+        researchUpdateNameTextField.setText(researchName);
+        deleteResearchNameTextField.setText(researchName);
     }//GEN-LAST:event_researchTableMouseClicked
 
     private void openResearchNameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openResearchNameTextFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_openResearchNameTextFieldActionPerformed
+
+    private void researchUpdateNameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_researchUpdateNameTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_researchUpdateNameTextFieldActionPerformed
+
+    private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
+        String name = deleteResearchNameTextField.getText();
+        if (!name.equals("")) {
+            Research research = fascadeBLL.getResearch(name);
+            if (fascadeBLL.deleteResearch(research.getResearchId())) {
+                populateResearchTable(fascadeBLL.getAllResearches());
+                JOptionPane.showMessageDialog(null, "Research  deleted", "Successful", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(null, "Error in deleting research name", "Warning", JOptionPane.WARNING_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Please select a research from table", "Warning", JOptionPane.WARNING_MESSAGE);
+
+        }
+
+    }//GEN-LAST:event_deleteBtnActionPerformed
+
+    private void deleteBackBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBackBtnActionPerformed
+        CardLayout cardLayout = (CardLayout) actionPanel.getLayout();
+        cardLayout.show(actionPanel, "blankPanel");
+    }//GEN-LAST:event_deleteBackBtnActionPerformed
+
+    private void deleteResearchNameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteResearchNameTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_deleteResearchNameTextFieldActionPerformed
 
     private void populateResearchTable(ArrayList<Research> researches) {
         if (!researches.isEmpty()) {
@@ -522,18 +693,26 @@ public class ResearchListPanel extends javax.swing.JPanel {
     private javax.swing.JLabel createResearchLbl3;
     private javax.swing.JLabel createResearchLbl4;
     private javax.swing.JLabel createResearchLbl5;
+    private javax.swing.JLabel createResearchLbl6;
+    private javax.swing.JLabel createResearchLbl7;
+    private javax.swing.JLabel createResearchLbl8;
     private javax.swing.JTextField createResearchNameTextField;
+    private javax.swing.JButton deleteBackBtn;
+    private javax.swing.JButton deleteBtn;
+    private PresentationLayer.PanelRound deletePanel;
     private javax.swing.JButton deleteResearchBtn;
+    private javax.swing.JTextField deleteResearchNameTextField;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField3;
     private javax.swing.JButton mergeResearchBtn;
+    private javax.swing.JTextField newNameTextField;
     private javax.swing.JButton openAddBtn;
-    private javax.swing.JButton openAddBtn1;
-    private javax.swing.JButton openBackBtn1;
     private PresentationLayer.PanelRound openPanel;
     private javax.swing.JButton openResearchBtn;
     private javax.swing.JTextField openResearchNameTextField;
     private javax.swing.JTable researchTable;
+    private javax.swing.JTextField researchUpdateNameTextField;
+    private javax.swing.JButton updateBackBtn;
+    private javax.swing.JButton updateBtn;
     private PresentationLayer.PanelRound updatePanel;
     private javax.swing.JButton updateResearchBtn;
     // End of variables declaration//GEN-END:variables

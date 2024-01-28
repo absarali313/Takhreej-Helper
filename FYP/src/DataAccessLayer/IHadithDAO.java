@@ -4,6 +4,7 @@
  */
 package DataAccessLayer;
 
+import CustomException.NoHadithFoundException;
 import TransferObject.Hadith;
 import java.util.ArrayList;
 
@@ -17,6 +18,6 @@ public interface IHadithDAO {
 
     Hadith getHadithById(int index);
 
-    ArrayList<Hadith> getHadiths(ArrayList<Integer> serials);
+    ArrayList<Hadith> getHadiths(ArrayList<Integer> serials) throws NoHadithFoundException;
     
 }

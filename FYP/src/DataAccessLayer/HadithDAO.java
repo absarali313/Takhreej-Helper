@@ -1,5 +1,6 @@
 package DataAccessLayer;
 
+import CustomException.NoHadithFoundException;
 import CustomLogger.Log;
 import TransferObject.Hadith;
 import TransferObject.Narrator;
@@ -81,10 +82,14 @@ public class HadithDAO implements IHadithDAO {
     }
 
     @Override
-    public ArrayList<Hadith> getHadiths(ArrayList<Integer> serials) {
+    public ArrayList<Hadith> getHadiths(ArrayList<Integer> serials) throws NoHadithFoundException {
         ArrayList<Hadith> hadiths = new ArrayList<Hadith>();
         for (int serial : serials) {
             hadiths.add(getHadithById(serial));
+        }
+        if (hadiths.isEmpty()) {
+            Log.getLogger().info("No Hadith Found in the database");
+            throw new NoHadithFoundException("No Hadith Found");
         }
 
         return hadiths;

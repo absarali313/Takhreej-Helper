@@ -1,5 +1,6 @@
 package DataAccessLayer;
 
+import CustomException.NoHadithFoundException;
 import CustomException.NoResearchFoundException;
 import CustomException.ResearchAlreadyExistsException;
 import TransferObject.Book;
@@ -55,8 +56,8 @@ public class FascadeDAO implements IFascadeDAO {
     }
 
     @Override
-    public Research getResearchById(int id) {
-        return researchDAO.getResearchById(id);
+    public Research getResearchByName(String name) {
+        return researchDAO.getResearchByName(name);
     }
 
     @Override
@@ -105,7 +106,7 @@ public class FascadeDAO implements IFascadeDAO {
     }
 
     @Override
-    public ArrayList<Hadith> getHadiths(ArrayList<Integer> serials) {
+    public ArrayList<Hadith> getHadiths(ArrayList<Integer> serials) throws NoHadithFoundException {
         return hadithDAO.getHadiths(serials);
     }
 

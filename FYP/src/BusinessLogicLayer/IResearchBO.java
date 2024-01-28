@@ -19,6 +19,8 @@ public interface IResearchBO {
 
     boolean updateResearchName(int id, String name);
     
+    Research getResearch(String name);
+    
     ArrayList<Research> getAllResearches();
     
 }

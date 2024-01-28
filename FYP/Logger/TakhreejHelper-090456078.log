@@ -1,0 +1,7 @@
+08:56:06.403 [AWT-EventQueue-0] ERROR org.apache.logging.log4j.Logger - Error while getting hadith from database: Table 'fyp.researchbaseline' doesn't exist
+09:01:39.141 [AWT-EventQueue-0] ERROR org.apache.logging.log4j.Logger - Error while getting hadith from database: Table 'fyp.researchbaseline' doesn't exist
+09:01:39.147 [AWT-EventQueue-0] ERROR org.apache.logging.log4j.Logger - Error while getting hadith from database: Table 'fyp.researchbaseline' doesn't exist
+09:03:41.316 [AWT-EventQueue-0] ERROR org.apache.logging.log4j.Logger - Error while getting hadith from database: Table 'fyp.researchbaseline' doesn't exist
+09:03:41.323 [AWT-EventQueue-0] ERROR org.apache.logging.log4j.Logger - Error while getting hadith from database: Table 'fyp.researchbaseline' doesn't exist
+09:04:35.479 [AWT-EventQueue-0] ERROR org.apache.logging.log4j.Logger - Error while getting hadith from database: Table 'fyp.researchbaseline' doesn't exist
+09:04:35.488 [AWT-EventQueue-0] ERROR org.apache.logging.log4j.Logger - Error while getting hadith from database: Table 'fyp.researchbaseline' doesn't exist

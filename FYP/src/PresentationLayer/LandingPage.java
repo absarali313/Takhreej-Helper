@@ -14,12 +14,12 @@ import javax.swing.UnsupportedLookAndFeelException;
  *
  * @author ch-sa
  */
-public class LandingPage1 extends javax.swing.JFrame {
+public class LandingPage extends javax.swing.JFrame {
 
     /**
      * Creates new form NewJFrame
      */
-    public LandingPage1() {
+    public LandingPage() {
         this.setSize(1500,590);
         initComponents();
     }
@@ -74,7 +74,7 @@ public class LandingPage1 extends javax.swing.JFrame {
         mainPanel.setPreferredSize(new java.awt.Dimension(1240, 565));
         mainPanel.setLayout(new java.awt.CardLayout());
         mainPanel.add(researchListPanel2, "card3");
-        mainPanel.add(researchPanel1, "card2");
+        mainPanel.add(researchPanel1, "research");
 
         parentPanel.add(mainPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(54, 0, 1273, -1));
 
@@ -109,18 +109,19 @@ public class LandingPage1 extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(LandingPage1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LandingPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(LandingPage1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LandingPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(LandingPage1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LandingPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(LandingPage1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LandingPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
           try {
-            // Here you can select the selected theme class name in JTatto
+    
+              // Here you can select the selected theme class name in JTatto
             UIManager.setLookAndFeel(new FlatMacLightLaf());
         } catch (UnsupportedLookAndFeelException ex) {
             //Logger.getLogger(GUI_PO.class.getName()).log(Level.SEVERE, null, ex);
@@ -145,7 +146,7 @@ public class LandingPage1 extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new LandingPage1().setVisible(true);
+                new LandingPage().setVisible(true);
             }
         });
     }
@@ -156,6 +157,6 @@ public class LandingPage1 extends javax.swing.JFrame {
     private javax.swing.JPanel menuPanel;
     private javax.swing.JPanel parentPanel;
     private PresentationLayer.ResearchListPanel researchListPanel2;
-    private PresentationLayer.ResearchPanel researchPanel1;
+    public PresentationLayer.ResearchPanel researchPanel1;
     // End of variables declaration//GEN-END:variables
 }

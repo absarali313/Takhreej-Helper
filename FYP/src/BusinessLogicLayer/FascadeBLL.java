@@ -1,6 +1,7 @@
 package BusinessLogicLayer;
 
 import DataAccessLayer.FascadeDAO;
+import TransferObject.Hadith;
 import TransferObject.Research;
 import java.util.ArrayList;
 
@@ -10,9 +11,11 @@ import java.util.ArrayList;
  */
 public class FascadeBLL implements IFascadeBLL {
     IResearchBO researchBO;
-
+    IHadithBO hadithBO;
+    
     public FascadeBLL() {
         this.researchBO = new ResearchBO(new FascadeDAO());
+        this.hadithBO = new HadithBO(new FascadeDAO());
     }
     
     @Override
@@ -33,6 +36,16 @@ public class FascadeBLL implements IFascadeBLL {
     @Override
     public ArrayList<Research> getAllResearches() {
         return researchBO.getAllResearches();
+    }
+    
+    @Override
+    public Research getResearch(String name){
+        return researchBO.getResearch(name);
+    }
+
+    @Override
+    public ArrayList<Hadith> getAllHadiths(ArrayList<Integer> serials) {
+        return hadithBO.getAllHadiths(serials);
     }
     
 }

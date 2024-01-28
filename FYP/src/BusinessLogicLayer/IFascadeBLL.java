@@ -8,6 +8,6 @@ package BusinessLogicLayer;
  *
  * @author ch-sa
  */
-public interface IFascadeBLL extends IResearchBO{
+public interface IFascadeBLL extends IResearchBO, IHadithBO{
     
 }

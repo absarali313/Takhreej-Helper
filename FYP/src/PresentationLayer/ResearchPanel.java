@@ -1,16 +1,30 @@
 package PresentationLayer;
 
+import BusinessLogicLayer.ArrayConverterBO;
+import BusinessLogicLayer.FascadeBLL;
+import BusinessLogicLayer.IConverterBO;
+import BusinessLogicLayer.IFascadeBLL;
+import TransferObject.Hadith;
+import TransferObject.Research;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 public class ResearchPanel extends javax.swing.JPanel {
 
+    private Research research;
+    private IFascadeBLL fascadeBLL;
     private ArrayList<String> filterExpressionArr;
 
     public ResearchPanel() {
         initComponents();
         filterExpressionArr = new ArrayList<>();
+        fascadeBLL = new FascadeBLL();
+
     }
 
     @SuppressWarnings("unchecked")
@@ -26,17 +40,14 @@ public class ResearchPanel extends javax.swing.JPanel {
         wordNegateChckBox = new javax.swing.JCheckBox();
         applyFilterBtn = new javax.swing.JButton();
         filterOperatorsComboBox = new javax.swing.JComboBox<>();
-        ahadeesInResearchTablePanel = new javax.swing.JPanel();
         ahadeesInResearchTableScrollPane = new javax.swing.JScrollPane();
-        ahadeesInResearchTable = new javax.swing.JTable();
+        hadithTable = new javax.swing.JTable();
         PanelRound allFiltersBackPanel;
         allFiltersBackPanel = new PanelRound();
         filterNumComboBox = new javax.swing.JComboBox<>();
         filterOutputTxtField = new javax.swing.JTextField();
         newFilterRadioBtn = new javax.swing.JRadioButton();
         existingFilterRadioBtn = new javax.swing.JRadioButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTextArea2 = new javax.swing.JTextArea();
         applyFilterBtn1 = new javax.swing.JButton();
@@ -125,45 +136,56 @@ public class ResearchPanel extends javax.swing.JPanel {
 
         add(newFilterBackPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, 440, 120));
 
-        ahadeesInResearchTablePanel.setBackground(new java.awt.Color(244, 235, 208));
-
-        ahadeesInResearchTable.setBackground(new java.awt.Color(196, 182, 182));
-        ahadeesInResearchTable.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
-        ahadeesInResearchTable.setModel(new javax.swing.table.DefaultTableModel(
+        hadithTable.setAutoCreateRowSorter(true);
+        hadithTable.setBackground(new java.awt.Color(196, 182, 182));
+        hadithTable.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        hadithTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Book", "Hadith ID", "Hadith", "Sanad"
+                "Sr.", "Hadith ID", "Book", "Hadith", "Sanad"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
         });
-        ahadeesInResearchTableScrollPane.setViewportView(ahadeesInResearchTable);
+        hadithTable.getTableHeader().setReorderingAllowed(false);
+        hadithTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                hadithTableMouseClicked(evt);
+            }
+        });
+        ahadeesInResearchTableScrollPane.setViewportView(hadithTable);
+        if (hadithTable.getColumnModel().getColumnCount() > 0) {
+            hadithTable.getColumnModel().getColumn(0).setMinWidth(50);
+            hadithTable.getColumnModel().getColumn(0).setMaxWidth(50);
+            hadithTable.getColumnModel().getColumn(1).setMinWidth(80);
+            hadithTable.getColumnModel().getColumn(1).setMaxWidth(100);
+            hadithTable.getColumnModel().getColumn(2).setMinWidth(100);
+            hadithTable.getColumnModel().getColumn(2).setMaxWidth(120);
+            hadithTable.getColumnModel().getColumn(4).setMinWidth(300);
+            hadithTable.getColumnModel().getColumn(4).setMaxWidth(400);
+        }
+        hadithTable.getColumnModel().getColumn(3).setCellRenderer(new TableAlignment());
+        hadithTable.getColumnModel().getColumn(4).setCellRenderer(new TableAlignment());
 
-        javax.swing.GroupLayout ahadeesInResearchTablePanelLayout = new javax.swing.GroupLayout(ahadeesInResearchTablePanel);
-        ahadeesInResearchTablePanel.setLayout(ahadeesInResearchTablePanelLayout);
-        ahadeesInResearchTablePanelLayout.setHorizontalGroup(
-            ahadeesInResearchTablePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(ahadeesInResearchTableScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 870, Short.MAX_VALUE)
-        );
-        ahadeesInResearchTablePanelLayout.setVerticalGroup(
-            ahadeesInResearchTablePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(ahadeesInResearchTablePanelLayout.createSequentialGroup()
-                .addComponent(ahadeesInResearchTableScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 355, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-
-        add(ahadeesInResearchTablePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 170, 870, 350));
+        add(ahadeesInResearchTableScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(42, 220, 1170, 340));
 
         allFiltersBackPanel.setBackground(new java.awt.Color(47, 18, 76));
         allFiltersBackPanel.setAllCornersRound(25);
@@ -220,19 +242,14 @@ public class ResearchPanel extends javax.swing.JPanel {
 
         add(allFiltersBackPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 30, 400, 120));
 
-        jTextArea1.setBackground(new java.awt.Color(196, 182, 182));
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
-
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 330, 270, 150));
-
         jTextArea2.setBackground(new java.awt.Color(196, 182, 182));
         jTextArea2.setColumns(20);
+        jTextArea2.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jTextArea2.setRows(5);
+        jTextArea2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(47, 18, 76))); // NOI18N
         jScrollPane2.setViewportView(jTextArea2);
 
-        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 170, 270, 150));
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 30, 270, 120));
 
         applyFilterBtn1.setBackground(new java.awt.Color(254, 194, 96));
         applyFilterBtn1.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
@@ -243,7 +260,7 @@ public class ResearchPanel extends javax.swing.JPanel {
                 applyFilterBtn1ActionPerformed(evt);
             }
         });
-        add(applyFilterBtn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1100, 490, 110, -1));
+        add(applyFilterBtn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1100, 160, 110, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void applyFilterBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_applyFilterBtnActionPerformed
@@ -270,33 +287,35 @@ public class ResearchPanel extends javax.swing.JPanel {
 
     private void filterTxtFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_filterTxtFieldKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            String word = filterTxtField.getText();
-            String[] arr = word.split(" ");
-            word = arr[0];
+            String word = getCleanWord();
             if (!word.equals("")) {
-                if (filterOperatorsComboBox.getSelectedItem().equals(" ")) { // first or last word
-                    if (filterExpressionArr.isEmpty()) { // when no expression
+                if (isOperandAllowed() ) {
+                   
+                    if (filterOperatorsComboBox.getSelectedItem().equals(" ")) { // first or last word
                         filterExpressionArr.add(word);
-                        finalFilterTxtField.setText(word);
-                    } else { //  when there is expression
+                        filterTxtField.setText("");
+//                  
+                    } else if (filterOperatorsComboBox.getSelectedItem().equals("AND")) {
                         filterExpressionArr.add(word);
-                        String expression = "";
-                        for (int i = 0; i < filterExpressionArr.size(); ++i) {
-                            expression += filterExpressionArr.get(i) + " ";
-                        }
-                        finalFilterTxtField.setText(expression);
+                        filterExpressionArr.add(filterOperatorsComboBox.getSelectedItem().toString());
+                       
                     }
-                    filterTxtField.setText("");
-                    applyFilterBtn.doClick();
+                    ArrayConverterBO converter = new ArrayConverterBO();
+                    finalFilterTxtField.setText(converter.convert(filterExpressionArr));
                 }
             }
         }
     }//GEN-LAST:event_filterTxtFieldKeyPressed
 
-    private void filterOperatorsComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filterOperatorsComboBoxActionPerformed
+    private String getCleanWord() {
         String word = filterTxtField.getText();
         String[] arr = word.split(" ");
         word = arr[0];
+        return word;
+    }
+
+    private void filterOperatorsComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filterOperatorsComboBoxActionPerformed
+        String word = getCleanWord();
         if (filterExpressionArr.size() % 2 != 0) { // when last index value is word
             if (!filterExpressionArr.get(filterExpressionArr.size() - 1).contains(word)) { // when last index value is same as curr word
 
@@ -320,10 +339,71 @@ public class ResearchPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_applyFilterBtn1ActionPerformed
 
+    private void hadithTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hadithTableMouseClicked
+        JTable source = (JTable) evt.getSource();
+        int row = source.rowAtPoint(evt.getPoint());
+        if (hadithTable.getValueAt(row, 3) != null) {
+            String matn = hadithTable.getValueAt(row, 3).toString();
+            jTextArea2.setText(matn);
+        }
+    }//GEN-LAST:event_hadithTableMouseClicked
+
+    public void setReseach(Research research) {
+        this.research = research;
+        initAsync(research);
+    }
+
+    public void initAsync(Research research) {
+        ExecutorService executorService = Executors.newSingleThreadExecutor();
+
+        executorService.execute(() -> {
+            init(research);
+
+            // Optionally, you can perform additional tasks after init() completes
+            // For example, update UI components, notify other parts of your application, etc.
+            executorService.shutdown(); // Shutdown the executor when done
+        });
+    }
+
+    public void init(Research research) {
+
+        ArrayList<Hadith> hadiths = fascadeBLL.getAllHadiths(research.getSearchBaseLine());
+        System.out.println(hadiths.get(3107).getNarrators().size());
+        populateHadithTable(hadiths);
+
+    }
+
+    private boolean isOperandAllowed() {
+        return isOperatorEntered() || filterExpressionArr.isEmpty();
+    }
+
+    private boolean isOperatorEntered() {
+        if(filterExpressionArr.isEmpty())
+            return true;
+        return filterExpressionArr.getLast().equals("AND") || filterExpressionArr.getLast().equals("OR");
+    }
+
+    private void populateHadithTable(ArrayList<Hadith> hadiths) {
+        if (!hadiths.isEmpty()) {
+            ArrayConverterBO converter = new ArrayConverterBO();
+            DefaultTableModel model = (DefaultTableModel) hadithTable.getModel();
+            model.setRowCount(0);
+
+            int count = 1;
+            for (Hadith hadith : hadiths) {
+                Object[] row = {hadith.getIndex(), hadith.getId(), hadith.getBookName(), hadith.getMatn(), converter.convertNarratorsListToString(hadith.getNarrators())};
+                count++;
+                model.addRow(row);
+            }
+            hadithTable.setModel(model);
+        } else {
+            JOptionPane.showMessageDialog(null, "No Hadith Found.", "Warning", JOptionPane.WARNING_MESSAGE);
+
+        }
+
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JTable ahadeesInResearchTable;
-    private javax.swing.JPanel ahadeesInResearchTablePanel;
     private javax.swing.JScrollPane ahadeesInResearchTableScrollPane;
     private javax.swing.JPanel allFiltersBackPanel;
     private javax.swing.JButton applyFilterBtn;
@@ -336,9 +416,8 @@ public class ResearchPanel extends javax.swing.JPanel {
     private javax.swing.JTextField filterTxtField;
     private javax.swing.ButtonGroup filterTypeBtnGroup;
     private javax.swing.JTextField finalFilterTxtField;
-    private javax.swing.JScrollPane jScrollPane1;
+    public javax.swing.JTable hadithTable;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextArea jTextArea2;
     private javax.swing.JPanel newFilterBackPanel;
     private javax.swing.JRadioButton newFilterRadioBtn;

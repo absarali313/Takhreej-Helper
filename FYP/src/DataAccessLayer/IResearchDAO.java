@@ -26,7 +26,7 @@ public interface IResearchDAO {
     
     ArrayList<Integer> getResearchBaselineIds(int researchId);
     
-    public Research getResearchById(int id);
+    public Research getResearchByName(String name);
     
     ArrayList<Research> getAllResearch() throws NoResearchFoundException;
     
