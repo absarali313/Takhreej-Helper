@@ -16,15 +16,15 @@ public class FilterConverterBO implements IConverterBO {
     public String convert(ArrayList<String> list) {
         String expression = "";
         for (int i = 0; i < list.size(); i++) {
-            if (i % 2 == 0) {
+            if (!list.get(i).equals("AND") && !list.get(i).equals("OR")) {
                 if (!list.get(i).startsWith("!")) {
-                    expression = "LIKE %" + list.get(i) + "% ";
+                    expression += "matn LIKE '%" + list.get(i).replace("!", "") + "%' ";
                 } else {
-                    expression = "NOT LIKE %" + list.get(i) + "% ";
+                    expression += "matn NOT LIKE '%" + list.get(i) + "%' ";
                 }
 
             } else {
-                expression = list.get(i) + " ";
+                expression += list.get(i) + " ";
             }
         }
         return expression;

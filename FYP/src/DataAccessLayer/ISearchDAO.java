@@ -4,10 +4,14 @@
  */
 package DataAccessLayer;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author ch-sa
  */
-public interface IFascadeDAO extends ISearchDAO, IResearchDAO, IFilterDAO, INarratorsDAO, IBookDAO, IHadithDAO{
+public interface ISearchDAO {
+
+    ArrayList<Integer> getFilteredHadithIds(String expression);
     
 }

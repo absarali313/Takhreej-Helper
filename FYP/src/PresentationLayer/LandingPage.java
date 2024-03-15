@@ -1,9 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package PresentationLayer;
-
 import com.formdev.flatlaf.themes.FlatMacLightLaf;
 import java.awt.Color;
 import java.awt.Insets;
@@ -126,6 +121,7 @@ public class LandingPage extends javax.swing.JFrame {
         } catch (UnsupportedLookAndFeelException ex) {
             //Logger.getLogger(GUI_PO.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
         UIManager.put("Button.arc", 20);
         UIManager.put("Component.arc", 20);
         UIManager.put("TextComponent.arc", 20);

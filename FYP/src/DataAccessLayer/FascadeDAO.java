@@ -21,8 +21,10 @@ public class FascadeDAO implements IFascadeDAO {
     INarratorsDAO narratorsDAO;
     IBookDAO bookDAO;
     IHadithDAO hadithDAO;
+    ISearchDAO searchDAO;
 
     public FascadeDAO() {
+        searchDAO = new SearchDAO();
         researchDAO = new ResearchDAO(new FilterDAO());
         filterDAO = new FilterDAO();
         narratorsDAO = new NarratorsDAO();
@@ -108,6 +110,11 @@ public class FascadeDAO implements IFascadeDAO {
     @Override
     public ArrayList<Hadith> getHadiths(ArrayList<Integer> serials) throws NoHadithFoundException {
         return hadithDAO.getHadiths(serials);
+    }
+
+    @Override
+    public ArrayList<Integer> getFilteredHadithIds(String expression) {
+        return searchDAO.getFilteredHadithIds(expression);
     }
 
 }

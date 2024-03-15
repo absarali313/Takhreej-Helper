@@ -29,45 +29,49 @@ public class FilterDAO implements IFilterDAO {
             preparedStatement.executeUpdate();
             return true;
         } catch (SQLException e) {
-            Log.getLogger().error("Error in creating new research", e.getMessage());
+            Log.getLogger().error("Error in creating new filter", e.getMessage());
             return false;
         }
     }
 
     @Override
-    public boolean updateFilter(int id, int orderNo, String filter) {
+    public boolean updateFilter(int reseachId, int orderNo, String filter) {
 
-        String query = "UPDATE filter SET expression = ?, orderNo = ? WHERE id = ?";
+        String query = "UPDATE filter SET expression = ? WHERE researchId = ? AND orderNo = ?";
         try (PreparedStatement preparedStatement = DBhandler.getInstance().getConnection().prepareStatement(query)) {
             preparedStatement.setString(1, filter);
-            preparedStatement.setInt(2, orderNo);
-            preparedStatement.setInt(3, id);
+         
+            preparedStatement.setInt(2, reseachId);
+               preparedStatement.setInt(3, orderNo);
             int rowsAffected = preparedStatement.executeUpdate();
 
             if (rowsAffected > 0) {
+                 System.out.println("Upadting");
                 return true;  // Update successful
             } else {
-                Log.getLogger().info("No rows were updated. Research with id: " + id + " not found.");
+                 System.out.println("Failed");
+                Log.getLogger().info("No rows were updated. filter with id: " + reseachId + " not found.");
                 return false;
             }
         } catch (SQLException e) {
-            Log.getLogger().error("Error in updating research", e.getMessage());
+             System.out.println("Failed");
+            Log.getLogger().error("Error in updating filter", e.getMessage());
             return false;
         }
     }
 
     @Override
-    public boolean deleteFilter(int id) {
+    public boolean deleteFilter(int researchId) {
 
-        String query = "DELETE FROM filter WHERE id = ?";
+        String query = "DELETE FROM filter WHERE researchId = ?";
         try (PreparedStatement preparedStatement = DBhandler.getInstance().getConnection().prepareStatement(query)) {
-            preparedStatement.setInt(1, id);
+            preparedStatement.setInt(1, researchId);
             int rowsAffected = preparedStatement.executeUpdate();
 
             if (rowsAffected > 0) {
                 return true;  // Update successful
             } else {
-                Log.getLogger().info("No rows were deleted. Filter with id: " + id + " not found.");
+                Log.getLogger().info("No rows were deleted. Filter with research id: " + researchId + " not found.");
                 return false;
             }
         } catch (SQLException e) {

@@ -10,13 +10,14 @@ import java.util.*;
  *
  * @author ch-sa
  */
-public class StringConverter {
+public class StringConverter implements IStringConverter {
     
+    @Override
      public ArrayList<String> convert(String inputString) {
         // Check if the input string is not null or empty
         if (inputString != null && !inputString.isEmpty()) {
             // Split the string using comma as the delimiter
-            String[] stringArray = inputString.split(",");
+            String[] stringArray = inputString.split(" ");
 
             // Convert the array to an ArrayList
             List<String> stringList = Arrays.asList(stringArray);

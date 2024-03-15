@@ -10,14 +10,21 @@ import java.util.ArrayList;
  * @author ch-sa
  */
 public class FascadeBLL implements IFascadeBLL {
+
+    ISearchBO searchBO;
     IResearchBO researchBO;
     IHadithBO hadithBO;
-    
+    IFilterBO filterBO;
+    IStringConverter stringConverter;
+    FascadeDAO fascadeDAO = new FascadeDAO();
     public FascadeBLL() {
-        this.researchBO = new ResearchBO(new FascadeDAO());
-        this.hadithBO = new HadithBO(new FascadeDAO());
+        this.researchBO = new ResearchBO(fascadeDAO);
+        this.hadithBO = new HadithBO(fascadeDAO);
+        this.filterBO = new FilterBO(fascadeDAO);
+        this.stringConverter = new StringConverter();
+        this.searchBO = new SearchBO(fascadeDAO, this);
     }
-    
+
     @Override
     public boolean createResearch(String name) {
         return researchBO.createResearch(name);
@@ -37,9 +44,9 @@ public class FascadeBLL implements IFascadeBLL {
     public ArrayList<Research> getAllResearches() {
         return researchBO.getAllResearches();
     }
-    
+
     @Override
-    public Research getResearch(String name){
+    public Research getResearch(String name) {
         return researchBO.getResearch(name);
     }
 
@@ -47,5 +54,30 @@ public class FascadeBLL implements IFascadeBLL {
     public ArrayList<Hadith> getAllHadiths(ArrayList<Integer> serials) {
         return hadithBO.getAllHadiths(serials);
     }
-    
+
+    @Override
+    public boolean createFilter(int researchId, int orderNo, String expression) {
+        return filterBO.createFilter(researchId, orderNo, expression);
+    }
+
+    @Override
+    public boolean deleteFilter(int id) {
+        return filterBO.deleteFilter(id);
+    }
+
+    @Override
+    public boolean updateFilterExpression(int id, int orderNo, String expression) {
+        return filterBO.updateFilterExpression(id, orderNo, expression);
+    }
+
+    @Override
+    public ArrayList<String> convert(String inputString) {
+        return stringConverter.convert(inputString);
+    }
+
+    @Override
+    public ArrayList<Hadith> searchHadiths(Research research, int filterIndex) {
+        return searchBO.searchHadiths(research, filterIndex);
+    }
+
 }

@@ -1,1 +1,10 @@
-00:44:24.080 [AWT-EventQueue-0] ERROR org.apache.logging.log4j.Logger - Error in retrieving Hadith
+01:43:02.682 [AWT-EventQueue-0] ERROR org.apache.logging.log4j.Logger - Error in retrieving Hadith
+01:43:14.429 [AWT-EventQueue-0] ERROR org.apache.logging.log4j.Logger - Error in retrieving Hadith
+01:44:54.730 [AWT-EventQueue-0] ERROR org.apache.logging.log4j.Logger - Error in retrieving Hadith
+01:49:38.489 [AWT-EventQueue-0] ERROR org.apache.logging.log4j.Logger - Error in retrieving Hadith
+01:52:02.077 [AWT-EventQueue-0] ERROR org.apache.logging.log4j.Logger - Error in retrieving Hadith
+01:52:11.841 [AWT-EventQueue-0] ERROR org.apache.logging.log4j.Logger - Error in retrieving Hadith
+01:56:10.929 [AWT-EventQueue-0] ERROR org.apache.logging.log4j.Logger - Error in retrieving Hadith
+01:56:45.175 [AWT-EventQueue-0] ERROR org.apache.logging.log4j.Logger - Error in retrieving Hadith
+09:59:01.393 [pool-2-thread-1] ERROR org.apache.logging.log4j.Logger - Error in retrieving Hadith
+09:59:04.953 [pool-2-thread-1] ERROR org.apache.logging.log4j.Logger - Error in retrieving Hadith

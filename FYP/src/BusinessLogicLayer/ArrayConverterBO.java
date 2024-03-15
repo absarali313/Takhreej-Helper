@@ -34,7 +34,7 @@ public class ArrayConverterBO implements IConverterBO{
             return String.join(", ", narrators);
         } else {
             // Return an empty string if the list is empty or null
-            return "";
+            return "NO SANAD";
         }
     }
 
