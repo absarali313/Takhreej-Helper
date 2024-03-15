@@ -309,7 +309,7 @@ public class ResearchPanel extends javax.swing.JPanel {
 
     private void addFilterToResearch() {
 
-        research.getFilters().add(new Filter(this.research.getResearchId(), filterNumComboBox.getSelectedIndex(), filterExpressionTextField.getText()));
+        research.getFilters().add(new Filter(this.research.getResearchId(), filterNumComboBox.getItemCount(), filterExpressionTextField.getText()));
     }
 
     private boolean insertFilter() {
@@ -323,7 +323,7 @@ public class ResearchPanel extends javax.swing.JPanel {
     private boolean createFilter() {
         // deleteFilter();
         addFilterToResearch();
-        int filterIndex = 1 + filterNumComboBox.getSelectedIndex();
+        int filterIndex = filterNumComboBox.getItemCount();
         filterNumComboBox.addItem(Integer.toString(filterIndex));
         filterNumComboBox.setSelectedIndex(filterIndex);
         return insertFilter();
@@ -420,7 +420,8 @@ public class ResearchPanel extends javax.swing.JPanel {
 
     private void filterNumComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filterNumComboBoxActionPerformed
         loadFilterExpression();
-        applyFilter();
+        if(filterNumComboBox.getItemCount() != 0)
+            applyFilter();
 //        
     }//GEN-LAST:event_filterNumComboBoxActionPerformed
 
@@ -495,6 +496,7 @@ public class ResearchPanel extends javax.swing.JPanel {
         if (filterExpressionArr.isEmpty()) {
             return true;
         }
+        
         return filterExpressionArr.getLast().equals("AND") || filterExpressionArr.getLast().equals("OR");
     }
 

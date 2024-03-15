@@ -18,9 +18,9 @@ public class FilterConverterBO implements IConverterBO {
         for (int i = 0; i < list.size(); i++) {
             if (!list.get(i).equals("AND") && !list.get(i).equals("OR")) {
                 if (!list.get(i).startsWith("!")) {
-                    expression += "matn LIKE '%" + list.get(i).replace("!", "") + "%' ";
+                    expression += "matn REGEXP '" + list.get(i).replace("!", "") + "' ";
                 } else {
-                    expression += "matn NOT LIKE '%" + list.get(i) + "%' ";
+                    expression += "matn NOT REGEXP '" + list.get(i) + "' ";
                 }
 
             } else {
