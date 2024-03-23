@@ -69,5 +69,32 @@ public class SearchDAO implements ISearchDAO {
 
         return hadiths;
     }
+     
+    @Override
+    public ArrayList<Integer> getdHadithIdsByTopic(String expression) {
+        ArrayList<Integer> hadiths = new ArrayList<>();
+
+        String query = "SELECT DISTINCT hadithId FROM hadithtopics where " + expression;
+        System.out.println(query);
+        try (PreparedStatement preparedStatement = DBhandler.getInstance().getConnection().prepareStatement(query); ResultSet resultSet = preparedStatement.executeQuery()) {
+
+            while (resultSet.next()) {
+                int serial = resultSet.getInt("hadithId");
+
+                hadiths.add(serial);
+            }
+
+            if (hadiths.isEmpty()) {
+                Log.getLogger().info("No Hadith found in the database.");
+            }
+
+        } catch (SQLException e) {
+            Log.getLogger().error("Error in retrieving Hadith" +  e.getMessage());
+        } catch (Exception e) {
+            Log.getLogger().error("Error while getting hadith from database: " + e.getMessage());
+        }
+
+        return hadiths;
+    }
 
 }

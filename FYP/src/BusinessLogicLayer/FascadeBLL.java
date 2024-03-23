@@ -11,6 +11,7 @@ import java.util.ArrayList;
  */
 public class FascadeBLL implements IFascadeBLL {
 
+    ISmartSearchBO smartSearchBO;
     ISearchBO searchBO;
     IResearchBO researchBO;
     IHadithBO hadithBO;
@@ -23,6 +24,7 @@ public class FascadeBLL implements IFascadeBLL {
         this.filterBO = new FilterBO(fascadeDAO);
         this.stringConverter = new StringConverter();
         this.searchBO = new SearchBO(fascadeDAO, this);
+        this.smartSearchBO = new SmartSearchBO(fascadeDAO);
     }
 
     @Override
@@ -78,6 +80,16 @@ public class FascadeBLL implements IFascadeBLL {
     @Override
     public ArrayList<Hadith> searchHadiths(Research research, int filterIndex) {
         return searchBO.searchHadiths(research, filterIndex);
+    }
+
+    @Override
+    public ArrayList<String> getTopics(String matn) {
+        return smartSearchBO.getTopics(matn);
+    }
+
+    @Override
+    public ArrayList<Hadith> Search(String matn) {
+      return smartSearchBO.Search(matn);
     }
 
 }

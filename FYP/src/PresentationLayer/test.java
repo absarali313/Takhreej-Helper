@@ -6,6 +6,8 @@ package PresentationLayer;
 
 import BusinessLogicLayer.FascadeBLL;
 import BusinessLogicLayer.IFascadeBLL;
+import TransferObject.Hadith;
+import java.util.ArrayList;
 
 /**
  *
@@ -16,7 +18,13 @@ public class test {
     
     public static void main(String[] args){
         
-        System.out.println("اه");
+        
         IFascadeBLL fascadeBLL = new FascadeBLL();
+        String matn = "إن جبريل عليه السلام لم يزال يوصيني بالجار حتى ظننت أنه سيورثه.";
+        ArrayList<Hadith> hadiths = fascadeBLL.Search(matn);
+        for(Hadith hadith : hadiths){
+            System.out.println(hadith.getMatn());
+        }
+        System.out.println(hadiths.size());
     }
 }

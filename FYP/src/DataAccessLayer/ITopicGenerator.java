@@ -4,16 +4,12 @@
  */
 package DataAccessLayer;
 
-import java.util.ArrayList;
-
 /**
  *
  * @author ch-sa
  */
-public interface ISearchDAO {
+public interface ITopicGenerator {
 
-    ArrayList<Integer> getFilteredHadithIds(String expression);
-    ArrayList<Integer> getFilteredRootsHadithIds(String expression);
-    ArrayList<Integer> getdHadithIdsByTopic(String expression);
+    String predictTopic(String hadith);
     
 }

@@ -71,6 +71,24 @@ public class FilterConverterBO implements IConverterBO {
         return expression;
     }
 
+    public String converTopicsToFilter(ArrayList<String> list) {
+        String expression = "";
+        for (int i = 0; i < list.size(); i++) {
+            try {
+                list.set(i, fascadeDAO.getLemmatizedWord(list.get(i)));
+            } catch (IOException ex) {
+                Logger.getLogger(FilterConverterBO.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            if (!list.get(i).equals("")) {
+                if(i < list.size() - 1)
+                expression += "topic = '" + list.get(i) + "' OR ";
+                else
+                expression += "topic = '" + list.get(i) + "' ";
+            }
+        }
+        return expression;
+    }
+
     private String getLemma(String textToLemmatize) throws IOException {
         return fascadeDAO.getLemmatizedWord(textToLemmatize);
     }

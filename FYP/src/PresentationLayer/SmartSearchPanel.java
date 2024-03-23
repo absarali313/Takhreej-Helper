@@ -4,17 +4,21 @@
  */
 package PresentationLayer;
 
+import BusinessLogicLayer.FascadeBLL;
+import BusinessLogicLayer.IFascadeBLL;
+import java.util.ArrayList;
+import javax.swing.JTable;
+
 /**
  *
  * @author ch-sa
  */
 public class SmartSearchPanel extends javax.swing.JPanel {
 
-    /**
-     * Creates new form SmartSearchPanel
-     */
+    IFascadeBLL fascadeBLL;
     public SmartSearchPanel() {
         initComponents();
+        fascadeBLL = new FascadeBLL();
     }
 
     /**
@@ -26,19 +30,146 @@ public class SmartSearchPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        PanelRound newFilterBackPanel;
+        newFilterBackPanel = new PanelRound();
+        filterLbl = new javax.swing.JLabel();
+        searchBtn = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        hadithTextArea = new javax.swing.JTextArea();
+        ahadeesInResearchTableScrollPane = new javax.swing.JScrollPane();
+        hadithTable = new javax.swing.JTable();
+
+        setBackground(new java.awt.Color(7, 7, 57));
+
+        newFilterBackPanel.setBackground(new java.awt.Color(47, 18, 76));
+        newFilterBackPanel.setAllCornersRound(25);
+
+        filterLbl.setFont(new java.awt.Font("Calibri", 1, 15)); // NOI18N
+        filterLbl.setForeground(new java.awt.Color(254, 194, 96));
+        filterLbl.setText("Enter Hadith:");
+
+        searchBtn.setBackground(new java.awt.Color(254, 194, 96));
+        searchBtn.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        searchBtn.setForeground(new java.awt.Color(59, 24, 95));
+        searchBtn.setText("Search");
+        searchBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchBtnActionPerformed(evt);
+            }
+        });
+
+        hadithTextArea.setColumns(20);
+        hadithTextArea.setRows(5);
+        jScrollPane1.setViewportView(hadithTextArea);
+
+        javax.swing.GroupLayout newFilterBackPanelLayout = new javax.swing.GroupLayout(newFilterBackPanel);
+        newFilterBackPanel.setLayout(newFilterBackPanelLayout);
+        newFilterBackPanelLayout.setHorizontalGroup(
+            newFilterBackPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, newFilterBackPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(newFilterBackPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 725, Short.MAX_VALUE)
+                    .addGroup(newFilterBackPanelLayout.createSequentialGroup()
+                        .addComponent(filterLbl)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(searchBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(14, 14, 14))
+        );
+        newFilterBackPanelLayout.setVerticalGroup(
+            newFilterBackPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, newFilterBackPanelLayout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addGroup(newFilterBackPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(filterLbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(searchBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(10, 10, 10)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(15, 15, 15))
+        );
+
+        hadithTable.setAutoCreateRowSorter(true);
+        hadithTable.setBackground(new java.awt.Color(196, 182, 182));
+        hadithTable.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        hadithTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "Sr.", "Hadith ID", "Book", "Hadith", "Sanad"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        hadithTable.getTableHeader().setReorderingAllowed(false);
+        hadithTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                hadithTableMouseClicked(evt);
+            }
+        });
+        ahadeesInResearchTableScrollPane.setViewportView(hadithTable);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(29, 29, 29)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(newFilterBackPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ahadeesInResearchTableScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 1185, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(38, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(31, 31, 31)
+                .addComponent(newFilterBackPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(ahadeesInResearchTableScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(56, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void searchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtnActionPerformed
+        String matn = hadithTextArea.getText();
+        ArrayList<String> topics = fascadeBLL.getTopics(matn);
+        
+    }//GEN-LAST:event_searchBtnActionPerformed
+
+    private void hadithTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hadithTableMouseClicked
+        JTable source = (JTable) evt.getSource();
+        int row = source.rowAtPoint(evt.getPoint());
+        if (hadithTable.getValueAt(row, 3) != null) {
+            String matn = hadithTable.getValueAt(row, 3).toString();
+            //jTextArea2.setText(matn);
+        }
+    }//GEN-LAST:event_hadithTableMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JScrollPane ahadeesInResearchTableScrollPane;
+    private javax.swing.JLabel filterLbl;
+    public javax.swing.JTable hadithTable;
+    private javax.swing.JTextArea hadithTextArea;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JPanel newFilterBackPanel;
+    private javax.swing.JButton searchBtn;
     // End of variables declaration//GEN-END:variables
 }

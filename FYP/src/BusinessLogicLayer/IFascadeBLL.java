@@ -8,6 +8,6 @@ package BusinessLogicLayer;
  *
  * @author ch-sa
  */
-public interface IFascadeBLL extends ISearchBO,IResearchBO, IHadithBO, IFilterBO, IStringConverter{
+public interface IFascadeBLL extends ISmartSearchBO,ISearchBO,IResearchBO, IHadithBO, IFilterBO, IStringConverter{
     
 }

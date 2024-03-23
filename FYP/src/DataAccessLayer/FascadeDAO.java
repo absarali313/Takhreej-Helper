@@ -17,6 +17,7 @@ import java.util.ArrayList;
  */
 public class FascadeDAO implements IFascadeDAO {
 
+    ITopicGenerator topicGenerator;
     IResearchDAO researchDAO;
     IFilterDAO filterDAO;
     INarratorsDAO narratorsDAO;
@@ -33,6 +34,7 @@ public class FascadeDAO implements IFascadeDAO {
         bookDAO = new BookDAO();
         hadithDAO = new HadithDAO(new BookDAO(), new NarratorsDAO());
         lemmatizerDAO = new LemmatizerDAO();
+        topicGenerator = new TopicGenerator();
     }
 
     @Override
@@ -119,15 +121,25 @@ public class FascadeDAO implements IFascadeDAO {
     public ArrayList<Integer> getFilteredHadithIds(String expression) {
         return searchDAO.getFilteredHadithIds(expression);
     }
+
     @Override
-     public ArrayList<Integer> getFilteredRootsHadithIds(String expression){
-         return searchDAO.getFilteredRootsHadithIds(expression);
-     }
-    
+    public ArrayList<Integer> getFilteredRootsHadithIds(String expression) {
+        return searchDAO.getFilteredRootsHadithIds(expression);
+    }
 
     @Override
     public String getLemmatizedWord(String textToLemmatize) throws IOException {
-            return lemmatizerDAO.getLemmatizedWord(textToLemmatize);
+        return lemmatizerDAO.getLemmatizedWord(textToLemmatize);
+    }
+
+    @Override
+    public String predictTopic(String matn) {
+        return topicGenerator.predictTopic(matn);
+    }
+
+    @Override
+    public ArrayList<Integer> getdHadithIdsByTopic(String expression) {
+        return searchDAO.getdHadithIdsByTopic(expression);
     }
 
 }
