@@ -6,8 +6,9 @@ import java.net.URL;
 import java.util.Scanner;
 import org.json.JSONObject; // Import JSONObject for JSON parsing
 
-public class lemmetizeDAO {
+public class LemmatizerProxyDAO implements ILemmatizerDAO {
 
+    @Override
     public String getLemmatizedWord(String textToLemmatize) throws IOException {
         
         String lemmatizedText ="";

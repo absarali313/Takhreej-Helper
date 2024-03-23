@@ -1,12 +1,15 @@
 package BusinessLogicLayer;
 
 import CustomException.NoHadithFoundException;
+import DataAccessLayer.FascadeDAO;
 import DataAccessLayer.IFascadeDAO;
 import TransferObject.Hadith;
 import TransferObject.Research;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -27,18 +30,25 @@ public class SearchBO implements ISearchBO {
     @Override
     public ArrayList<Hadith> searchHadiths(Research research, int filterIndex) {
         ArrayList<Hadith> hadiths = new ArrayList<Hadith>();
-        ArrayList<Integer> hadithIds = new ArrayList<Integer>();
+        ArrayList<Integer> hadithIdsRegex = new ArrayList<Integer>();
+        ArrayList<Integer> hadithIdsRoots = new ArrayList<Integer>();
         for (int i = 0; i <= filterIndex; i++) {
             String expression;
-            FilterConverterBO converter = new FilterConverterBO();
+            FilterConverterBO converter = new FilterConverterBO(new FascadeDAO());
             ArrayList<String> filterArray = fascadeBLL.convert(research.getFilters().get(i).getExpression());
-            expression = converter.convert(filterArray);
+            expression = converter.convertToFilter(filterArray);
             System.out.println(expression);
-            hadithIds.addAll(fascadeDAO.getFilteredHadithIds(expression));
+            hadithIdsRegex.addAll(fascadeDAO.getFilteredHadithIds(expression));
+            expression = converter.converLemmaToFilter(filterArray);
+            System.out.println(expression);
+            hadithIdsRoots.addAll(fascadeDAO.getFilteredRootsHadithIds(expression));
+            
         }
-        System.out.println(countOccurrences(hadithIds,85));
-         System.out.println(countOccurrences(hadithIds,61));
-        hadithIds = keepAtLeastXTimesElements(hadithIds,filterIndex+1);
+
+        hadithIdsRegex = keepAtLeastXTimesElements(hadithIdsRegex,filterIndex+1);
+        hadithIdsRoots = keepAtLeastXTimesElements(hadithIdsRoots,filterIndex+1);
+        System.out.println("Index : " + filterIndex);
+        ArrayList<Integer> hadithIds = union(hadithIdsRoots,hadithIdsRegex);
         try {
             hadiths = fascadeDAO.getHadiths(hadithIds);
         } catch (NoHadithFoundException ex) {
@@ -54,17 +64,33 @@ public static ArrayList<Integer> keepAtLeastXTimesElements(ArrayList<Integer> ar
         for (Integer element : arrayList) {
             countMap.put(element, countMap.getOrDefault(element, 0) + 1);
         }
+        System.out.print("Before " +  countMap.size());
         
         // Traverse the HashMap and add elements occurring at least x times to the result ArrayList
         
         for (Integer element : countMap.keySet()) {
-            if (countMap.get(element) >= x) {
+            if (countMap.get(element) == x) {
                 result.add(element);
             }
         }
-        System.out.println(countMap.get(85));
-        System.out.println(countMap.get(61));
+       System.out.print("After : " + result.size());
         return result;
+    }
+
+    public static ArrayList<Integer> union(ArrayList<Integer> list1, ArrayList<Integer> list2) {
+        // Create a set to store unique elements
+        Set<Integer> unionSet = new HashSet<>();
+
+        // Add all elements from the first list to the set
+        unionSet.addAll(list1);
+
+        // Add all elements from the second list to the set
+        unionSet.addAll(list2);
+
+        // Create a new list to store the union of elements
+        ArrayList<Integer> unionList = new ArrayList<>(unionSet);
+
+        return unionList;
     }
 
  public static int countOccurrences(ArrayList<Integer> arrayList, int elementToCount) {

@@ -12,5 +12,5 @@ import java.util.ArrayList;
  */
 public interface IConverterBO {
     
-    public String convert(ArrayList<String> list);
+    public String convertToFilter(ArrayList<String> list);
 }

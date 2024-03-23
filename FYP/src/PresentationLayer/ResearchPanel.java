@@ -363,7 +363,7 @@ public class ResearchPanel extends javax.swing.JPanel {
 
     private void fillFilterTextField() {
         ArrayConverterBO converter = new ArrayConverterBO();
-        filterExpressionTextField.setText(converter.convert(filterExpressionArr));
+        filterExpressionTextField.setText(converter.convertToFilter(filterExpressionArr));
     }
 
     private String getCleanWord() {

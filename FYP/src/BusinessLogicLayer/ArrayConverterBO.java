@@ -16,7 +16,7 @@ public class ArrayConverterBO implements IConverterBO{
     public ArrayConverterBO() {
     }
 
-    public String convert(ArrayList<String> list) {
+    public String convertToFilter(ArrayList<String> list) {
         // Check if the list is not empty
         if (list != null && !list.isEmpty()) {
             return String.join(" ", list);

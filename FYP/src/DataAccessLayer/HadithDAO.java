@@ -47,7 +47,7 @@ public class HadithDAO implements IHadithDAO {
                 Log.getLogger().info("Error while getting hadith from database : " + e.getMessage());
             }
         } catch (SQLException e) {
-            Log.getLogger().error("Error in retrieving Hadith", e.getMessage());
+            Log.getLogger().error("Error in retrieving Hadith" + e.getMessage());
         }
 
         // Return the Hadith object (or null if not found)
@@ -73,7 +73,7 @@ public class HadithDAO implements IHadithDAO {
             }
 
         } catch (SQLException e) {
-            Log.getLogger().error("Error in retrieving Hadith", e.getMessage());
+            Log.getLogger().error("Error in retrieving Hadithjj" + e.getMessage());
         } catch (Exception e) {
             Log.getLogger().error("Error while getting hadith from database: " + e.getMessage());
         }

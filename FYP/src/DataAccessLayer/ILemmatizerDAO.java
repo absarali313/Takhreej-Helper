@@ -4,15 +4,14 @@
  */
 package DataAccessLayer;
 
-import java.util.ArrayList;
+import java.io.IOException;
 
 /**
  *
  * @author ch-sa
  */
-public interface ISearchDAO {
+public interface ILemmatizerDAO {
 
-    ArrayList<Integer> getFilteredHadithIds(String expression);
-    ArrayList<Integer> getFilteredRootsHadithIds(String expression);
+    String getLemmatizedWord(String textToLemmatize) throws IOException;
     
 }

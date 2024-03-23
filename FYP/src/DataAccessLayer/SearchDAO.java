@@ -36,7 +36,33 @@ public class SearchDAO implements ISearchDAO {
             }
 
         } catch (SQLException e) {
-            Log.getLogger().error("Error in retrieving Hadith", e.getMessage());
+            Log.getLogger().error("Error in retrieving Hadith" +  e.getMessage());
+        } catch (Exception e) {
+            Log.getLogger().error("Error while getting hadith from database: " + e.getMessage());
+        }
+
+        return hadiths;
+    }
+
+     public ArrayList<Integer> getFilteredRootsHadithIds(String expression) {
+        ArrayList<Integer> hadiths = new ArrayList<>();
+
+        String query = "SELECT DISTINCT hadithId FROM hadithroots where " + expression;
+        System.out.println(query);
+        try (PreparedStatement preparedStatement = DBhandler.getInstance().getConnection().prepareStatement(query); ResultSet resultSet = preparedStatement.executeQuery()) {
+
+            while (resultSet.next()) {
+                int serial = resultSet.getInt("hadithId");
+
+                hadiths.add(serial);
+            }
+
+            if (hadiths.isEmpty()) {
+                Log.getLogger().info("No Hadith found in the database.");
+            }
+
+        } catch (SQLException e) {
+            Log.getLogger().error("Error in retrieving Hadith"+ e.getMessage());
         } catch (Exception e) {
             Log.getLogger().error("Error while getting hadith from database: " + e.getMessage());
         }

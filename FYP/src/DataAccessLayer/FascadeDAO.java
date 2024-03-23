@@ -8,6 +8,7 @@ import TransferObject.Filter;
 import TransferObject.Hadith;
 import TransferObject.Narrator;
 import TransferObject.Research;
+import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -22,6 +23,7 @@ public class FascadeDAO implements IFascadeDAO {
     IBookDAO bookDAO;
     IHadithDAO hadithDAO;
     ISearchDAO searchDAO;
+    ILemmatizerDAO lemmatizerDAO;
 
     public FascadeDAO() {
         searchDAO = new SearchDAO();
@@ -30,6 +32,7 @@ public class FascadeDAO implements IFascadeDAO {
         narratorsDAO = new NarratorsDAO();
         bookDAO = new BookDAO();
         hadithDAO = new HadithDAO(new BookDAO(), new NarratorsDAO());
+        lemmatizerDAO = new LemmatizerDAO();
     }
 
     @Override
@@ -115,6 +118,16 @@ public class FascadeDAO implements IFascadeDAO {
     @Override
     public ArrayList<Integer> getFilteredHadithIds(String expression) {
         return searchDAO.getFilteredHadithIds(expression);
+    }
+    @Override
+     public ArrayList<Integer> getFilteredRootsHadithIds(String expression){
+         return searchDAO.getFilteredRootsHadithIds(expression);
+     }
+    
+
+    @Override
+    public String getLemmatizedWord(String textToLemmatize) throws IOException {
+            return lemmatizerDAO.getLemmatizedWord(textToLemmatize);
     }
 
 }
