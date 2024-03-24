@@ -100,6 +100,11 @@ public class ResearchPanel extends javax.swing.JPanel {
         searchTypeComboBox.setBackground(new java.awt.Color(196, 182, 182));
         searchTypeComboBox.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         searchTypeComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pattern", "Lemma", "Root" }));
+        searchTypeComboBox.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                searchTypeComboBoxItemStateChanged(evt);
+            }
+        });
         searchTypeComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 searchTypeComboBoxActionPerformed(evt);
@@ -487,8 +492,14 @@ public class ResearchPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_existingFilterRadioBtnActionPerformed
 
     private void searchTypeComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchTypeComboBoxActionPerformed
-        // TODO add your handling code here:
+      System.out.println("Updated");
+        fascadeBLL.updateFilterType(this.research.getResearchId(),filterNumComboBox.getSelectedIndex(), searchTypeComboBox.getSelectedItem().toString());
     }//GEN-LAST:event_searchTypeComboBoxActionPerformed
+
+    private void searchTypeComboBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_searchTypeComboBoxItemStateChanged
+     
+        fascadeBLL.updateFilterType(this.research.getResearchId(),filterNumComboBox.getSelectedIndex(), searchTypeComboBox.getSelectedItem().toString());
+    }//GEN-LAST:event_searchTypeComboBoxItemStateChanged
 
     public void setReseach(Research research) {
         this.research = research;

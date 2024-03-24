@@ -36,6 +36,8 @@ public class test {
             insertRoot(hadith.getIndex(), roots);
             System.out.println(hadith.getIndex());
         }
+
+    
     }
 
     public static boolean insertRoot(int hadithId, ArrayList<String> roots) {

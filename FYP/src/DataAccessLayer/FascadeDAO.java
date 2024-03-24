@@ -84,6 +84,10 @@ public class FascadeDAO implements IFascadeDAO {
     public boolean updateFilter(int id, int orderNo, String filter) {
         return filterDAO.updateFilter(id, orderNo, filter);
     }
+    @Override
+    public boolean updateFilterType(int id, int orderNo, String type) {
+        return filterDAO.updateFilterType(id, orderNo, type);
+    }
 
     @Override
     public boolean deleteFilter(int id) {

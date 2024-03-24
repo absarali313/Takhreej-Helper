@@ -38,6 +38,17 @@ public class FilterBO implements IFilterBO {
         }
         return false;
     }
+    @Override
+    public boolean updateFilterType(int id,int orderNo, String type) {
+        try {
+            if (fascadeDAO.updateFilterType(id,orderNo, type)) {
+                return true;
+            }
+        } catch (Exception e) {
+            return false;
+        }
+        return false;
+    }
 
     @Override
     public boolean deleteFilter(int id) {

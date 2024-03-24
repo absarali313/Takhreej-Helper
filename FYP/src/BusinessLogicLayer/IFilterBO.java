@@ -12,4 +12,6 @@ public interface IFilterBO {
 
     boolean updateFilterExpression(int id,int orderNo, String expression);
     
+    boolean updateFilterType(int id,int orderNo, String type);
+    
 }

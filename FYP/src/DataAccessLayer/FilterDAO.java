@@ -19,7 +19,7 @@ import java.util.ArrayList;
 public class FilterDAO implements IFilterDAO {
 
     @Override
-    public boolean insertFilter(int researchId, int orderNo, String expression,String searchType) {
+    public boolean insertFilter(int researchId, int orderNo, String expression, String searchType) {
 
         String query = "INSERT INTO filter(researchId,orderNo,expression,type) Values(?,?,?,?) ";
         try (java.sql.PreparedStatement preparedStatement = DBhandler.getInstance().getConnection().prepareStatement(query)) {
@@ -41,21 +41,47 @@ public class FilterDAO implements IFilterDAO {
         String query = "UPDATE filter SET expression = ? WHERE researchId = ? AND orderNo = ?";
         try (PreparedStatement preparedStatement = DBhandler.getInstance().getConnection().prepareStatement(query)) {
             preparedStatement.setString(1, filter);
-         
+
             preparedStatement.setInt(2, reseachId);
-               preparedStatement.setInt(3, orderNo);
+            preparedStatement.setInt(3, orderNo);
             int rowsAffected = preparedStatement.executeUpdate();
 
             if (rowsAffected > 0) {
-                 System.out.println("Upadting");
+                System.out.println("Upadting");
                 return true;  // Update successful
             } else {
-                 System.out.println("Failed");
+                System.out.println("Failed");
                 Log.getLogger().info("No rows were updated. filter with id: " + reseachId + " not found.");
                 return false;
             }
         } catch (SQLException e) {
-             System.out.println("Failed");
+            System.out.println("Failed");
+            Log.getLogger().error("Error in updating filter", e.getMessage());
+            return false;
+        }
+    }
+
+    @Override
+    public boolean updateFilterType(int reseachId, int orderNo, String type) {
+
+        String query = "UPDATE filter SET type = ? WHERE researchId = ? AND orderNo = ?";
+        try (PreparedStatement preparedStatement = DBhandler.getInstance().getConnection().prepareStatement(query)) {
+
+            preparedStatement.setInt(2, reseachId);
+            preparedStatement.setInt(3, orderNo);
+            preparedStatement.setString(1, type);
+            int rowsAffected = preparedStatement.executeUpdate();
+
+            if (rowsAffected > 0) {
+                System.out.println("Upadting");
+                return true;  // Update successful
+            } else {
+                System.out.println("Failed");
+                Log.getLogger().info("No rows were updated. filter with id: " + reseachId + " not found.");
+                return false;
+            }
+        } catch (SQLException e) {
+            System.out.println("Failed");
             Log.getLogger().error("Error in updating filter", e.getMessage());
             return false;
         }
@@ -96,7 +122,7 @@ public class FilterDAO implements IFilterDAO {
                     String expression = resultSet.getString("expression");
                     String type = resultSet.getString("type");
                     System.out.println(type + " " + expression);
-                    filters.add(new Filter(id, orderNo, expression,type));
+                    filters.add(new Filter(id, orderNo, expression, type));
                 }
             }
 

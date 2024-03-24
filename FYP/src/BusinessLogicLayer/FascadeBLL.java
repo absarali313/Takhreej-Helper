@@ -73,6 +73,12 @@ public class FascadeBLL implements IFascadeBLL {
     public boolean updateFilterExpression(int id, int orderNo, String expression) {
         return filterBO.updateFilterExpression(id, orderNo, expression);
     }
+    
+    @Override
+    public boolean updateFilterType(int id, int orderNo, String type) {
+        return filterBO.updateFilterExpression(id, orderNo, type);
+    }
+
 
     @Override
     public ArrayList<String> convert(String inputString) {
