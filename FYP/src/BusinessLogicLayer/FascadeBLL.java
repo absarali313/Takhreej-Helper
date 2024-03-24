@@ -58,8 +58,8 @@ public class FascadeBLL implements IFascadeBLL {
     }
 
     @Override
-    public boolean createFilter(int researchId, int orderNo, String expression) {
-        return filterBO.createFilter(researchId, orderNo, expression);
+    public boolean createFilter(int researchId, int orderNo, String expression,String type) {
+        return filterBO.createFilter(researchId, orderNo, expression,type);
     }
 
     @Override

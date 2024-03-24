@@ -20,7 +20,7 @@ public class test {
         
         
         IFascadeBLL fascadeBLL = new FascadeBLL();
-        String matn = "إن جبريل عليه السلام لم يزال يوصيني بالجار حتى ظننت أنه سيورثه.";
+        String matn = "  رضي الله عنه , قال : \" غزوت مع النبي صلى الله عليه وسلم خمس عشرة \"  .";
         ArrayList<Hadith> hadiths = fascadeBLL.Search(matn);
         for(Hadith hadith : hadiths){
             System.out.println(hadith.getMatn());

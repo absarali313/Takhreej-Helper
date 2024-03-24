@@ -6,7 +6,7 @@ package BusinessLogicLayer;
  */
 public interface IFilterBO {
 
-    boolean createFilter(int researchId, int orderNo, String expression);
+    boolean createFilter(int researchId, int orderNo, String expression,String type);
 
     boolean deleteFilter(int id);
 

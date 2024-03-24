@@ -1,7 +1,5 @@
 package TransferObject;
 
-import java.util.ArrayList;
-
 /**
  *
  * @author Absar Ali
@@ -9,13 +7,24 @@ import java.util.ArrayList;
 public class Filter {
     private int id;
     private int orderNo;
-
-    public Filter(int id, int orderNo, String expression) {
+    private String type;
+    private String expression;
+    
+    public Filter(int id, int orderNo, String expression,String type) {
         this.id = id;
         this.orderNo = orderNo;
+        this.type = type;
         this.expression = expression;
     }
-    private String expression;
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
     
      public Filter() {
         this.expression = "";

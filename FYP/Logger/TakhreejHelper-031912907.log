@@ -1,0 +1,6 @@
+03:05:50.390 [AWT-EventQueue-0] ERROR org.apache.logging.log4j.Logger - Error in retrieving HadithGot error 'missing ) at offset 27' from regexp
+03:05:56.020 [pool-3-thread-1] ERROR org.apache.logging.log4j.Logger - Error in retrieving HadithGot error 'missing ) at offset 27' from regexp
+03:08:08.066 [AWT-EventQueue-0] ERROR org.apache.logging.log4j.Logger - Error in retrieving HadithGot error 'missing ) at offset 27' from regexp
+03:08:12.919 [pool-3-thread-1] ERROR org.apache.logging.log4j.Logger - Error in retrieving HadithGot error 'missing ) at offset 27' from regexp
+03:19:08.343 [AWT-EventQueue-0] ERROR org.apache.logging.log4j.Logger - Error in retrieving HadithGot error 'missing ) at offset 9' from regexp
+03:19:09.357 [AWT-EventQueue-0] ERROR org.apache.logging.log4j.Logger - Error in retrieving HadithYou have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'OR root REGEXP 'Ø²ÙƒØ§Ø©' AND root REGEXP 'ØµÙ„Ø§Ø©' OR root REGEXP 'ØµÙ„Ø§Ø©'' at line 1

@@ -1,0 +1,8 @@
+18:47:05.889 [AWT-EventQueue-0] ERROR org.apache.logging.log4j.Logger - Error in retrieving HadithGot error 'missing ) at offset 9' from regexp
+18:47:11.623 [pool-3-thread-1] ERROR org.apache.logging.log4j.Logger - Error in retrieving HadithGot error 'missing ) at offset 9' from regexp
+18:47:41.971 [AWT-EventQueue-0] ERROR org.apache.logging.log4j.Logger - Error in retrieving HadithGot error 'missing ) at offset 9' from regexp
+18:49:40.802 [AWT-EventQueue-0] ERROR org.apache.logging.log4j.Logger - Error in retrieving HadithGot error 'missing ) at offset 9' from regexp
+18:49:45.368 [pool-3-thread-1] ERROR org.apache.logging.log4j.Logger - Error in retrieving HadithGot error 'missing ) at offset 9' from regexp
+18:52:52.705 [AWT-EventQueue-0] ERROR org.apache.logging.log4j.Logger - Error in retrieving HadithGot error 'missing ) at offset 9' from regexp
+18:52:56.141 [AWT-EventQueue-0] ERROR org.apache.logging.log4j.Logger - Error in retrieving HadithGot error 'missing ) at offset 9' from regexp
+18:53:01.748 [AWT-EventQueue-0] ERROR org.apache.logging.log4j.Logger - Error in retrieving HadithGot error 'missing ) at offset 9' from regexp

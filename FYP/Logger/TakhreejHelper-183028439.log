@@ -1,0 +1,9 @@
+18:17:37.067 [pool-3-thread-1] ERROR org.apache.logging.log4j.Logger - Error in retrieving Hadith
+18:17:37.405 [pool-3-thread-1] ERROR org.apache.logging.log4j.Logger - Error in retrieving Hadith
+18:28:40.487 [AWT-EventQueue-0] ERROR org.apache.logging.log4j.Logger - Error in retrieving HadithColumn 'serial' not found.
+18:28:44.684 [pool-3-thread-1] ERROR org.apache.logging.log4j.Logger - Error in retrieving HadithColumn 'serial' not found.
+18:28:44.977 [pool-3-thread-1] ERROR org.apache.logging.log4j.Logger - Error in retrieving HadithColumn 'serial' not found.
+18:28:45.290 [pool-3-thread-1] ERROR org.apache.logging.log4j.Logger - Error in retrieving HadithColumn 'serial' not found.
+18:28:45.617 [pool-3-thread-1] ERROR org.apache.logging.log4j.Logger - Error in retrieving HadithColumn 'serial' not found.
+18:28:45.903 [pool-3-thread-1] ERROR org.apache.logging.log4j.Logger - Error in retrieving HadithColumn 'serial' not found.
+18:30:24.123 [AWT-EventQueue-0] ERROR org.apache.logging.log4j.Logger - Error in retrieving HadithColumn 'serial' not found.

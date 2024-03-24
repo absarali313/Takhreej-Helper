@@ -19,13 +19,14 @@ import java.util.ArrayList;
 public class FilterDAO implements IFilterDAO {
 
     @Override
-    public boolean insertFilter(int researchId, int orderNo, String expression) {
+    public boolean insertFilter(int researchId, int orderNo, String expression,String searchType) {
 
-        String query = "INSERT INTO filter(researchId,orderNo,expression) Values(?,?,?) ";
+        String query = "INSERT INTO filter(researchId,orderNo,expression,type) Values(?,?,?,?) ";
         try (java.sql.PreparedStatement preparedStatement = DBhandler.getInstance().getConnection().prepareStatement(query)) {
             preparedStatement.setInt(1, researchId);
             preparedStatement.setInt(2, orderNo);
             preparedStatement.setString(3, expression);
+            preparedStatement.setString(4, searchType);
             preparedStatement.executeUpdate();
             return true;
         } catch (SQLException e) {
@@ -93,7 +94,9 @@ public class FilterDAO implements IFilterDAO {
                     int id = resultSet.getInt("id");
                     int orderNo = resultSet.getInt("orderNo");
                     String expression = resultSet.getString("expression");
-                    filters.add(new Filter(id, orderNo, expression));
+                    String type = resultSet.getString("type");
+                    System.out.println(type + " " + expression);
+                    filters.add(new Filter(id, orderNo, expression,type));
                 }
             }
 

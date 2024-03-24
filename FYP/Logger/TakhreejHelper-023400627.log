@@ -1,0 +1,5 @@
+02:24:53.811 [pool-3-thread-1] ERROR org.apache.logging.log4j.Logger - Error in retrieving HadithYou have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'asd' '' at line 1
+02:24:54.131 [pool-3-thread-1] ERROR org.apache.logging.log4j.Logger - Error in retrieving HadithYou have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'asd' '' at line 1
+02:24:54.134 [pool-3-thread-1] ERROR org.apache.logging.log4j.Logger - Error in retrieving HadithYou have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'asdd' '' at line 1
+02:24:54.419 [pool-3-thread-1] ERROR org.apache.logging.log4j.Logger - Error in retrieving HadithYou have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'asdd' '' at line 1
+02:33:58.380 [AWT-EventQueue-0] ERROR org.apache.logging.log4j.Logger - Error in retrieving HadithGot error 'missing ) at offset 9' from regexp

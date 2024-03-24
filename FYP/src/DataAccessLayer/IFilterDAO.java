@@ -15,7 +15,7 @@ public interface IFilterDAO {
 
     boolean deleteFilter(int id);
 
-    boolean insertFilter(int researchId, int orderNo, String filter);
+    boolean insertFilter(int researchId, int orderNo, String filter,String type);
 
     boolean updateFilter(int id,int orderNo, String filter);
     

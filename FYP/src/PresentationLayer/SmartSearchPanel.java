@@ -4,10 +4,16 @@
  */
 package PresentationLayer;
 
+import BusinessLogicLayer.ArrayConverterBO;
 import BusinessLogicLayer.FascadeBLL;
 import BusinessLogicLayer.IFascadeBLL;
+import TransferObject.Hadith;
 import java.util.ArrayList;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -162,6 +168,41 @@ public class SmartSearchPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_hadithTableMouseClicked
 
+     private void search() {
+        if(hadithTextArea.getText().replaceAll(" ","") != ""){
+        ArrayList<Hadith> hadiths = fascadeBLL.Search(hadithTextArea.getText());
+        ExecutorService executorService = Executors.newSingleThreadExecutor();
+
+        executorService.execute(() -> {
+
+            populateHadithTable(hadiths); // Optionally, you can perform additional tasks after init() completes
+            // For example, update UI components, notify other parts of your application, etc.
+            executorService.shutdown(); // Shutdown the executor when done
+        });
+        }
+    }
+    private void populateHadithTable(ArrayList<Hadith> hadiths) {
+        if (!hadiths.isEmpty()) {
+            ArrayConverterBO converter = new ArrayConverterBO();
+            DefaultTableModel model = (DefaultTableModel) hadithTable.getModel();
+            model.setRowCount(0);
+
+            int count = 1;
+            for (Hadith hadith : hadiths) {
+                Object[] row = {hadith.getIndex(), hadith.getId(), hadith.getBookName(), hadith.getMatn(), converter.convertNarratorsListToString(hadith.getNarrators())};
+                count++;
+                model.addRow(row);
+            }
+            hadithTable.setModel(model);
+        } else {
+            JOptionPane.showMessageDialog(null, "No Hadith Found.", "Warning", JOptionPane.WARNING_MESSAGE);
+            ArrayConverterBO converter = new ArrayConverterBO();
+            DefaultTableModel model = (DefaultTableModel) hadithTable.getModel();
+            model.setRowCount(0);
+            hadithTable.setModel(model);
+        }
+
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane ahadeesInResearchTableScrollPane;

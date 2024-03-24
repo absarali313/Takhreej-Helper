@@ -30,50 +30,76 @@ public class SearchBO implements ISearchBO {
     @Override
     public ArrayList<Hadith> searchHadiths(Research research, int filterIndex) {
         ArrayList<Hadith> hadiths = new ArrayList<Hadith>();
-        ArrayList<Integer> hadithIdsRegex = new ArrayList<Integer>();
-        ArrayList<Integer> hadithIdsRoots = new ArrayList<Integer>();
-        for (int i = 0; i <= filterIndex; i++) {
-            String expression;
-            FilterConverterBO converter = new FilterConverterBO(new FascadeDAO());
-            ArrayList<String> filterArray = fascadeBLL.convert(research.getFilters().get(i).getExpression());
-            expression = converter.convertToFilter(filterArray);
-            System.out.println(expression);
-            hadithIdsRegex.addAll(fascadeDAO.getFilteredHadithIds(expression));
-            expression = converter.converLemmaToFilter(filterArray);
-            System.out.println(expression);
-            hadithIdsRoots.addAll(fascadeDAO.getFilteredRootsHadithIds(expression));
-            
-        }
+        ArrayList<Integer> hadithIds = new ArrayList<Integer>();
 
-        hadithIdsRegex = keepAtLeastXTimesElements(hadithIdsRegex,filterIndex+1);
-        hadithIdsRoots = keepAtLeastXTimesElements(hadithIdsRoots,filterIndex+1);
-        System.out.println("Index : " + filterIndex);
-        ArrayList<Integer> hadithIds = union(hadithIdsRoots,hadithIdsRegex);
+        for (int i = 0; i <= filterIndex; i++) {
+
+            if (research.getFilters().get(i).getType().equals("Pattern")) {
+                hadithIds.addAll(searchHadithsByPattern(research, i));
+            } else if (research.getFilters().get(i).getType().equals("Lemma")) {
+                hadithIds.addAll(searchHadithsByLemma(research, i));
+            }
+        }
+        hadithIds = keepAtLeastXTimesElements(hadithIds, filterIndex + 1);
+
         try {
             hadiths = fascadeDAO.getHadiths(hadithIds);
         } catch (NoHadithFoundException ex) {
             Logger.getLogger("No hadith found");
         }
+        
         return hadiths;
     }
-public static ArrayList<Integer> keepAtLeastXTimesElements(ArrayList<Integer> arrayList, int x) {
+
+    public ArrayList<Integer> searchHadithsByPattern(Research research, int filterIndex) {
+        ArrayList<Hadith> hadiths = new ArrayList<Hadith>();
+        ArrayList<Integer> hadithIdsRegex = new ArrayList<Integer>();
+
+        String expression;
+        FilterConverterBO converter = new FilterConverterBO(new FascadeDAO());
+        ArrayList<String> filterArray = fascadeBLL.convert(research.getFilters().get(filterIndex).getExpression());
+        expression = converter.convertToFilter(filterArray);
+        System.out.println(expression);
+        hadithIdsRegex.addAll(fascadeDAO.getFilteredHadithIds(expression));
+
+        ArrayList<Integer> hadithIds = hadithIdsRegex;
+
+        return hadithIds;
+    }
+
+    public ArrayList<Integer> searchHadithsByLemma(Research research, int filterIndex) {
+       
+        ArrayList<Integer> hadithIdsRegex = new ArrayList<Integer>();
+
+        String expression;
+        FilterConverterBO converter = new FilterConverterBO(new FascadeDAO());
+        ArrayList<String> filterArray = fascadeBLL.convert(research.getFilters().get(filterIndex).getExpression());
+        expression = converter.converLemmaToFilter(filterArray);
+        System.out.println(expression);
+        hadithIdsRegex.addAll(fascadeDAO.getFilteredRootsHadithIds(expression));
+
+        ArrayList<Integer> hadithIds = hadithIdsRegex;
+
+        return hadithIds;
+    }
+
+    public static ArrayList<Integer> keepAtLeastXTimesElements(ArrayList<Integer> arrayList, int x) {
         HashMap<Integer, Integer> countMap = new HashMap<>();
         ArrayList<Integer> result = new ArrayList<>();
-       
+
         // Count occurrences of each element
         for (Integer element : arrayList) {
             countMap.put(element, countMap.getOrDefault(element, 0) + 1);
         }
-        System.out.print("Before " +  countMap.size());
-        
+        System.out.print("Before " + countMap.size());
+
         // Traverse the HashMap and add elements occurring at least x times to the result ArrayList
-        
         for (Integer element : countMap.keySet()) {
             if (countMap.get(element) == x) {
                 result.add(element);
             }
         }
-       System.out.print("After : " + result.size());
+        System.out.print("After : " + result.size());
         return result;
     }
 
@@ -93,7 +119,7 @@ public static ArrayList<Integer> keepAtLeastXTimesElements(ArrayList<Integer> ar
         return unionList;
     }
 
- public static int countOccurrences(ArrayList<Integer> arrayList, int elementToCount) {
+    public static int countOccurrences(ArrayList<Integer> arrayList, int elementToCount) {
         int count = 0;
         for (Integer element : arrayList) {
             if (element.equals(elementToCount)) {

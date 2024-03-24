@@ -1,0 +1,5 @@
+01:59:15.544 [AWT-EventQueue-0] ERROR org.apache.logging.log4j.Logger - Error in retrieving HadithYou have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'Ø²ÙƒØ§Ø©' OR root REGEXP 'Ø²ÙƒØ§Ø©' AND root REGEXP 'ØµÙ„Ø§Ø©' OR root REGEXP...' at line 1
+01:59:23.718 [pool-3-thread-1] ERROR org.apache.logging.log4j.Logger - Error in retrieving HadithYou have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'Ø²ÙƒØ§Ø©' OR root REGEXP 'Ø²ÙƒØ§Ø©' AND root REGEXP 'ØµÙ„Ø§Ø©' OR root REGEXP...' at line 1
+02:15:24.366 [AWT-EventQueue-0] ERROR org.apache.logging.log4j.Logger - Error in retrieving HadithGot error 'nothing to repeat at offset 38' from regexp
+02:15:26.467 [AWT-EventQueue-0] ERROR org.apache.logging.log4j.Logger - Error in retrieving HadithGot error 'nothing to repeat at offset 32' from regexp
+02:15:32.721 [pool-3-thread-1] ERROR org.apache.logging.log4j.Logger - Error in retrieving HadithGot error 'nothing to repeat at offset 38' from regexp

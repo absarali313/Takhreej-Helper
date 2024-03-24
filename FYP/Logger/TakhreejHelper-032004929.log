@@ -1,0 +1,5 @@
+03:19:12.905 [pool-3-thread-1] ERROR org.apache.logging.log4j.Logger - Error in retrieving HadithGot error 'missing ) at offset 9' from regexp
+03:19:14.378 [pool-3-thread-1] ERROR org.apache.logging.log4j.Logger - Error in retrieving HadithYou have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'OR root REGEXP 'Ø²ÙƒØ§Ø©' AND root REGEXP 'ØµÙ„Ø§Ø©' OR root REGEXP 'ØµÙ„Ø§Ø©'' at line 1
+03:19:59.320 [AWT-EventQueue-0] ERROR org.apache.logging.log4j.Logger - Error in retrieving HadithGot error 'missing ) at offset 9' from regexp
+03:20:00.251 [AWT-EventQueue-0] ERROR org.apache.logging.log4j.Logger - Error in retrieving HadithYou have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'OR root REGEXP 'Ø²ÙƒØ§Ø©' AND root REGEXP 'ØµÙ„Ø§Ø©' OR root REGEXP 'ØµÙ„Ø§Ø©'' at line 1
+03:20:03.808 [pool-3-thread-1] ERROR org.apache.logging.log4j.Logger - Error in retrieving HadithGot error 'missing ) at offset 9' from regexp

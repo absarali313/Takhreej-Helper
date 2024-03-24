@@ -73,8 +73,8 @@ public class FascadeDAO implements IFascadeDAO {
     }
 
     @Override
-    public boolean insertFilter(int researchId, int orderNo, String expression) {
-        return filterDAO.insertFilter(researchId, orderNo, expression);
+    public boolean insertFilter(int researchId, int orderNo, String expression,String type) {
+        return filterDAO.insertFilter(researchId, orderNo, expression,type);
     }
 
     @Override

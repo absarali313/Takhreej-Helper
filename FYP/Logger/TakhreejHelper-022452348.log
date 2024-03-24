@@ -1,0 +1,5 @@
+02:15:35.247 [pool-3-thread-1] ERROR org.apache.logging.log4j.Logger - Error in retrieving HadithGot error 'nothing to repeat at offset 32' from regexp
+02:20:37.226 [AWT-EventQueue-0] ERROR org.apache.logging.log4j.Logger - Error in retrieving HadithGot error 'missing ) at offset 30' from regexp
+02:24:45.830 [AWT-EventQueue-0] ERROR org.apache.logging.log4j.Logger - Error in retrieving HadithYou have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'ØµÙ„ÙˆØ§Øª' '' at line 1
+02:24:46.205 [AWT-EventQueue-0] ERROR org.apache.logging.log4j.Logger - Error in retrieving HadithYou have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'ØµÙ„ÙˆØ§Øª' '' at line 1
+02:24:51.968 [pool-3-thread-1] ERROR org.apache.logging.log4j.Logger - Error in retrieving HadithYou have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'ØµÙ„ÙˆØ§Øª' '' at line 1

@@ -15,11 +15,6 @@ import java.util.ArrayList;
 public interface ISearchBO {
 
     ArrayList<Hadith> searchHadiths(Research research, int filterIndex);
-    //    public ArrayList<Hadith> filterHadith(ArrayList<String> expressionList) {
-    //        ArrayConverterBO converter = new ArrayConverterBO();
-    //        String expression = converter.ArrayToString(expressionList);
-    //
-    //        return null;
-    //    }
+    //ArrayList<Hadith> searchHadithsByPattern(Research research, int filterIndex);
     
 }

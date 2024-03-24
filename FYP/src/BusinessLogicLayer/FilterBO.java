@@ -16,9 +16,9 @@ public class FilterBO implements IFilterBO {
     }
 
     @Override
-    public boolean createFilter(int researchId, int orderNo, String expression) {
+    public boolean createFilter(int researchId, int orderNo, String expression,String type) {
         try {
-            if (fascadeDAO.insertFilter(researchId,orderNo,expression)) {
+            if (fascadeDAO.insertFilter(researchId,orderNo,expression, type)) {
                 return true;
             }
         } catch (Exception e) {

@@ -42,6 +42,8 @@ public class ResearchPanel extends javax.swing.JPanel {
         notCheckSelected = new javax.swing.JCheckBox();
         applyFilterBtn = new javax.swing.JButton();
         filterOperatorsComboBox = new javax.swing.JComboBox<>();
+        searchTypeComboBox = new javax.swing.JComboBox<>();
+        filterLbl1 = new javax.swing.JLabel();
         ahadeesInResearchTableScrollPane = new javax.swing.JScrollPane();
         hadithTable = new javax.swing.JTable();
         PanelRound allFiltersBackPanel;
@@ -95,47 +97,73 @@ public class ResearchPanel extends javax.swing.JPanel {
             }
         });
 
+        searchTypeComboBox.setBackground(new java.awt.Color(196, 182, 182));
+        searchTypeComboBox.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        searchTypeComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pattern", "Lemma", "Root" }));
+        searchTypeComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchTypeComboBoxActionPerformed(evt);
+            }
+        });
+
+        filterLbl1.setFont(new java.awt.Font("Calibri", 1, 15)); // NOI18N
+        filterLbl1.setForeground(new java.awt.Color(254, 194, 96));
+        filterLbl1.setText("Search Type:");
+
         javax.swing.GroupLayout newFilterBackPanelLayout = new javax.swing.GroupLayout(newFilterBackPanel);
         newFilterBackPanel.setLayout(newFilterBackPanelLayout);
         newFilterBackPanelLayout.setHorizontalGroup(
             newFilterBackPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, newFilterBackPanelLayout.createSequentialGroup()
-                .addContainerGap(37, Short.MAX_VALUE)
-                .addGroup(newFilterBackPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(newFilterBackPanelLayout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addGroup(newFilterBackPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(newFilterBackPanelLayout.createSequentialGroup()
                         .addComponent(filterExpressionTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(applyFilterBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(newFilterBackPanelLayout.createSequentialGroup()
+                        .addComponent(applyFilterBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(35, 35, 35))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, newFilterBackPanelLayout.createSequentialGroup()
                         .addComponent(filterLbl)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(notCheckSelected)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(keywordTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(filterOperatorsComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(34, 34, 34))
+                        .addComponent(filterOperatorsComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(36, 36, 36)))
+                .addGroup(newFilterBackPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(filterLbl1)
+                    .addComponent(searchTypeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(139, 139, 139))
         );
         newFilterBackPanelLayout.setVerticalGroup(
             newFilterBackPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(newFilterBackPanelLayout.createSequentialGroup()
-                .addGap(21, 21, 21)
                 .addGroup(newFilterBackPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(newFilterBackPanelLayout.createSequentialGroup()
+                        .addGap(21, 21, 21)
                         .addGroup(newFilterBackPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(notCheckSelected, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(filterLbl, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE))
-                        .addGap(19, 19, 19))
-                    .addGroup(newFilterBackPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(keywordTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(filterOperatorsComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(newFilterBackPanelLayout.createSequentialGroup()
+                                .addGroup(newFilterBackPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(notCheckSelected, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(filterLbl, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE))
+                                .addGap(19, 19, 19))
+                            .addGroup(newFilterBackPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(keywordTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(filterOperatorsComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, newFilterBackPanelLayout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(filterLbl1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                 .addGroup(newFilterBackPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(filterExpressionTextField)
-                    .addComponent(applyFilterBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(newFilterBackPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(applyFilterBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(searchTypeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(21, 21, 21))
         );
 
-        add(newFilterBackPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, 440, 120));
+        add(newFilterBackPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, 540, 120));
 
         hadithTable.setAutoCreateRowSorter(true);
         hadithTable.setBackground(new java.awt.Color(196, 182, 182));
@@ -246,7 +274,7 @@ public class ResearchPanel extends javax.swing.JPanel {
                 .addContainerGap(19, Short.MAX_VALUE))
         );
 
-        add(allFiltersBackPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 30, 210, 120));
+        add(allFiltersBackPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 30, 210, 120));
 
         jScrollPane2.setBackground(new java.awt.Color(47, 18, 76));
         jScrollPane2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(47, 18, 76), 5, true));
@@ -309,11 +337,11 @@ public class ResearchPanel extends javax.swing.JPanel {
 
     private void addFilterToResearch() {
 
-        research.getFilters().add(new Filter(this.research.getResearchId(), filterNumComboBox.getItemCount(), filterExpressionTextField.getText()));
+        research.getFilters().add(new Filter(this.research.getResearchId(), filterNumComboBox.getItemCount(), filterExpressionTextField.getText(), searchTypeComboBox.getSelectedItem().toString()));
     }
 
     private boolean insertFilter() {
-        return fascadeBLL.createFilter(research.getResearchId(), filterNumComboBox.getSelectedIndex(), filterExpressionTextField.getText().toString());
+        return fascadeBLL.createFilter(research.getResearchId(), filterNumComboBox.getSelectedIndex(), filterExpressionTextField.getText().toString(), searchTypeComboBox.getSelectedItem().toString());
     }
 
     private boolean deleteFilter() {
@@ -353,6 +381,7 @@ public class ResearchPanel extends javax.swing.JPanel {
 
                     }
                     fillFilterTextField();
+                    setSearchType();
                     keywordTextField.setText("");
                     filterOperatorsComboBox.setSelectedIndex(0);
                     notCheckSelected.setSelected(false);
@@ -364,6 +393,20 @@ public class ResearchPanel extends javax.swing.JPanel {
     private void fillFilterTextField() {
         ArrayConverterBO converter = new ArrayConverterBO();
         filterExpressionTextField.setText(converter.convertToFilter(filterExpressionArr));
+    }
+
+    private void setSearchType() {
+        switch (this.research.getFilters().get(filterNumComboBox.getSelectedIndex()).getType()) {
+            case "Pattern":
+                searchTypeComboBox.setSelectedItem("Pattern");
+                break;
+            case "Lemma":
+                searchTypeComboBox.setSelectedItem("Lemma");
+                break;
+            default:
+                searchTypeComboBox.setSelectedItem("Pattern");
+                break;
+        }
     }
 
     private String getCleanWord() {
@@ -420,8 +463,9 @@ public class ResearchPanel extends javax.swing.JPanel {
 
     private void filterNumComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filterNumComboBoxActionPerformed
         loadFilterExpression();
-        if(filterNumComboBox.getItemCount() != 0)
+        if (filterNumComboBox.getItemCount() != 0) {
             applyFilter();
+        }
 //        
     }//GEN-LAST:event_filterNumComboBoxActionPerformed
 
@@ -433,6 +477,10 @@ public class ResearchPanel extends javax.swing.JPanel {
     private void existingFilterRadioBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_existingFilterRadioBtnActionPerformed
         loadFilterExpression();
     }//GEN-LAST:event_existingFilterRadioBtnActionPerformed
+
+    private void searchTypeComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchTypeComboBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_searchTypeComboBoxActionPerformed
 
     public void setReseach(Research research) {
         this.research = research;
@@ -456,6 +504,7 @@ public class ResearchPanel extends javax.swing.JPanel {
             StringConverter converter = new StringConverter();
             filterExpressionArr = converter.convert(research.getFilters().get(filterNumComboBox.getSelectedIndex()).getExpression());
             fillFilterTextField();
+            setSearchType();
         }
     }
 
@@ -483,7 +532,7 @@ public class ResearchPanel extends javax.swing.JPanel {
         ArrayList<Hadith> hadiths = fascadeBLL.getAllHadiths(research.getSearchBaseLine());
         System.out.println(hadiths.get(3107).getNarrators().size());
         populateHadithTable(hadiths);
-        filterNumComboBox.setSelectedIndex(research.getFilters().size()-1);
+        filterNumComboBox.setSelectedIndex(research.getFilters().size() - 1);
         setActive(true);
 
     }
@@ -496,7 +545,7 @@ public class ResearchPanel extends javax.swing.JPanel {
         if (filterExpressionArr.isEmpty()) {
             return true;
         }
-        
+
         return filterExpressionArr.getLast().equals("AND") || filterExpressionArr.getLast().equals("OR");
     }
 
@@ -545,7 +594,8 @@ public class ResearchPanel extends javax.swing.JPanel {
         }
 
     }
-    private void setActive(boolean value){
+
+    private void setActive(boolean value) {
         applyFilterBtn.setEnabled(value);
         filterNumComboBox.setEnabled(value);
         newFilterRadioBtn.setEnabled(value);
@@ -559,6 +609,7 @@ public class ResearchPanel extends javax.swing.JPanel {
     private javax.swing.JRadioButton existingFilterRadioBtn;
     private javax.swing.JTextField filterExpressionTextField;
     private javax.swing.JLabel filterLbl;
+    private javax.swing.JLabel filterLbl1;
     private javax.swing.JComboBox<String> filterNumComboBox;
     private javax.swing.JComboBox<String> filterOperatorsComboBox;
     private javax.swing.ButtonGroup filterTypeBtnGroup;
@@ -569,5 +620,6 @@ public class ResearchPanel extends javax.swing.JPanel {
     private javax.swing.JPanel newFilterBackPanel;
     private javax.swing.JRadioButton newFilterRadioBtn;
     private javax.swing.JCheckBox notCheckSelected;
+    private javax.swing.JComboBox<String> searchTypeComboBox;
     // End of variables declaration//GEN-END:variables
 }

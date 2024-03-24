@@ -50,7 +50,7 @@ public class ResearchDAO implements IResearchDAO {
         try (java.sql.PreparedStatement preparedStatement = DBhandler.getInstance().getConnection().prepareStatement(query)) {
             preparedStatement.setString(1, name);
             preparedStatement.executeUpdate();
-            if (filterDAO.insertFilter(filter.getId(), filter.getOrderNo(), filter.getExpression())) {
+            if (filterDAO.insertFilter(filter.getId(), filter.getOrderNo(), filter.getExpression(),filter.getType())) {
                 return true;
             } else {
                 return false;

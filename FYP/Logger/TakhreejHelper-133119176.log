@@ -1,0 +1,59 @@
+03:20:04.927 [pool-3-thread-1] ERROR org.apache.logging.log4j.Logger - Error in retrieving HadithYou have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'OR root REGEXP 'Ø²ÙƒØ§Ø©' AND root REGEXP 'ØµÙ„Ø§Ø©' OR root REGEXP 'ØµÙ„Ø§Ø©'' at line 1
+02:05:15.077 [main] ERROR org.apache.logging.log4j.Logger - Error in retrieving HadithYou have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'FROM hadithtopics where topic REGEXP 'Ø±Ø¶Ù‰' OR topic REGEXP 'ØºØ²Ùˆ' OR top...' at line 1
+02:06:32.810 [main] ERROR org.apache.logging.log4j.Logger - Error in retrieving HadithYou have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'FROM hadithtopics where topic REGEXP 'Ù‚ØªØ§Ù„' OR topic REGEXP 'Ø¯Ù�Ø§Ø¹' OR...' at line 1
+13:31:19.124 [AWT-EventQueue-0] ERROR org.apache.logging.log4j.Logger - Error establishing database connection: Communications link failure due to underlying exception: 
+
+** BEGIN NESTED EXCEPTION ** 
+
+java.net.ConnectException
+MESSAGE: Connection refused: connect
+
+STACKTRACE:
+
+java.net.ConnectException: Connection refused: connect
+	at java.base/sun.nio.ch.Net.connect0(Native Method)
+	at java.base/sun.nio.ch.Net.connect(Net.java:589)
+	at java.base/sun.nio.ch.Net.connect(Net.java:578)
+	at java.base/sun.nio.ch.NioSocketImpl.connect(NioSocketImpl.java:583)
+	at java.base/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:327)
+	at java.base/java.net.Socket.connect(Socket.java:751)
+	at java.base/java.net.Socket.connect(Socket.java:686)
+	at java.base/java.net.Socket.<init>(Socket.java:555)
+	at java.base/java.net.Socket.<init>(Socket.java:356)
+	at com.mysql.jdbc.StandardSocketFactory.connect(StandardSocketFactory.java:256)
+	at com.mysql.jdbc.MysqlIO.<init>(MysqlIO.java:271)
+	at com.mysql.jdbc.Connection.createNewIO(Connection.java:2771)
+	at com.mysql.jdbc.Connection.<init>(Connection.java:1555)
+	at com.mysql.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:285)
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:683)
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:230)
+	at DataAccessLayer.DBhandler.<init>(DBhandler.java:27)
+	at DataAccessLayer.DBhandler.getInstance(DBhandler.java:38)
+	at DataAccessLayer.ResearchDAO.getAllResearch(ResearchDAO.java:185)
+	at DataAccessLayer.FascadeDAO.getAllResearch(FascadeDAO.java:72)
+	at BusinessLogicLayer.ResearchBO.getAllResearches(ResearchBO.java:63)
+	at BusinessLogicLayer.FascadeBLL.getAllResearches(FascadeBLL.java:47)
+	at PresentationLayer.ResearchListPanel.<init>(ResearchListPanel.java:30)
+	at PresentationLayer.LandingPage.initComponents(LandingPage.java:36)
+	at PresentationLayer.LandingPage.<init>(LandingPage.java:20)
+	at PresentationLayer.LandingPage$1.run(LandingPage.java:146)
+	at java.desktop/java.awt.event.InvocationEvent.dispatch(InvocationEvent.java:318)
+	at java.desktop/java.awt.EventQueue.dispatchEventImpl(EventQueue.java:773)
+	at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:720)
+	at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:714)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:400)
+	at java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:87)
+	at java.desktop/java.awt.EventQueue.dispatchEvent(EventQueue.java:742)
+	at java.desktop/java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:203)
+	at java.desktop/java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:124)
+	at java.desktop/java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:113)
+	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:109)
+	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
+	at java.desktop/java.awt.EventDispatchThread.run(EventDispatchThread.java:90)
+
+
+** END NESTED EXCEPTION **
+
+
+
+Last packet sent to the server was 0 ms ago.
