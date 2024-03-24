@@ -17,9 +17,11 @@ public class FascadeBLL implements IFascadeBLL {
     IHadithBO hadithBO;
     IFilterBO filterBO;
     IStringConverter stringConverter;
+    ITranslatorBO translatorBO;
     FascadeDAO fascadeDAO = new FascadeDAO();
     public FascadeBLL() {
         this.researchBO = new ResearchBO(fascadeDAO);
+        this.translatorBO = new TranslatorBO(fascadeDAO);
         this.hadithBO = new HadithBO(fascadeDAO);
         this.filterBO = new FilterBO(fascadeDAO);
         this.stringConverter = new StringConverter();
@@ -90,6 +92,11 @@ public class FascadeBLL implements IFascadeBLL {
     @Override
     public ArrayList<Hadith> Search(String matn) {
       return smartSearchBO.Search(matn);
+    }
+    
+    @Override
+    public String getTranslationToEnglish (String matn){
+        return translatorBO.getTranslationToEnglish(matn);
     }
 
 }

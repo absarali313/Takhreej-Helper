@@ -58,9 +58,31 @@ public class FilterConverterBO implements IConverterBO {
 
                 } else if (!list.get(i).equals("AND") && !list.get(i).equals("OR")) {
                     if (!list.get(i).startsWith("!")) {
+                        expression += "lemma = '" + list.get(i) + "' ";
+                    } else {
+                        expression += "lemma <>  '" + list.get(i).replace("!", "") + "' ";
+                    }
+
+                } else {
+                    expression += list.get(i) + " ";
+                }
+            }
+        }
+        return expression;
+    }
+    public String converRootsToFilter(ArrayList<String> list) {
+        String expression = "";
+        for (int i = 0; i < list.size(); i++) {
+     
+            if (!list.get(i).equals("")) {
+                if (list.get(i).equals("(") || list.get(i).equals(")")) {
+                    expression += list.get(i) + " ";
+
+                } else if (!list.get(i).equals("AND") && !list.get(i).equals("OR")) {
+                    if (!list.get(i).startsWith("!")) {
                         expression += "root REGEXP '" + list.get(i) + "' ";
                     } else {
-                        expression += "root NOT REGEXP  '" + list.get(i).replace("!", "") + "' ";
+                        expression += "root REGEXP  '" + list.get(i).replace("!", "") + "' ";
                     }
 
                 } else {

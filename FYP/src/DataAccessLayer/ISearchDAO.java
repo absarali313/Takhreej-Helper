@@ -13,7 +13,8 @@ import java.util.ArrayList;
 public interface ISearchDAO {
 
     ArrayList<Integer> getFilteredHadithIds(String expression);
-    ArrayList<Integer> getFilteredRootsHadithIds(String expression);
+    ArrayList<Integer> getFilteredLemmaHadithIds(String expression);
+    ArrayList<Integer> getFilteredRootHadithIds(String expression);
     ArrayList<Integer> getdHadithIdsByTopic(String expression);
     
 }

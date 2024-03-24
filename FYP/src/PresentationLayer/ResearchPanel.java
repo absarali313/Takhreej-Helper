@@ -26,7 +26,7 @@ public class ResearchPanel extends javax.swing.JPanel {
         initComponents();
         filterExpressionArr = new ArrayList<>();
         fascadeBLL = new FascadeBLL();
-        jTextArea2.setAlignmentX(50);
+        selectedHadithTextArea.setAlignmentX(50);
     }
 
     @SuppressWarnings("unchecked")
@@ -52,8 +52,8 @@ public class ResearchPanel extends javax.swing.JPanel {
         newFilterRadioBtn = new javax.swing.JRadioButton();
         existingFilterRadioBtn = new javax.swing.JRadioButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea2 = new javax.swing.JTextArea();
-        applyFilterBtn1 = new javax.swing.JButton();
+        selectedHadithTextArea = new javax.swing.JTextArea();
+        translateBtn = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(7, 7, 57));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -280,26 +280,26 @@ public class ResearchPanel extends javax.swing.JPanel {
         jScrollPane2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(47, 18, 76), 5, true));
         jScrollPane2.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
-        jTextArea2.setBackground(new java.awt.Color(196, 182, 182));
-        jTextArea2.setColumns(15);
-        jTextArea2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jTextArea2.setLineWrap(true);
-        jTextArea2.setRows(5);
-        jTextArea2.setBorder(null);
-        jScrollPane2.setViewportView(jTextArea2);
+        selectedHadithTextArea.setBackground(new java.awt.Color(196, 182, 182));
+        selectedHadithTextArea.setColumns(15);
+        selectedHadithTextArea.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        selectedHadithTextArea.setLineWrap(true);
+        selectedHadithTextArea.setRows(5);
+        selectedHadithTextArea.setBorder(null);
+        jScrollPane2.setViewportView(selectedHadithTextArea);
 
         add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 30, 380, 120));
 
-        applyFilterBtn1.setBackground(new java.awt.Color(254, 194, 96));
-        applyFilterBtn1.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
-        applyFilterBtn1.setForeground(new java.awt.Color(59, 24, 95));
-        applyFilterBtn1.setText("Translate");
-        applyFilterBtn1.addActionListener(new java.awt.event.ActionListener() {
+        translateBtn.setBackground(new java.awt.Color(254, 194, 96));
+        translateBtn.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        translateBtn.setForeground(new java.awt.Color(59, 24, 95));
+        translateBtn.setText("Translate");
+        translateBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                applyFilterBtn1ActionPerformed(evt);
+                translateBtnActionPerformed(evt);
             }
         });
-        add(applyFilterBtn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1100, 160, 110, -1));
+        add(translateBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(1100, 160, 110, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void applyFilterBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_applyFilterBtnActionPerformed
@@ -403,6 +403,9 @@ public class ResearchPanel extends javax.swing.JPanel {
             case "Lemma":
                 searchTypeComboBox.setSelectedItem("Lemma");
                 break;
+            case "Root":
+                searchTypeComboBox.setSelectedItem("Root");
+                break;
             default:
                 searchTypeComboBox.setSelectedItem("Pattern");
                 break;
@@ -448,16 +451,21 @@ public class ResearchPanel extends javax.swing.JPanel {
         notCheckSelected.setSelected(false);
     }//GEN-LAST:event_filterOperatorsComboBoxActionPerformed
 
-    private void applyFilterBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_applyFilterBtn1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_applyFilterBtn1ActionPerformed
+    private void translateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_translateBtnActionPerformed
+        if(!selectedHadithTextArea.getText().equals("")){
+           String englishHadith = fascadeBLL.getTranslationToEnglish(selectedHadithTextArea.getText());
+           selectedHadithTextArea.setText(englishHadith);
+        }
+        else
+            JOptionPane.showMessageDialog(null, "Please select a hadith from below table.", "Warning", JOptionPane.WARNING_MESSAGE);
+    }//GEN-LAST:event_translateBtnActionPerformed
 
     private void hadithTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hadithTableMouseClicked
         JTable source = (JTable) evt.getSource();
         int row = source.rowAtPoint(evt.getPoint());
         if (hadithTable.getValueAt(row, 3) != null) {
             String matn = hadithTable.getValueAt(row, 3).toString();
-            jTextArea2.setText(matn);
+            selectedHadithTextArea.setText(matn);
         }
     }//GEN-LAST:event_hadithTableMouseClicked
 
@@ -605,7 +613,6 @@ public class ResearchPanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane ahadeesInResearchTableScrollPane;
     private javax.swing.JPanel allFiltersBackPanel;
     private javax.swing.JButton applyFilterBtn;
-    private javax.swing.JButton applyFilterBtn1;
     private javax.swing.JRadioButton existingFilterRadioBtn;
     private javax.swing.JTextField filterExpressionTextField;
     private javax.swing.JLabel filterLbl;
@@ -615,11 +622,12 @@ public class ResearchPanel extends javax.swing.JPanel {
     private javax.swing.ButtonGroup filterTypeBtnGroup;
     public javax.swing.JTable hadithTable;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextArea jTextArea2;
     private javax.swing.JTextField keywordTextField;
     private javax.swing.JPanel newFilterBackPanel;
     private javax.swing.JRadioButton newFilterRadioBtn;
     private javax.swing.JCheckBox notCheckSelected;
     private javax.swing.JComboBox<String> searchTypeComboBox;
+    private javax.swing.JTextArea selectedHadithTextArea;
+    private javax.swing.JButton translateBtn;
     // End of variables declaration//GEN-END:variables
 }

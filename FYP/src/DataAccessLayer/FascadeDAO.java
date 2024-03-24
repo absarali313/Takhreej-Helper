@@ -25,6 +25,7 @@ public class FascadeDAO implements IFascadeDAO {
     IHadithDAO hadithDAO;
     ISearchDAO searchDAO;
     ILemmatizerDAO lemmatizerDAO;
+    ITranslatorDAO translatorDAO;
 
     public FascadeDAO() {
         searchDAO = new SearchDAO();
@@ -35,6 +36,8 @@ public class FascadeDAO implements IFascadeDAO {
         hadithDAO = new HadithDAO(new BookDAO(), new NarratorsDAO());
         lemmatizerDAO = new LemmatizerDAO();
         topicGenerator = new TopicGenerator();
+        translatorDAO = new TranslatorDAO();
+        
     }
 
     @Override
@@ -123,8 +126,13 @@ public class FascadeDAO implements IFascadeDAO {
     }
 
     @Override
-    public ArrayList<Integer> getFilteredRootsHadithIds(String expression) {
-        return searchDAO.getFilteredRootsHadithIds(expression);
+    public ArrayList<Integer> getFilteredLemmaHadithIds(String expression) {
+        return searchDAO.getFilteredLemmaHadithIds(expression);
+    }
+    
+    @Override
+    public ArrayList<Integer> getFilteredRootHadithIds(String expression){
+        return searchDAO.getFilteredRootHadithIds(expression);
     }
 
     @Override
@@ -140,6 +148,11 @@ public class FascadeDAO implements IFascadeDAO {
     @Override
     public ArrayList<Integer> getdHadithIdsByTopic(String expression) {
         return searchDAO.getdHadithIdsByTopic(expression);
+    }
+    
+    @Override
+    public String translateHadith(String matn){
+        return translatorDAO.translateHadith(matn);
     }
 
 }

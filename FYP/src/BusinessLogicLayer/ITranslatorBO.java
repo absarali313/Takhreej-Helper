@@ -2,12 +2,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
  */
-package DataAccessLayer;
+package BusinessLogicLayer;
 
 /**
  *
  * @author ch-sa
  */
-public interface IFascadeDAO extends ITranslatorDAO, ITopicGenerator, ISearchDAO, IResearchDAO, IFilterDAO, INarratorsDAO, IBookDAO, IHadithDAO, ILemmatizerDAO{
+public interface ITranslatorBO {
+
+    String getTranslationToEnglish(String matn);
     
 }

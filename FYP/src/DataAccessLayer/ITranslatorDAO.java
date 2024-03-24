@@ -8,6 +8,8 @@ package DataAccessLayer;
  *
  * @author ch-sa
  */
-public interface IFascadeDAO extends ITranslatorDAO, ITopicGenerator, ISearchDAO, IResearchDAO, IFilterDAO, INarratorsDAO, IBookDAO, IHadithDAO, ILemmatizerDAO{
+public interface ITranslatorDAO {
+
+    String translateHadith(String hadith);
     
 }
