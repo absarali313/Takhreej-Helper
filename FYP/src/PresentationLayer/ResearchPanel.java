@@ -12,6 +12,8 @@ import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import javax.swing.ComboBoxModel;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -43,7 +45,8 @@ public class ResearchPanel extends javax.swing.JPanel {
         applyFilterBtn = new javax.swing.JButton();
         filterOperatorsComboBox = new javax.swing.JComboBox<>();
         searchTypeComboBox = new javax.swing.JComboBox<>();
-        filterLbl1 = new javax.swing.JLabel();
+        filterLbl2 = new javax.swing.JLabel();
+        undoBtn = new javax.swing.JLabel();
         ahadeesInResearchTableScrollPane = new javax.swing.JScrollPane();
         hadithTable = new javax.swing.JTable();
         PanelRound allFiltersBackPanel;
@@ -51,6 +54,8 @@ public class ResearchPanel extends javax.swing.JPanel {
         filterNumComboBox = new javax.swing.JComboBox<>();
         newFilterRadioBtn = new javax.swing.JRadioButton();
         existingFilterRadioBtn = new javax.swing.JRadioButton();
+        resetIcon = new javax.swing.JLabel();
+        filterLbl1 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         selectedHadithTextArea = new javax.swing.JTextArea();
         translateBtn = new javax.swing.JButton();
@@ -90,7 +95,7 @@ public class ResearchPanel extends javax.swing.JPanel {
 
         filterOperatorsComboBox.setBackground(new java.awt.Color(196, 182, 182));
         filterOperatorsComboBox.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        filterOperatorsComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " ", "AND", "OR" }));
+        filterOperatorsComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " ", "AND", "OR", "NOT", "OPTIONAL", "WILDCARD", "REPITITION", " " }));
         filterOperatorsComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 filterOperatorsComboBoxActionPerformed(evt);
@@ -111,23 +116,34 @@ public class ResearchPanel extends javax.swing.JPanel {
             }
         });
 
-        filterLbl1.setFont(new java.awt.Font("Calibri", 1, 15)); // NOI18N
-        filterLbl1.setForeground(new java.awt.Color(254, 194, 96));
-        filterLbl1.setText("Search Type:");
+        filterLbl2.setFont(new java.awt.Font("Calibri", 1, 15)); // NOI18N
+        filterLbl2.setForeground(new java.awt.Color(254, 194, 96));
+        filterLbl2.setText("Search Type:");
+
+        undoBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/undo (1).png"))); // NOI18N
+        undoBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                undoBtnMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout newFilterBackPanelLayout = new javax.swing.GroupLayout(newFilterBackPanel);
         newFilterBackPanel.setLayout(newFilterBackPanelLayout);
         newFilterBackPanelLayout.setHorizontalGroup(
             newFilterBackPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(newFilterBackPanelLayout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addGroup(newFilterBackPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(newFilterBackPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(newFilterBackPanelLayout.createSequentialGroup()
-                        .addComponent(filterExpressionTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(applyFilterBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(35, 35, 35))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, newFilterBackPanelLayout.createSequentialGroup()
+                        .addComponent(undoBtn)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(filterExpressionTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(filterLbl2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(searchTypeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, newFilterBackPanelLayout.createSequentialGroup()
+                        .addGap(20, 20, 20)
                         .addComponent(filterLbl)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(notCheckSelected)
@@ -135,37 +151,33 @@ public class ResearchPanel extends javax.swing.JPanel {
                         .addComponent(keywordTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(filterOperatorsComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(36, 36, 36)))
-                .addGroup(newFilterBackPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(filterLbl1)
-                    .addComponent(searchTypeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(139, 139, 139))
+                        .addGap(35, 35, 35)
+                        .addComponent(applyFilterBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(149, 149, 149))
         );
         newFilterBackPanelLayout.setVerticalGroup(
             newFilterBackPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(newFilterBackPanelLayout.createSequentialGroup()
-                .addGroup(newFilterBackPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, newFilterBackPanelLayout.createSequentialGroup()
+                .addGroup(newFilterBackPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(newFilterBackPanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(newFilterBackPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(notCheckSelected, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(filterLbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(2, 2, 2)
+                        .addComponent(undoBtn))
                     .addGroup(newFilterBackPanelLayout.createSequentialGroup()
                         .addGap(21, 21, 21)
-                        .addGroup(newFilterBackPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(newFilterBackPanelLayout.createSequentialGroup()
-                                .addGroup(newFilterBackPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(notCheckSelected, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(filterLbl, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE))
-                                .addGap(19, 19, 19))
-                            .addGroup(newFilterBackPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(keywordTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(filterOperatorsComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, newFilterBackPanelLayout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(filterLbl1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                .addGroup(newFilterBackPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(filterExpressionTextField)
-                    .addGroup(newFilterBackPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(applyFilterBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(searchTypeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(21, 21, 21))
+                        .addGroup(newFilterBackPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(keywordTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(filterOperatorsComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(applyFilterBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                        .addGroup(newFilterBackPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(filterExpressionTextField)
+                            .addComponent(searchTypeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(filterLbl2))))
+                .addGap(25, 25, 25))
         );
 
         add(newFilterBackPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, 540, 120));
@@ -253,6 +265,17 @@ public class ResearchPanel extends javax.swing.JPanel {
             }
         });
 
+        resetIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/trash (1).png"))); // NOI18N
+        resetIcon.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                resetIconMouseClicked(evt);
+            }
+        });
+
+        filterLbl1.setFont(new java.awt.Font("Calibri", 1, 15)); // NOI18N
+        filterLbl1.setForeground(new java.awt.Color(254, 194, 96));
+        filterLbl1.setText("Delete Filter");
+
         javax.swing.GroupLayout allFiltersBackPanelLayout = new javax.swing.GroupLayout(allFiltersBackPanel);
         allFiltersBackPanel.setLayout(allFiltersBackPanelLayout);
         allFiltersBackPanelLayout.setHorizontalGroup(
@@ -266,17 +289,27 @@ public class ResearchPanel extends javax.swing.JPanel {
                         .addComponent(existingFilterRadioBtn))
                     .addComponent(filterNumComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(35, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, allFiltersBackPanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(filterLbl1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(resetIcon)
+                .addGap(55, 55, 55))
         );
         allFiltersBackPanelLayout.setVerticalGroup(
             allFiltersBackPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(allFiltersBackPanelLayout.createSequentialGroup()
-                .addGap(42, 42, 42)
-                .addComponent(filterNumComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12)
+                .addGroup(allFiltersBackPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(resetIcon)
+                    .addComponent(filterLbl1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(filterNumComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(allFiltersBackPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(newFilterRadioBtn)
                     .addComponent(existingFilterRadioBtn))
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         add(allFiltersBackPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 30, 210, 120));
@@ -346,19 +379,42 @@ public class ResearchPanel extends javax.swing.JPanel {
     }
 
     private boolean insertFilter() {
-        return fascadeBLL.createFilter(research.getResearchId(), filterNumComboBox.getSelectedIndex(), filterExpressionTextField.getText().toString(), searchTypeComboBox.getSelectedItem().toString());
+        return fascadeBLL.createFilter(research.getResearchId(), findHighestValueFromComboBox(filterNumComboBox), filterExpressionTextField.getText().toString(), searchTypeComboBox.getSelectedItem().toString());
+    }
+
+    private int findHighestValueFromComboBox(JComboBox<String> comboBox) {
+        int highestValue = Integer.MIN_VALUE; // Initialize with the smallest possible integer value
+
+        ComboBoxModel<String> model = comboBox.getModel();
+        int itemCount = model.getSize();
+        for (int i = 0; i < itemCount; i++) {
+            String item = model.getElementAt(i);
+            try {
+                int value = Integer.parseInt(item);
+                if (value > highestValue) {
+                    highestValue = value;
+                }
+            } catch (NumberFormatException e) {
+                // Handle parsing error if necessary
+                e.printStackTrace();
+            }
+        }
+
+        System.out.println(highestValue);
+        return highestValue;
     }
 
     private boolean deleteFilter() {
-        return fascadeBLL.deleteFilter(research.getResearchId());
+        return fascadeBLL.deleteFilter(research.getResearchId(), filterNumComboBox.getSelectedIndex());
     }
 
     private boolean createFilter() {
         // deleteFilter();
         addFilterToResearch();
-        int filterIndex = filterNumComboBox.getItemCount();
+        int filterIndex = 1 + findHighestValueFromComboBox(filterNumComboBox);
         filterNumComboBox.addItem(Integer.toString(filterIndex));
-        filterNumComboBox.setSelectedIndex(filterIndex);
+
+        filterNumComboBox.setSelectedIndex(filterNumComboBox.getItemCount() - 1);
         return insertFilter();
     }
 
@@ -411,9 +467,7 @@ public class ResearchPanel extends javax.swing.JPanel {
             case "Root":
                 searchTypeComboBox.setSelectedItem("Root");
                 break;
-            default:
-                searchTypeComboBox.setSelectedItem("Pattern");
-                break;
+
         }
     }
 
@@ -429,11 +483,69 @@ public class ResearchPanel extends javax.swing.JPanel {
         if (notCheckSelected.isSelected()) {
             word = "!".concat(word);
         }
-        switch (filterOperatorsComboBox.getSelectedIndex()) {
+        switch (filterOperatorsComboBox.getSelectedItem().toString()) {
 
-            case 0:
+            case " ":
                 if (!word.equals("")) {
                     filterExpressionArr.add(word);
+                }
+                fillFilterTextField();
+                keywordTextField.setText("");
+                filterOperatorsComboBox.setSelectedIndex(0);
+                notCheckSelected.setSelected(false);
+                break;
+            case "NOT":
+                if (!word.equals("") && isOperandAllowed() && (filterExpressionArr.getLast().equals("AND") || filterExpressionArr.getLast().equals("OR"))) {
+                    filterExpressionArr.add("!" + word);
+
+                } else if (isOperatorAllowed() && !word.equals("")) {
+                    filterExpressionArr.add("AND");
+                    filterExpressionArr.add("!" + word);
+
+                }
+                fillFilterTextField();
+                keywordTextField.setText("");
+                filterOperatorsComboBox.setSelectedIndex(0);
+                notCheckSelected.setSelected(false);
+                break;
+            case "WILDCARD":
+                if (searchTypeComboBox.getSelectedItem().toString().equals("Pattern")) {
+                    keywordTextField.setText(keywordTextField.getText() + ".");
+                } else {
+                    JOptionPane.showMessageDialog(null, "This operator is only valid for Pattern search", "Warning", JOptionPane.WARNING_MESSAGE);
+                }
+                break;
+            case "REPITITION":
+                if (searchTypeComboBox.getSelectedItem().toString().equals("Pattern")) {
+                    keywordTextField.setText(keywordTextField.getText() + "*");
+                } else {
+                    JOptionPane.showMessageDialog(null, "This operator is only valid for Pattern search", "Warning", JOptionPane.WARNING_MESSAGE);
+                }
+
+                break;
+            case "OPTIONAL":
+                System.out.println("Adding optinal");
+                if (searchTypeComboBox.getSelectedItem().toString().equals("Pattern")) {
+                    System.out.println("Added optinal");
+                    keywordTextField.setText(keywordTextField.getText() + "?");
+                } else {
+                    JOptionPane.showMessageDialog(null, "This operator is only valid for Pattern search", "Warning", JOptionPane.WARNING_MESSAGE);
+                }
+
+                break;
+
+            case "MATCH END":
+                if (searchTypeComboBox.getSelectedItem().toString().equals("Pattern")) {
+                    keywordTextField.setText(keywordTextField.getText() + "$");
+                } else {
+                    JOptionPane.showMessageDialog(null, "This operator is only valid for Pattern search", "Warning", JOptionPane.WARNING_MESSAGE);
+                }
+                break;
+            case "MATCH START":
+                if (searchTypeComboBox.getSelectedItem().toString().equals("Pattern")) {
+                    keywordTextField.setText(keywordTextField.getText() + "^");
+                } else {
+                    JOptionPane.showMessageDialog(null, "This operator is only valid for Pattern search", "Warning", JOptionPane.WARNING_MESSAGE);
                 }
                 break;
             default:
@@ -448,20 +560,20 @@ public class ResearchPanel extends javax.swing.JPanel {
                     filterExpressionArr.add(filterOperatorsComboBox.getSelectedItem().toString());
                 }
 
+                fillFilterTextField();
+                keywordTextField.setText("");
+                filterOperatorsComboBox.setSelectedIndex(0);
+                notCheckSelected.setSelected(false);
                 break;
         }
-        fillFilterTextField();
-        keywordTextField.setText("");
-        filterOperatorsComboBox.setSelectedIndex(0);
-        notCheckSelected.setSelected(false);
+
     }//GEN-LAST:event_filterOperatorsComboBoxActionPerformed
 
     private void translateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_translateBtnActionPerformed
-        if(!selectedHadithTextArea.getText().equals("")){
-           String englishHadith = fascadeBLL.getTranslationToEnglish(selectedHadithTextArea.getText());
-           selectedHadithTextArea.setText(englishHadith);
-        }
-        else
+        if (!selectedHadithTextArea.getText().equals("")) {
+            String englishHadith = fascadeBLL.getTranslationToEnglish(selectedHadithTextArea.getText());
+            selectedHadithTextArea.setText(englishHadith);
+        } else
             JOptionPane.showMessageDialog(null, "Please select a hadith from below table.", "Warning", JOptionPane.WARNING_MESSAGE);
     }//GEN-LAST:event_translateBtnActionPerformed
 
@@ -492,17 +604,59 @@ public class ResearchPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_existingFilterRadioBtnActionPerformed
 
     private void searchTypeComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchTypeComboBoxActionPerformed
-      System.out.println("Updated");
-        fascadeBLL.updateFilterType(this.research.getResearchId(),filterNumComboBox.getSelectedIndex(), searchTypeComboBox.getSelectedItem().toString());
+        if (existingFilterRadioBtn.isSelected())
+            fascadeBLL.updateFilterType(this.research.getResearchId(), filterNumComboBox.getSelectedIndex(), searchTypeComboBox.getSelectedItem().toString());
     }//GEN-LAST:event_searchTypeComboBoxActionPerformed
 
     private void searchTypeComboBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_searchTypeComboBoxItemStateChanged
-     
-        fascadeBLL.updateFilterType(this.research.getResearchId(),filterNumComboBox.getSelectedIndex(), searchTypeComboBox.getSelectedItem().toString());
+
+        //       fascadeBLL.updateFilterType(this.research.getResearchId(),filterNumComboBox.getSelectedIndex(), searchTypeComboBox.getSelectedItem().toString());
     }//GEN-LAST:event_searchTypeComboBoxItemStateChanged
+
+    private void resetIconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_resetIconMouseClicked
+        if (existingFilterRadioBtn.isSelected()) {
+            fascadeBLL.deleteFilter(this.research.getResearchId(), this.research.getFilters().get(filterNumComboBox.getSelectedIndex()).getOrderNo());
+            filterExpressionArr.removeAll(filterExpressionArr);
+            fillFilterTextField();
+            loadFilterExpression();
+
+            int currentIndex = filterNumComboBox.getSelectedIndex();
+            if (currentIndex > 0) {
+                filterNumComboBox.removeItem(currentIndex);
+                filterNumComboBox.setSelectedIndex(currentIndex - 1);
+            } else {
+                newFilterRadioBtn.setSelected(true);
+                filterExpressionArr.removeAll(filterExpressionArr);
+                fillFilterTextField();
+            }
+            Research newResearch = fascadeBLL.getResearch(this.research.getName());
+            setReseach(newResearch);
+        } else {
+            filterExpressionArr.removeAll(filterExpressionArr);
+            fillFilterTextField();
+            // loadFilterExpression();
+        }
+    }//GEN-LAST:event_resetIconMouseClicked
+
+    private void undoBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_undoBtnMouseClicked
+
+        if (!filterExpressionArr.isEmpty()) {
+            filterExpressionArr.remove(filterExpressionArr.getLast());
+
+            if (!filterExpressionArr.isEmpty() && (filterExpressionArr.getLast().equals("AND") || filterExpressionArr.getLast().equals("OR"))) {
+                filterExpressionArr.remove(filterExpressionArr.getLast());
+            }
+
+            fillFilterTextField();
+            updateFilter();
+            loadFilterExpression();
+        }
+
+    }//GEN-LAST:event_undoBtnMouseClicked
 
     public void setReseach(Research research) {
         this.research = research;
+        filterNumComboBox.removeAllItems();
         loadFilters(research);
         initAsync(research);
     }
@@ -511,7 +665,7 @@ public class ResearchPanel extends javax.swing.JPanel {
         int filterIndex = 0;
         if (!research.getFilters().isEmpty()) {
             for (Filter filter : research.getFilters()) {
-                filterNumComboBox.addItem(Integer.toString(filterIndex));
+                filterNumComboBox.addItem(Integer.toString(filter.getOrderNo()));
                 filterIndex++;
             }
         }
@@ -628,6 +782,7 @@ public class ResearchPanel extends javax.swing.JPanel {
     private javax.swing.JTextField filterExpressionTextField;
     private javax.swing.JLabel filterLbl;
     private javax.swing.JLabel filterLbl1;
+    private javax.swing.JLabel filterLbl2;
     private javax.swing.JComboBox<String> filterNumComboBox;
     private javax.swing.JComboBox<String> filterOperatorsComboBox;
     private javax.swing.ButtonGroup filterTypeBtnGroup;
@@ -637,8 +792,10 @@ public class ResearchPanel extends javax.swing.JPanel {
     private javax.swing.JPanel newFilterBackPanel;
     private javax.swing.JRadioButton newFilterRadioBtn;
     private javax.swing.JCheckBox notCheckSelected;
+    private javax.swing.JLabel resetIcon;
     private javax.swing.JComboBox<String> searchTypeComboBox;
     private javax.swing.JTextArea selectedHadithTextArea;
     private javax.swing.JButton translateBtn;
+    private javax.swing.JLabel undoBtn;
     // End of variables declaration//GEN-END:variables
 }

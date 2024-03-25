@@ -51,9 +51,9 @@ public class FilterBO implements IFilterBO {
     }
 
     @Override
-    public boolean deleteFilter(int id) {
+    public boolean deleteFilter(int id, int orderNum) {
         try {
-            if (fascadeDAO.deleteFilter(id)) {
+            if (fascadeDAO.deleteFilter(id,orderNum)) {
                 return true;
             }
         } catch (Exception e) {

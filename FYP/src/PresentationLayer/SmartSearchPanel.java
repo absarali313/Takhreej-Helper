@@ -22,6 +22,7 @@ import javax.swing.table.DefaultTableModel;
 public class SmartSearchPanel extends javax.swing.JPanel {
 
     IFascadeBLL fascadeBLL;
+
     public SmartSearchPanel() {
         initComponents();
         fascadeBLL = new FascadeBLL();
@@ -156,7 +157,8 @@ public class SmartSearchPanel extends javax.swing.JPanel {
     private void searchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtnActionPerformed
         String matn = hadithTextArea.getText();
         ArrayList<String> topics = fascadeBLL.getTopics(matn);
-        
+        search();
+
     }//GEN-LAST:event_searchBtnActionPerformed
 
     private void hadithTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hadithTableMouseClicked
@@ -168,19 +170,20 @@ public class SmartSearchPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_hadithTableMouseClicked
 
-     private void search() {
-        if(hadithTextArea.getText().replaceAll(" ","") != ""){
-        ArrayList<Hadith> hadiths = fascadeBLL.Search(hadithTextArea.getText());
-        ExecutorService executorService = Executors.newSingleThreadExecutor();
+    private void search() {
+        if (hadithTextArea.getText().replaceAll(" ", "") != "" && !hadithTextArea.getText().equals("")) {
+            ArrayList<Hadith> hadiths = fascadeBLL.Search(hadithTextArea.getText());
+            ExecutorService executorService = Executors.newSingleThreadExecutor();
 
-        executorService.execute(() -> {
+            executorService.execute(() -> {
 
-            populateHadithTable(hadiths); // Optionally, you can perform additional tasks after init() completes
-            // For example, update UI components, notify other parts of your application, etc.
-            executorService.shutdown(); // Shutdown the executor when done
-        });
+                populateHadithTable(hadiths); // Optionally, you can perform additional tasks after init() completes
+                // For example, update UI components, notify other parts of your application, etc.
+                executorService.shutdown(); // Shutdown the executor when done
+            });
         }
     }
+
     private void populateHadithTable(ArrayList<Hadith> hadiths) {
         if (!hadiths.isEmpty()) {
             ArrayConverterBO converter = new ArrayConverterBO();
@@ -201,6 +204,7 @@ public class SmartSearchPanel extends javax.swing.JPanel {
             model.setRowCount(0);
             hadithTable.setModel(model);
         }
+        System.out.println("done");
 
     }
 

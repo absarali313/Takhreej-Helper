@@ -13,7 +13,7 @@ import java.util.ArrayList;
  */
 public interface IFilterDAO {
 
-    boolean deleteFilter(int id);
+    boolean deleteFilter(int id,int orderNum);
 
     boolean insertFilter(int researchId, int orderNo, String filter, String type);
 

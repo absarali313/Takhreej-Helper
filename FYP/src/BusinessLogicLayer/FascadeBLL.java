@@ -65,8 +65,8 @@ public class FascadeBLL implements IFascadeBLL {
     }
 
     @Override
-    public boolean deleteFilter(int id) {
-        return filterBO.deleteFilter(id);
+    public boolean deleteFilter(int id,int orderNum) {
+        return filterBO.deleteFilter(id, orderNum);
     }
 
     @Override
@@ -76,7 +76,7 @@ public class FascadeBLL implements IFascadeBLL {
     
     @Override
     public boolean updateFilterType(int id, int orderNo, String type) {
-        return filterBO.updateFilterExpression(id, orderNo, type);
+        return filterBO.updateFilterType(id, orderNo, type);
     }
 
 

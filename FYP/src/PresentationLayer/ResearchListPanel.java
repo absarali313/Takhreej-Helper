@@ -543,14 +543,20 @@ public class ResearchListPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_mergeResearchBtnActionPerformed
 
     private void openResearchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openResearchBtnActionPerformed
-        JPanel mainPanel = (JPanel) this.getParent();
-        LandingPage landingPage = (LandingPage) mainPanel.getTopLevelAncestor();
-        CardLayout cardLayout = (CardLayout) mainPanel.getLayout();
-        cardLayout.show(mainPanel, "research");
-        Research research = fascadeBLL.getResearch(openResearchNameTextField.getText());
-        landingPage.researchPanel1.setReseach(research);
-        
-        
+        Research research = null;
+        if (!openResearchNameTextField.getText().equals("")) {
+            research = fascadeBLL.getResearch(openResearchNameTextField.getText());
+        }
+        if (research != null) {
+            JPanel mainPanel = (JPanel) this.getParent();
+            LandingPage landingPage = (LandingPage) mainPanel.getTopLevelAncestor();
+            CardLayout cardLayout = (CardLayout) mainPanel.getLayout();
+            cardLayout.show(mainPanel, "card3");
+
+            landingPage.researchPanel1.setReseach(research);
+        }
+
+
     }//GEN-LAST:event_openResearchBtnActionPerformed
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
@@ -559,18 +565,20 @@ public class ResearchListPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_backBtnActionPerformed
 
     private void openAddBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openAddBtnActionPerformed
-        JPanel mainPanel = (JPanel) this.getParent();
-        LandingPage landingPage = (LandingPage) mainPanel.getParent().getParent();
-        CardLayout cardLayout = (CardLayout) mainPanel.getLayout();
-        cardLayout.show(mainPanel, "mainPanel");
-        Research research = fascadeBLL.getResearch(openResearchNameTextField.getText());
-        landingPage.researchPanel1.setReseach(research);
-        
+        if (!openResearchNameTextField.getText().equals("")) {
+            JPanel mainPanel = (JPanel) this.getParent();
+            LandingPage landingPage = (LandingPage) mainPanel.getParent().getParent();
+            CardLayout cardLayout = (CardLayout) mainPanel.getLayout();
+            cardLayout.show(mainPanel, "mainPanel");
+            Research research = fascadeBLL.getResearch(openResearchNameTextField.getText());
+            landingPage.researchPanel1.setReseach(research);
+        }
+
     }//GEN-LAST:event_openAddBtnActionPerformed
 
     private void createAddBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createAddBtnActionPerformed
         if (fascadeBLL.createResearch(createResearchNameTextField.getText().toString())) {
-          
+
             populateResearchTable(fascadeBLL.getAllResearches());
             JOptionPane.showMessageDialog(null, "Research Created ." + createResearchNameTextField.getText().toString(), "New Research", JOptionPane.INFORMATION_MESSAGE);
 

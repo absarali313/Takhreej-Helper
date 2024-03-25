@@ -90,8 +90,8 @@ public class FascadeDAO implements IFascadeDAO {
     }
 
     @Override
-    public boolean deleteFilter(int id) {
-        return filterDAO.deleteFilter(id);
+    public boolean deleteFilter(int id, int orderNum) {
+        return filterDAO.deleteFilter(id,orderNum);
     }
 
     @Override

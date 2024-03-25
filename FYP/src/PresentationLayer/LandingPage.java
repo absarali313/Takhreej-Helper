@@ -1,10 +1,12 @@
 package PresentationLayer;
+
 import com.formdev.flatlaf.themes.FlatMacLightLaf;
 import java.awt.Color;
 import java.awt.Insets;
+import javaswingdev.drawer.Drawer;
+import javaswingdev.drawer.DrawerController;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
-
 
 /**
  *
@@ -12,12 +14,20 @@ import javax.swing.UnsupportedLookAndFeelException;
  */
 public class LandingPage extends javax.swing.JFrame {
 
+    private DrawerController drawer;
+
     /**
      * Creates new form NewJFrame
      */
     public LandingPage() {
-        this.setSize(1500,590);
+        this.setSize(1500, 590);
         initComponents();
+        drawer = Drawer.newDrawer(this)
+                .drawerWidth(365)
+                .header(new Nav())
+                .drawerBackground(new Color(47,18,76))
+                
+                .build();
     }
 
     /**
@@ -29,12 +39,14 @@ public class LandingPage extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        researchListPanel1 = new PresentationLayer.ResearchListPanel();
         parentPanel = new javax.swing.JPanel();
         menuPanel = new javax.swing.JPanel();
         menuIcon = new javax.swing.JLabel();
         mainPanel = new javax.swing.JPanel();
         researchListPanel2 = new PresentationLayer.ResearchListPanel();
         researchPanel1 = new PresentationLayer.ResearchPanel();
+        smartSearchPanel1 = new PresentationLayer.SmartSearchPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(7, 7, 57));
@@ -46,6 +58,11 @@ public class LandingPage extends javax.swing.JFrame {
         menuPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(29, 29, 94)));
 
         menuIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/menu (1) (1).png"))); // NOI18N
+        menuIcon.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                menuIconMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout menuPanelLayout = new javax.swing.GroupLayout(menuPanel);
         menuPanel.setLayout(menuPanelLayout);
@@ -69,8 +86,9 @@ public class LandingPage extends javax.swing.JFrame {
         mainPanel.setBackground(new java.awt.Color(7, 7, 57));
         mainPanel.setPreferredSize(new java.awt.Dimension(1240, 565));
         mainPanel.setLayout(new java.awt.CardLayout());
-        mainPanel.add(researchListPanel2, "card3");
-        mainPanel.add(researchPanel1, "research");
+        mainPanel.add(researchListPanel2, "card2");
+        mainPanel.add(researchPanel1, "card3");
+        mainPanel.add(smartSearchPanel1, "card4");
 
         parentPanel.add(mainPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(54, 0, 1273, -1));
 
@@ -87,6 +105,13 @@ public class LandingPage extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void menuIconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuIconMouseClicked
+      if(drawer.isShow())
+            drawer.hide();
+        else
+            drawer.show();
+    }//GEN-LAST:event_menuIconMouseClicked
 
     /**
      * @param args the command line arguments
@@ -115,14 +140,14 @@ public class LandingPage extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
-          try {
-    
-              // Here you can select the selected theme class name in JTatto
+        try {
+
+            // Here you can select the selected theme class name in JTatto
             UIManager.setLookAndFeel(new FlatMacLightLaf());
         } catch (UnsupportedLookAndFeelException ex) {
             //Logger.getLogger(GUI_PO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         UIManager.put("Button.arc", 20);
         UIManager.put("Component.arc", 20);
         UIManager.put("TextComponent.arc", 20);
@@ -148,12 +173,16 @@ public class LandingPage extends javax.swing.JFrame {
         });
     }
 
+   // public ResearchPanel researchPanel1 = new ResearchPanel();
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel mainPanel;
+    public javax.swing.JPanel mainPanel;
     private javax.swing.JLabel menuIcon;
     private javax.swing.JPanel menuPanel;
     private javax.swing.JPanel parentPanel;
+    private PresentationLayer.ResearchListPanel researchListPanel1;
     private PresentationLayer.ResearchListPanel researchListPanel2;
     public PresentationLayer.ResearchPanel researchPanel1;
+    public PresentationLayer.SmartSearchPanel smartSearchPanel1;
     // End of variables declaration//GEN-END:variables
+
 }
