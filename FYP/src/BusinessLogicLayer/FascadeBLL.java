@@ -18,9 +18,11 @@ public class FascadeBLL implements IFascadeBLL {
     IFilterBO filterBO;
     IStringConverter stringConverter;
     ITranslatorBO translatorBO;
+    IMergerResearch mergeResearchBO;
     FascadeDAO fascadeDAO = new FascadeDAO();
     public FascadeBLL() {
         this.researchBO = new ResearchBO(fascadeDAO);
+        this.mergeResearchBO = new MergeResearchBO(fascadeDAO);
         this.translatorBO = new TranslatorBO(fascadeDAO);
         this.hadithBO = new HadithBO(fascadeDAO);
         this.filterBO = new FilterBO(fascadeDAO);
@@ -103,6 +105,11 @@ public class FascadeBLL implements IFascadeBLL {
     @Override
     public String getTranslationToEnglish (String matn){
         return translatorBO.getTranslationToEnglish(matn);
+    }
+
+    @Override
+    public boolean mergeResearches(String name, Research research1, Research research2) {
+        return mergeResearchBO.mergeResearches(name, research1, research2);
     }
 
 }

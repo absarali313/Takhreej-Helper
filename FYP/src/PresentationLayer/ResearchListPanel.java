@@ -74,6 +74,16 @@ public class ResearchListPanel extends javax.swing.JPanel {
         createResearchLbl1 = new javax.swing.JLabel();
         createResearchLbl = new javax.swing.JLabel();
         openResearchNameTextField = new javax.swing.JTextField();
+        mergePanel = new PresentationLayer.PanelRound();
+        mergeLbl = new javax.swing.JLabel();
+        mergeBackBtn = new javax.swing.JButton();
+        mergeActionBtn = new javax.swing.JButton();
+        mergeResearch1ComboBox = new javax.swing.JComboBox<>();
+        createResearchLbl9 = new javax.swing.JLabel();
+        createResearchLbl10 = new javax.swing.JLabel();
+        mergeResearch2ComboBox = new javax.swing.JComboBox<>();
+        createResearchLbl11 = new javax.swing.JLabel();
+        mergeResearchTextField = new javax.swing.JTextField();
         openResearchBtn = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(7, 7, 57));
@@ -508,6 +518,104 @@ public class ResearchListPanel extends javax.swing.JPanel {
 
         actionPanel.add(openPanel, "openPanel");
 
+        mergePanel.setBackground(new java.awt.Color(47, 18, 76));
+        mergePanel.setAllCornersRound(40);
+
+        mergeLbl.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        mergeLbl.setForeground(new java.awt.Color(254, 194, 96));
+        mergeLbl.setText("Merge Research");
+
+        mergeBackBtn.setBackground(new java.awt.Color(254, 194, 96));
+        mergeBackBtn.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        mergeBackBtn.setForeground(new java.awt.Color(59, 24, 95));
+        mergeBackBtn.setText("BACK");
+        mergeBackBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mergeBackBtnActionPerformed(evt);
+            }
+        });
+
+        mergeActionBtn.setBackground(new java.awt.Color(254, 194, 96));
+        mergeActionBtn.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        mergeActionBtn.setForeground(new java.awt.Color(59, 24, 95));
+        mergeActionBtn.setText("Merge");
+        mergeActionBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mergeActionBtnActionPerformed(evt);
+            }
+        });
+
+        createResearchLbl9.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        createResearchLbl9.setForeground(new java.awt.Color(254, 194, 96));
+        createResearchLbl9.setText("Select 1st Research");
+
+        createResearchLbl10.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        createResearchLbl10.setForeground(new java.awt.Color(254, 194, 96));
+        createResearchLbl10.setText("Select 2nd Research");
+
+        createResearchLbl11.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        createResearchLbl11.setForeground(new java.awt.Color(254, 194, 96));
+        createResearchLbl11.setText("Enter New Research Name");
+
+        mergeResearchTextField.setBackground(new java.awt.Color(196, 182, 182));
+        mergeResearchTextField.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
+        mergeResearchTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mergeResearchTextFieldActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout mergePanelLayout = new javax.swing.GroupLayout(mergePanel);
+        mergePanel.setLayout(mergePanelLayout);
+        mergePanelLayout.setHorizontalGroup(
+            mergePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(mergePanelLayout.createSequentialGroup()
+                .addGap(115, 115, 115)
+                .addComponent(mergeLbl)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(mergePanelLayout.createSequentialGroup()
+                .addGap(60, 60, 60)
+                .addComponent(mergeBackBtn)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(mergeActionBtn)
+                .addGap(50, 50, 50))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mergePanelLayout.createSequentialGroup()
+                .addContainerGap(75, Short.MAX_VALUE)
+                .addGroup(mergePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(createResearchLbl9)
+                    .addComponent(createResearchLbl11)
+                    .addComponent(mergeResearchTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(mergeResearch2ComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(createResearchLbl10)
+                    .addComponent(mergeResearch1ComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(72, 72, 72))
+        );
+        mergePanelLayout.setVerticalGroup(
+            mergePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(mergePanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(mergeLbl)
+                .addGap(38, 38, 38)
+                .addComponent(createResearchLbl9)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(mergeResearch1ComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(createResearchLbl10)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
+                .addComponent(mergeResearch2ComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(createResearchLbl11)
+                .addGap(15, 15, 15)
+                .addComponent(mergeResearchTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(mergePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(mergeBackBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(mergeActionBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(20, 20, 20))
+        );
+
+        actionPanel.add(mergePanel, "card7");
+
         add(actionPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(686, 147, 420, 360));
 
         openResearchBtn.setBackground(new java.awt.Color(254, 194, 96));
@@ -539,7 +647,8 @@ public class ResearchListPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_deleteResearchBtnActionPerformed
 
     private void mergeResearchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mergeResearchBtnActionPerformed
-        // TODO add your handling code here:
+        CardLayout cardLayout = (CardLayout) actionPanel.getLayout();
+        cardLayout.show(actionPanel, "card7");
     }//GEN-LAST:event_mergeResearchBtnActionPerformed
 
     private void openResearchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openResearchBtnActionPerformed
@@ -648,17 +757,18 @@ public class ResearchListPanel extends javax.swing.JPanel {
         String name = deleteResearchNameTextField.getText();
         if (!name.equals("")) {
             Research research = fascadeBLL.getResearch(name);
-            if (fascadeBLL.deleteResearch(research.getResearchId())) {
-                populateResearchTable(fascadeBLL.getAllResearches());
-                JOptionPane.showMessageDialog(null, "Research  deleted", "Successful", JOptionPane.INFORMATION_MESSAGE);
+            if (research != null) {
+                if (fascadeBLL.deleteResearch(research.getResearchId())) {
+                    populateResearchTable(fascadeBLL.getAllResearches());
+                    JOptionPane.showMessageDialog(null, "Research  deleted", "Successful", JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Error in deleting research name", "Warning", JOptionPane.WARNING_MESSAGE);
+                }
             } else {
-                JOptionPane.showMessageDialog(null, "Error in deleting research name", "Warning", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Please select a research from table", "Warning", JOptionPane.WARNING_MESSAGE);
+
             }
-        } else {
-            JOptionPane.showMessageDialog(null, "Please select a research from table", "Warning", JOptionPane.WARNING_MESSAGE);
-
         }
-
     }//GEN-LAST:event_deleteBtnActionPerformed
 
     private void deleteBackBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBackBtnActionPerformed
@@ -670,7 +780,37 @@ public class ResearchListPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_deleteResearchNameTextFieldActionPerformed
 
+    private void mergeBackBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mergeBackBtnActionPerformed
+        CardLayout cardLayout = (CardLayout) actionPanel.getLayout();
+        cardLayout.show(actionPanel, "blankPanel");
+    }//GEN-LAST:event_mergeBackBtnActionPerformed
+
+    private void mergeActionBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mergeActionBtnActionPerformed
+        if (!mergeResearch1ComboBox.getSelectedItem().toString().equals(mergeResearch2ComboBox.getSelectedItem().toString())) {
+            Research research1 = fascadeBLL.getResearch(mergeResearch1ComboBox.getSelectedItem().toString());
+            Research research2 = fascadeBLL.getResearch(mergeResearch2ComboBox.getSelectedItem().toString());
+            String name = mergeResearchTextField.getText();
+            boolean isMerged = fascadeBLL.mergeResearches(name, research1, research2);
+            if (!isMerged) {
+                JOptionPane.showMessageDialog(null, "Failed to merge researches. Check logs", "Warning", JOptionPane.WARNING_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(null, "Merged Successfully", "Warning", JOptionPane.INFORMATION_MESSAGE);
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Both Researches cannot be same", "Warning", JOptionPane.WARNING_MESSAGE);
+
+        }
+        populateResearchTable(fascadeBLL.getAllResearches());
+    }//GEN-LAST:event_mergeActionBtnActionPerformed
+
+    private void mergeResearchTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mergeResearchTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mergeResearchTextFieldActionPerformed
+
     private void populateResearchTable(ArrayList<Research> researches) {
+        mergeResearch1ComboBox.removeAllItems();
+        mergeResearch2ComboBox.removeAllItems();
         if (!researches.isEmpty()) {
             DefaultTableModel model = (DefaultTableModel) researchTable.getModel();
             model.setRowCount(0);
@@ -679,6 +819,8 @@ public class ResearchListPanel extends javax.swing.JPanel {
                 Object[] row = {count, research.getName()};
                 count++;
                 model.addRow(row);
+                mergeResearch1ComboBox.addItem(research.getName());
+                mergeResearch2ComboBox.addItem(research.getName());
             }
             researchTable.setModel(model);
         } else {
@@ -697,6 +839,8 @@ public class ResearchListPanel extends javax.swing.JPanel {
     private javax.swing.JButton createResearchBtn;
     private javax.swing.JLabel createResearchLbl;
     private javax.swing.JLabel createResearchLbl1;
+    private javax.swing.JLabel createResearchLbl10;
+    private javax.swing.JLabel createResearchLbl11;
     private javax.swing.JLabel createResearchLbl2;
     private javax.swing.JLabel createResearchLbl3;
     private javax.swing.JLabel createResearchLbl4;
@@ -704,6 +848,7 @@ public class ResearchListPanel extends javax.swing.JPanel {
     private javax.swing.JLabel createResearchLbl6;
     private javax.swing.JLabel createResearchLbl7;
     private javax.swing.JLabel createResearchLbl8;
+    private javax.swing.JLabel createResearchLbl9;
     private javax.swing.JTextField createResearchNameTextField;
     private javax.swing.JButton deleteBackBtn;
     private javax.swing.JButton deleteBtn;
@@ -711,7 +856,14 @@ public class ResearchListPanel extends javax.swing.JPanel {
     private javax.swing.JButton deleteResearchBtn;
     private javax.swing.JTextField deleteResearchNameTextField;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton mergeActionBtn;
+    private javax.swing.JButton mergeBackBtn;
+    private javax.swing.JLabel mergeLbl;
+    private PresentationLayer.PanelRound mergePanel;
+    private javax.swing.JComboBox<String> mergeResearch1ComboBox;
+    private javax.swing.JComboBox<String> mergeResearch2ComboBox;
     private javax.swing.JButton mergeResearchBtn;
+    private javax.swing.JTextField mergeResearchTextField;
     private javax.swing.JTextField newNameTextField;
     private javax.swing.JButton openAddBtn;
     private PresentationLayer.PanelRound openPanel;

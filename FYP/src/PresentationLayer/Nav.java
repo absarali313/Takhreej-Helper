@@ -43,6 +43,11 @@ public class Nav extends javax.swing.JPanel {
         researchLbl.setForeground(new java.awt.Color(254, 194, 96));
         researchLbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         researchLbl.setText("Research");
+        researchLbl.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                researchLblMouseClicked(evt);
+            }
+        });
 
         researchLbl1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         researchLbl1.setForeground(new java.awt.Color(254, 194, 96));
@@ -85,14 +90,21 @@ public class Nav extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void researchLbl1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_researchLbl1MouseClicked
-       
+
         LandingPage landingPage = (LandingPage) this.getTopLevelAncestor();
         CardLayout cardLayout = (CardLayout) landingPage.mainPanel.getLayout();
         cardLayout.show(landingPage.mainPanel, "card4");
-       //// Research research = fascadeBLL.getResearch(openResearchNameTextField.getText());
-        //landingPage.researchPanel1.setReseach(research);
+        landingPage.drawer.hide();
 
     }//GEN-LAST:event_researchLbl1MouseClicked
+
+    private void researchLblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_researchLblMouseClicked
+
+        LandingPage landingPage = (LandingPage) this.getTopLevelAncestor();
+        CardLayout cardLayout = (CardLayout) landingPage.mainPanel.getLayout();
+        cardLayout.show(landingPage.mainPanel, "card2");
+        landingPage.drawer.hide();
+    }//GEN-LAST:event_researchLblMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

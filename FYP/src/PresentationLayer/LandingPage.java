@@ -14,7 +14,7 @@ import javax.swing.UnsupportedLookAndFeelException;
  */
 public class LandingPage extends javax.swing.JFrame {
 
-    private DrawerController drawer;
+    public DrawerController drawer;
 
     /**
      * Creates new form NewJFrame

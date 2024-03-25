@@ -4,10 +4,14 @@
  */
 package BusinessLogicLayer;
 
+import TransferObject.Research;
+
 /**
  *
  * @author ch-sa
  */
-public interface IFascadeBLL extends IMergerResearch, ITranslatorBO,ISmartSearchBO,ISearchBO,IResearchBO, IHadithBO, IFilterBO, IStringConverter{
+public interface IMergerResearch {
+
+    boolean mergeResearches(String name, Research research1, Research research2);
     
 }
