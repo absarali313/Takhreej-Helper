@@ -47,13 +47,13 @@ public class ForgetPasswordFrame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(7, 7, 57));
+        jPanel1.setBackground(new java.awt.Color(58, 77, 57));
 
         emailLbl.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        emailLbl.setForeground(new java.awt.Color(254, 194, 96));
+        emailLbl.setForeground(new java.awt.Color(244, 235, 208));
         emailLbl.setText("Email");
 
-        emailTextField.setBackground(new java.awt.Color(196, 182, 182));
+        emailTextField.setBackground(new java.awt.Color(18, 38, 32));
         emailTextField.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         emailTextField.setForeground(new java.awt.Color(255, 255, 255));
         emailTextField.setBorder(null);
@@ -72,10 +72,10 @@ public class ForgetPasswordFrame extends javax.swing.JFrame {
         });
 
         emailLbl1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        emailLbl1.setForeground(new java.awt.Color(254, 194, 96));
+        emailLbl1.setForeground(new java.awt.Color(244, 235, 208));
         emailLbl1.setText("New Password");
 
-        passwordField.setBackground(new java.awt.Color(196, 182, 182));
+        passwordField.setBackground(new java.awt.Color(18, 38, 32));
         passwordField.setForeground(new java.awt.Color(255, 255, 255));
         passwordField.setBorder(null);
         passwordField.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -89,9 +89,8 @@ public class ForgetPasswordFrame extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setBackground(new java.awt.Color(254, 194, 96));
+        jButton1.setBackground(new java.awt.Color(123, 162, 137));
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(47, 18, 76));
         jButton1.setText("Submit");
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {

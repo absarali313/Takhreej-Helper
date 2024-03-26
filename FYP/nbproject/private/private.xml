@@ -3,28 +3,20 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/ch-sa/OneDrive/Desktop/FYp%20final/FYP/src/BusinessLogicLayer/IFascadeBLL.java</file>
-            <file>file:/C:/Users/ch-sa/OneDrive/Desktop/FYp%20final/FYP/src/BusinessLogicLayer/HadithBO.java</file>
-            <file>file:/C:/Users/ch-sa/OneDrive/Desktop/FYp%20final/FYP/src/BusinessLogicLayer/ArrayConverterBO.java</file>
-            <file>file:/C:/Users/ch-sa/OneDrive/Desktop/FYp%20final/FYP/src/BusinessLogicLayer/ResearchBO.java</file>
-            <file>file:/C:/Users/ch-sa/OneDrive/Desktop/FYp%20final/FYP/src/BusinessLogicLayer/StringConverter.java</file>
             <file>file:/C:/Users/ch-sa/OneDrive/Desktop/FYp%20final/FYP/src/BusinessLogicLayer/FilterBO.java</file>
-            <file>file:/C:/Users/ch-sa/OneDrive/Desktop/FYp%20final/FYP/src/DataAccessLayer/ResearchDAO.java</file>
-            <file>file:/C:/Users/ch-sa/OneDrive/Desktop/FYp%20final/FYP/src/BusinessLogicLayer/RootGeneratorBO.java</file>
-            <file>file:/C:/Users/ch-sa/OneDrive/Desktop/FYp%20final/FYP/src/BusinessLogicLayer/TranslatorBO.java</file>
+            <file>file:/C:/Users/ch-sa/OneDrive/Desktop/FYp%20final/FYP/src/DataAccessLayer/IFascadeDAO.java</file>
+            <file>file:/C:/Users/ch-sa/OneDrive/Desktop/FYp%20final/FYP/src/BusinessLogicLayer/IFilterBO.java</file>
+            <file>file:/C:/Users/ch-sa/OneDrive/Desktop/FYp%20final/FYP/src/PresentationLayer/RegisterPanel.java</file>
             <file>file:/C:/Users/ch-sa/OneDrive/Desktop/FYp%20final/FYP/src/BusinessLogicLayer/FascadeBLL.java</file>
-            <file>file:/C:/Users/ch-sa/OneDrive/Desktop/FYp%20final/FYP/src/DataAccessLayer/LemmatizerProxyDAO.java</file>
-            <file>file:/C:/Users/ch-sa/OneDrive/Desktop/FYp%20final/FYP/src/DataAccessLayer/TopicGenerator.java</file>
-            <file>file:/C:/Users/ch-sa/OneDrive/Desktop/FYp%20final/FYP/src/DataAccessLayer/RegisterDAL.java</file>
+            <file>file:/C:/Users/ch-sa/OneDrive/Desktop/FYp%20final/FYP/src/PresentationLayer/ResearchListPanel.java</file>
             <file>file:/C:/Users/ch-sa/OneDrive/Desktop/FYp%20final/FYP/src/TransferObject/Research.java</file>
+            <file>file:/C:/Users/ch-sa/OneDrive/Desktop/FYp%20final/FYP/src/BusinessLogicLayer/MergeResearchBO.java</file>
             <file>file:/C:/Users/ch-sa/OneDrive/Desktop/FYp%20final/FYP/src/DataAccessLayer/FilterDAO.java</file>
-            <file>file:/C:/Users/ch-sa/OneDrive/Desktop/FYp%20final/FYP/src/DataAccessLayer/TranslatorDAO.java</file>
-            <file>file:/C:/Users/ch-sa/OneDrive/Desktop/FYp%20final/FYP/src/BusinessLogicLayer/FilterConverterBO.java</file>
-            <file>file:/C:/Users/ch-sa/OneDrive/Desktop/FYp%20final/FYP/src/DataAccessLayer/BookDAO.java</file>
+            <file>file:/C:/Users/ch-sa/OneDrive/Desktop/FYp%20final/FYP/src/PresentationLayer/LandingPage.java</file>
+            <file>file:/C:/Users/ch-sa/OneDrive/Desktop/FYp%20final/FYP/src/BusinessLogicLayer/IMergerResearch.java</file>
             <file>file:/C:/Users/ch-sa/OneDrive/Desktop/FYp%20final/FYP/src/PresentationLayer/ResearchPanel.java</file>
-            <file>file:/C:/Users/ch-sa/OneDrive/Desktop/FYp%20final/FYP/src/DataAccessLayer/FascadeDAO.java</file>
-            <file>file:/C:/Users/ch-sa/OneDrive/Desktop/FYp%20final/FYP/src/DataAccessLayer/NarratorsDAO.java</file>
-            <file>file:/C:/Users/ch-sa/OneDrive/Desktop/FYp%20final/FYP/src/DataAccessLayer/LemmatizerDAO.java</file>
+            <file>file:/C:/Users/ch-sa/OneDrive/Desktop/FYp%20final/FYP/src/DataAccessLayer/IFilterDAO.java</file>
+            <file>file:/C:/Users/ch-sa/OneDrive/Desktop/FYp%20final/FYP/src/BusinessLogicLayer/SearchBO.java</file>
             <file>file:/C:/Users/ch-sa/OneDrive/Desktop/FYp%20final/FYP/src/PresentationLayer/Nav.java</file>
         </group>
     </open-files>
