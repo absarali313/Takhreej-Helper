@@ -29,6 +29,7 @@ public class SearchBO implements ISearchBO {
 
     @Override
     public ArrayList<Hadith> searchHadiths(Research research, int filterIndex) {
+        
         ArrayList<Hadith> hadiths = new ArrayList<Hadith>();
         ArrayList<Integer> hadithIds = new ArrayList<Integer>();
 

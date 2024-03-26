@@ -381,7 +381,7 @@ public class ResearchPanel extends javax.swing.JPanel {
     }
 
     private int findHighestValueFromComboBox(JComboBox<String> comboBox) {
-        int highestValue = Integer.MIN_VALUE; // Initialize with the smallest possible integer value
+        int highestValue = -1; // Initialize with the smallest possible integer value
 
         ComboBoxModel<String> model = comboBox.getModel();
         int itemCount = model.getSize();
@@ -438,6 +438,8 @@ public class ResearchPanel extends javax.swing.JPanel {
                         filterExpressionArr.add(word);
                         filterExpressionArr.add(filterOperatorsComboBox.getSelectedItem().toString());
 
+                    } else {
+                        filterExpressionArr.add(word);
                     }
                     fillFilterTextField();
                     setSearchType();
@@ -455,17 +457,23 @@ public class ResearchPanel extends javax.swing.JPanel {
     }
 
     private void setSearchType() {
-        switch (this.research.getFilters().get(filterNumComboBox.getSelectedIndex()).getType()) {
-            case "Pattern":
-                searchTypeComboBox.setSelectedItem("Pattern");
-                break;
-            case "Lemma":
-                searchTypeComboBox.setSelectedItem("Lemma");
-                break;
-            case "Root":
-                searchTypeComboBox.setSelectedItem("Root");
-                break;
+        if (filterNumComboBox.getItemCount() > 0) {
+            switch (this.research.getFilters().get(filterNumComboBox.getSelectedIndex()).getType()) {
+                case "Pattern":
+                    searchTypeComboBox.setSelectedItem("Pattern");
+                    break;
+                case "Lemma":
+                    searchTypeComboBox.setSelectedItem("Lemma");
+                    break;
+                case "Root":
+                    searchTypeComboBox.setSelectedItem("Root");
+                    break;
 
+                default:
+                    searchTypeComboBox.setSelectedItem("Pattern");
+                    break;
+
+            }
         }
     }
 
@@ -643,10 +651,10 @@ public class ResearchPanel extends javax.swing.JPanel {
     private void undoBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_undoBtnMouseClicked
 
         if (!filterExpressionArr.isEmpty()) {
-            filterExpressionArr.remove(filterExpressionArr.getLast());
+            filterExpressionArr.remove(filterExpressionArr.size() - 1);
 
             if (!filterExpressionArr.isEmpty() && (filterExpressionArr.getLast().equals("AND") || filterExpressionArr.getLast().equals("OR"))) {
-                filterExpressionArr.remove(filterExpressionArr.getLast());
+                filterExpressionArr.remove(filterExpressionArr.size() - 1);
             }
 
             fillFilterTextField();
@@ -736,15 +744,17 @@ public class ResearchPanel extends javax.swing.JPanel {
     }
 
     private void applyFilter() {
-        ArrayList<Hadith> hadiths = fascadeBLL.searchHadiths(research, filterNumComboBox.getSelectedIndex());
-        ExecutorService executorService = Executors.newSingleThreadExecutor();
+        if (!fascadeBLL.getResearch(this.research.getName()).getFilters().isEmpty()) {
+            ArrayList<Hadith> hadiths = fascadeBLL.searchHadiths(fascadeBLL.getResearch(this.research.getName()), filterNumComboBox.getSelectedIndex());
+            ExecutorService executorService = Executors.newSingleThreadExecutor();
 
-        executorService.execute(() -> {
+            executorService.execute(() -> {
 
-            populateHadithTable(hadiths); // Optionally, you can perform additional tasks after init() completes
-            // For example, update UI components, notify other parts of your application, etc.
-            executorService.shutdown(); // Shutdown the executor when done
-        });
+                populateHadithTable(hadiths); // Optionally, you can perform additional tasks after init() completes
+                // For example, update UI components, notify other parts of your application, etc.
+                executorService.shutdown(); // Shutdown the executor when done
+            });
+        }
     }
 
     private void populateHadithTable(ArrayList<Hadith> hadiths) {

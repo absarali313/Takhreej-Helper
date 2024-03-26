@@ -15,13 +15,17 @@ import BusinessLogicLayer.RegistrationService;
 import BusinessLogicLayer.UserSession;
 import CustomException.AuthenticationException;
 import CustomException.EmailServiceException;
+import com.formdev.flatlaf.themes.FlatMacLightLaf;
 import java.awt.Color;
 import java.awt.HeadlessException;
+import java.awt.Insets;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javaswingdev.drawer.*;
 import javaswingdev.drawer.DrawerController;
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 
 
 
@@ -80,7 +84,6 @@ public class LoginFrame extends javax.swing.JFrame {
         jSeparator3 = new javax.swing.JSeparator();
         jButton1 = new javax.swing.JButton();
         forgetPassLbl1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -90,26 +93,26 @@ public class LoginFrame extends javax.swing.JFrame {
             }
         });
 
-        jPanel1.setBackground(new java.awt.Color(58, 77, 57));
+        jPanel1.setBackground(new java.awt.Color(7, 7, 57));
 
-        jPanel3.setBackground(new java.awt.Color(109, 139, 116));
+        jPanel3.setBackground(new java.awt.Color(47, 18, 76));
 
         jLabel2.setFont(new java.awt.Font("Microsoft YaHei", 1, 24)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(244, 235, 208));
+        jLabel2.setForeground(new java.awt.Color(254, 194, 96));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Helper");
 
         jLabel3.setFont(new java.awt.Font("Microsoft YaHei UI", 1, 24)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(244, 235, 208));
+        jLabel3.setForeground(new java.awt.Color(254, 194, 96));
         jLabel3.setText("Welcome");
         jLabel3.setToolTipText("");
 
         jLabel4.setFont(new java.awt.Font("Microsoft YaHei", 1, 24)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(244, 235, 208));
+        jLabel4.setForeground(new java.awt.Color(254, 194, 96));
         jLabel4.setText("Takhreej ");
 
         jLabel5.setFont(new java.awt.Font("Microsoft YaHei", 1, 24)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(244, 235, 208));
+        jLabel5.setForeground(new java.awt.Color(254, 194, 96));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("To");
 
@@ -157,15 +160,15 @@ public class LoginFrame extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        LoginPanel.setBackground(new java.awt.Color(58, 77, 57));
+        LoginPanel.setBackground(new java.awt.Color(7, 7, 57));
         LoginPanel.setForeground(new java.awt.Color(255, 255, 255));
         LoginPanel.setMaximumSize(new java.awt.Dimension(334, 543));
 
         emailLbl.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        emailLbl.setForeground(new java.awt.Color(244, 235, 208));
+        emailLbl.setForeground(new java.awt.Color(254, 194, 96));
         emailLbl.setText("Email");
 
-        emailTextField.setBackground(new java.awt.Color(18, 38, 32));
+        emailTextField.setBackground(new java.awt.Color(196, 182, 182));
         emailTextField.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         emailTextField.setForeground(new java.awt.Color(255, 255, 255));
         emailTextField.setBorder(null);
@@ -184,10 +187,10 @@ public class LoginFrame extends javax.swing.JFrame {
         });
 
         emailLbl1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        emailLbl1.setForeground(new java.awt.Color(244, 235, 208));
+        emailLbl1.setForeground(new java.awt.Color(254, 194, 96));
         emailLbl1.setText("Password");
 
-        passwordField.setBackground(new java.awt.Color(18, 38, 32));
+        passwordField.setBackground(new java.awt.Color(196, 182, 182));
         passwordField.setForeground(new java.awt.Color(255, 255, 255));
         passwordField.setBorder(null);
         passwordField.setPreferredSize(new java.awt.Dimension(69, 20));
@@ -202,7 +205,7 @@ public class LoginFrame extends javax.swing.JFrame {
             }
         });
 
-        rememberMeCheck.setForeground(new java.awt.Color(255, 255, 255));
+        rememberMeCheck.setForeground(new java.awt.Color(254, 194, 96));
         rememberMeCheck.setText("Remember Me");
         rememberMeCheck.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -211,7 +214,7 @@ public class LoginFrame extends javax.swing.JFrame {
         });
 
         forgetPassLbl.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
-        forgetPassLbl.setForeground(new java.awt.Color(255, 255, 255));
+        forgetPassLbl.setForeground(new java.awt.Color(254, 194, 96));
         forgetPassLbl.setText("Forgot Password");
         forgetPassLbl.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -221,8 +224,9 @@ public class LoginFrame extends javax.swing.JFrame {
 
         jSeparator3.setForeground(new java.awt.Color(255, 255, 255));
 
-        jButton1.setBackground(new java.awt.Color(123, 162, 137));
+        jButton1.setBackground(new java.awt.Color(254, 194, 96));
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Login");
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -236,7 +240,7 @@ public class LoginFrame extends javax.swing.JFrame {
         });
 
         forgetPassLbl1.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
-        forgetPassLbl1.setForeground(new java.awt.Color(255, 255, 255));
+        forgetPassLbl1.setForeground(new java.awt.Color(254, 194, 96));
         forgetPassLbl1.setText("Not Registered ? Register Now");
         forgetPassLbl1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -244,57 +248,47 @@ public class LoginFrame extends javax.swing.JFrame {
             }
         });
 
-        jTextField1.setText("jTextField1");
-
         javax.swing.GroupLayout LoginPanelLayout = new javax.swing.GroupLayout(LoginPanel);
         LoginPanel.setLayout(LoginPanelLayout);
         LoginPanelLayout.setHorizontalGroup(
             LoginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(LoginPanelLayout.createSequentialGroup()
                 .addGroup(LoginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(LoginPanelLayout.createSequentialGroup()
-                        .addGroup(LoginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(LoginPanelLayout.createSequentialGroup()
-                                .addGap(71, 71, 71)
-                                .addGroup(LoginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(LoginPanelLayout.createSequentialGroup()
-                                        .addComponent(rememberMeCheck)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addGroup(LoginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(forgetPassLbl, javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(jSeparator3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, LoginPanelLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(LoginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(emailLbl1)
-                                    .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(emailTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(emailLbl))))
-                        .addGap(18, 18, 18)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(LoginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(LoginPanelLayout.createSequentialGroup()
+                            .addGap(71, 71, 71)
+                            .addGroup(LoginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(LoginPanelLayout.createSequentialGroup()
+                                    .addComponent(rememberMeCheck)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGroup(LoginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(forgetPassLbl, javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(jSeparator3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, LoginPanelLayout.createSequentialGroup()
+                            .addContainerGap()
+                            .addGroup(LoginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(emailLbl1)
+                                .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(emailTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(emailLbl))))
                     .addGroup(LoginPanelLayout.createSequentialGroup()
                         .addGap(119, 119, 119)
                         .addGroup(LoginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(forgetPassLbl1, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(44, Short.MAX_VALUE))
+                .addContainerGap(85, Short.MAX_VALUE))
         );
         LoginPanelLayout.setVerticalGroup(
             LoginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(LoginPanelLayout.createSequentialGroup()
                 .addGap(128, 128, 128)
                 .addComponent(emailLbl)
-                .addGroup(LoginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(LoginPanelLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(emailTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(LoginPanelLayout.createSequentialGroup()
-                        .addGap(35, 35, 35)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(emailTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(emailLbl1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -389,8 +383,8 @@ public class LoginFrame extends javax.swing.JFrame {
 	        if (rememberMe) {
 	            loginService.rememberMe(emailTextField.getText(), passwordField.getText(), rememberMe);
 	        }
-                 MainFrame mainFrame = new MainFrame();
-                 mainFrame.setVisible(true);
+                 LandingPage landingPage = new LandingPage();
+                 landingPage.setVisible(true);
                  this.dispose();
 	        JOptionPane.showMessageDialog(null, "Logged In Successfully !");
 	    }
@@ -423,8 +417,8 @@ public class LoginFrame extends javax.swing.JFrame {
                             
                         }
 	                JOptionPane.showMessageDialog(null, "Logged In Successfully !");
-                        MainFrame mainFrame = new MainFrame();
-                        mainFrame.setVisible(true);
+                        LandingPage landingPage = new LandingPage();
+                 landingPage.setVisible(true);
                         System.out.println("Logged in");
 	            }
                     
@@ -462,8 +456,8 @@ public class LoginFrame extends javax.swing.JFrame {
         try {
             if(loginService.autoLogin()){
 		JOptionPane.showMessageDialog(null, "Logged In Successfully !");
-                MainFrame mainFrame = new MainFrame();
-                mainFrame.setVisible(true);
+                 LandingPage landingPage = new LandingPage();
+                 landingPage.setVisible(true);
                 autoDispose();
             }
 	} catch (HeadlessException | AuthenticationException e) {
@@ -506,6 +500,54 @@ public class LoginFrame extends javax.swing.JFrame {
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
+          /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(LandingPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(LandingPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(LandingPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(LandingPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+        //</editor-fold>
+        try {
+
+            // Here you can select the selected theme class name in JTatto
+            UIManager.setLookAndFeel(new FlatMacLightLaf());
+        } catch (UnsupportedLookAndFeelException ex) {
+            //Logger.getLogger(GUI_PO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        UIManager.put("Button.arc", 20);
+        UIManager.put("Component.arc", 20);
+        UIManager.put("TextComponent.arc", 20);
+        UIManager.put("Component.arrowType", "chevron");
+        UIManager.put("Component.focusWidth", 2);
+        UIManager.put("ScrollBar.trackArc", 999);
+        UIManager.put("ScrollBar.thumbArc", 999);
+        UIManager.put("ScrollBar.trackInsets", new Insets(2, 4, 2, 4));
+        UIManager.put("ScrollBar.thumbInsets", new Insets(2, 2, 2, 2));
+        UIManager.put("ScrollBar.track", new Color(0xe0e0e0));
+        UIManager.put("TabbedPane.selectedBackground", new Color(182, 141, 64));
+        UIManager.put("[style]Panel.myRoundPanel",
+                "[light]background: tint(@background,50%);"
+                + "[dark]background: shade(@background,15%);"
+                + "[light]border: 16,16,16,16,shade(@background,10%),,20;"
+                + "[dark]border: 16,16,16,16,tint(@background,10%),,20");
+
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -534,7 +576,6 @@ public class LoginFrame extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JPasswordField passwordField;
     private javax.swing.JCheckBox rememberMeCheck;
     // End of variables declaration//GEN-END:variables

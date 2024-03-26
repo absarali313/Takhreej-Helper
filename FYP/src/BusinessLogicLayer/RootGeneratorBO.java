@@ -28,7 +28,7 @@ public class RootGeneratorBO {
     
     public String removeDiacriticsAndPunctuations(String text) {
     // Remove diacritics
-    String normalizedText = Normalizer.normalize(text, Normalizer.Form.NFD);
+    String normalizedText = Normalizer.normalize(text, Normalizer.Form.NFD); 
     String withoutDiacritics = normalizedText.replaceAll("\\p{InCombiningDiacriticalMarks}+", "");
 
     // Remove punctuations
