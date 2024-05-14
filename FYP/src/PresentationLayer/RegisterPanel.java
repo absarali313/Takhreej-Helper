@@ -66,15 +66,14 @@ public class RegisterPanel extends javax.swing.JPanel {
             .addGap(0, 300, Short.MAX_VALUE)
         );
 
-        setBackground(new java.awt.Color(58, 77, 57));
+        setBackground(new java.awt.Color(47, 18, 76));
         setPreferredSize(new java.awt.Dimension(349, 543));
 
         emailLbl.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        emailLbl.setForeground(new java.awt.Color(244, 235, 208));
+        emailLbl.setForeground(new java.awt.Color(254, 194, 96));
         emailLbl.setText("Email");
 
-        emailTextField.setBackground(new java.awt.Color(18, 38, 32));
-        emailTextField.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        emailTextField.setBackground(new java.awt.Color(196, 182, 182));
         emailTextField.setForeground(new java.awt.Color(255, 255, 255));
         emailTextField.setBorder(null);
         emailTextField.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -92,10 +91,10 @@ public class RegisterPanel extends javax.swing.JPanel {
         });
 
         passwordLbl.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        passwordLbl.setForeground(new java.awt.Color(244, 235, 208));
+        passwordLbl.setForeground(new java.awt.Color(254, 194, 96));
         passwordLbl.setText("Password");
 
-        passwordField.setBackground(new java.awt.Color(18, 38, 32));
+        passwordField.setBackground(new java.awt.Color(196, 182, 182));
         passwordField.setForeground(new java.awt.Color(255, 255, 255));
         passwordField.setBorder(null);
         passwordField.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -112,8 +111,9 @@ public class RegisterPanel extends javax.swing.JPanel {
             }
         });
 
-        jButton1.setBackground(new java.awt.Color(123, 162, 137));
+        jButton1.setBackground(new java.awt.Color(254, 194, 96));
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(47, 18, 76));
         jButton1.setText("Register");
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -127,15 +127,14 @@ public class RegisterPanel extends javax.swing.JPanel {
         });
 
         confirmLbl.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        confirmLbl.setForeground(new java.awt.Color(244, 235, 208));
+        confirmLbl.setForeground(new java.awt.Color(254, 194, 96));
         confirmLbl.setText("Confirm Password");
 
         phoneLbl.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        phoneLbl.setForeground(new java.awt.Color(244, 235, 208));
+        phoneLbl.setForeground(new java.awt.Color(254, 194, 96));
         phoneLbl.setText("Phone Number");
 
-        phoneTextField.setBackground(new java.awt.Color(18, 38, 32));
-        phoneTextField.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        phoneTextField.setBackground(new java.awt.Color(196, 182, 182));
         phoneTextField.setForeground(new java.awt.Color(255, 255, 255));
         phoneTextField.setBorder(null);
         phoneTextField.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -158,11 +157,10 @@ public class RegisterPanel extends javax.swing.JPanel {
         });
 
         nameLbl.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        nameLbl.setForeground(new java.awt.Color(244, 235, 208));
+        nameLbl.setForeground(new java.awt.Color(254, 194, 96));
         nameLbl.setText("Register");
 
-        nameTextField.setBackground(new java.awt.Color(18, 38, 32));
-        nameTextField.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        nameTextField.setBackground(new java.awt.Color(196, 182, 182));
         nameTextField.setForeground(new java.awt.Color(255, 255, 255));
         nameTextField.setBorder(null);
         nameTextField.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -180,10 +178,10 @@ public class RegisterPanel extends javax.swing.JPanel {
         });
 
         nameLbl1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        nameLbl1.setForeground(new java.awt.Color(244, 235, 208));
+        nameLbl1.setForeground(new java.awt.Color(254, 194, 96));
         nameLbl1.setText("Name");
 
-        passwordField1.setBackground(new java.awt.Color(18, 38, 32));
+        passwordField1.setBackground(new java.awt.Color(196, 182, 182));
         passwordField1.setForeground(new java.awt.Color(255, 255, 255));
         passwordField1.setBorder(null);
         passwordField1.addFocusListener(new java.awt.event.FocusAdapter() {

@@ -1,0 +1,12 @@
+16:15:04.635 [main] ERROR org.apache.logging.log4j.Logger - Error in creating new filter
+16:15:59.195 [main] ERROR org.apache.logging.log4j.Logger - Error in creating new filter
+16:16:04.685 [main] ERROR org.apache.logging.log4j.Logger - Error in creating new filter
+16:16:04.769 [main] ERROR org.apache.logging.log4j.Logger - Error in creating new filter
+16:16:46.000 [main] ERROR org.apache.logging.log4j.Logger - Error in creating new filter
+16:17:36.148 [main] ERROR org.apache.logging.log4j.Logger - Error in creating new filter
+16:18:08.630 [main] ERROR org.apache.logging.log4j.Logger - Error in creating new filter
+16:18:37.148 [main] ERROR org.apache.logging.log4j.Logger - Error in creating new filter
+16:18:45.921 [main] ERROR org.apache.logging.log4j.Logger - Error in creating new filter
+13:37:29.120 [main] ERROR org.apache.logging.log4j.Logger - Error: Email is already registered
+13:38:50.652 [main] ERROR org.apache.logging.log4j.Logger - Error: Email is already registered
+13:39:51.913 [main] ERROR org.apache.logging.log4j.Logger - Error: Email is already registered

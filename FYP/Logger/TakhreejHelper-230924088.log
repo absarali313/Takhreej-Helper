@@ -1,0 +1,5 @@
+23:05:22.119 [main] ERROR org.apache.logging.log4j.Logger - Error in retrieving HadithYou have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 1
+23:05:22.139 [main] ERROR org.apache.logging.log4j.Logger - Error in retrieving HadithYou have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 1
+23:05:22.142 [main] ERROR org.apache.logging.log4j.Logger - Error in retrieving HadithNo value specified for parameter 1
+23:09:24.064 [main] ERROR org.apache.logging.log4j.Logger - Error in retrieving HadithYou have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 1
+23:09:24.078 [main] ERROR org.apache.logging.log4j.Logger - Error in retrieving HadithYou have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'Ù„Ø§ ANDØ© OR ØµÙˆÙ…' at line 1

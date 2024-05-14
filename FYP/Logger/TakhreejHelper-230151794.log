@@ -1,0 +1,5 @@
+23:00:48.687 [main] ERROR org.apache.logging.log4j.Logger - Error in retrieving HadithYou have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 1
+23:00:48.701 [main] ERROR org.apache.logging.log4j.Logger - Error in retrieving HadithYou have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 1
+23:00:48.707 [main] ERROR org.apache.logging.log4j.Logger - Error in retrieving HadithUnknown column 'Ù„Ø§' in 'where clause'
+23:01:51.770 [main] ERROR org.apache.logging.log4j.Logger - Error in retrieving HadithYou have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 1
+23:01:51.787 [main] ERROR org.apache.logging.log4j.Logger - Error in retrieving HadithYou have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'Ù„Ø§ ANDØ© OR ØµÙˆÙ…' at line 1

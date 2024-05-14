@@ -43,6 +43,26 @@ public class FilterConverterBO implements IConverterBO {
         }
         return expression;
     }
+    
+     public String convertTokenToFilter(ArrayList<String> list) {
+        String expression = "";
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i).equals("(") || list.get(i).equals(")")) {
+                expression += list.get(i) + " ";
+            } else if (!list.get(i).equals("AND") && !list.get(i).equals("OR")) {
+                if (!list.get(i).startsWith("!")) {
+                    expression += "matn REGEXP '\\\\b" + list.get(i) + "\\\\b' ";
+                } else {
+                    expression += "matn NOT REGEXP '\\\\b" + list.get(i).replace("!", "") + "\\\\b' ";
+                }
+
+            } else {
+                expression += list.get(i) + " ";
+
+            }
+        }
+        return expression;
+    }
 
     public String converLemmaToFilter(ArrayList<String> list) {
         String expression = "";
@@ -80,9 +100,9 @@ public class FilterConverterBO implements IConverterBO {
 
                 } else if (!list.get(i).equals("AND") && !list.get(i).equals("OR")) {
                     if (!list.get(i).startsWith("!")) {
-                        expression += "root REGEXP '" + list.get(i) + "' ";
+                        expression += "root = '" + list.get(i) + "' ";
                     } else {
-                        expression += "root REGEXP  '" + list.get(i).replace("!", "") + "' ";
+                        expression += "root <>  '" + list.get(i).replace("!", "") + "' ";
                     }
 
                 } else {

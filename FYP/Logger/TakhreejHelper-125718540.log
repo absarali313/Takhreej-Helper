@@ -1,0 +1,11 @@
+12:26:50.535 [main] ERROR org.apache.logging.log4j.Logger - Error in updating research
+12:57:18.494 [main] ERROR org.apache.logging.log4j.Logger - Error in finding research with this name.
+12:57:18.501 [main] ERROR org.apache.logging.log4j.Logger - Error in creating new research
+12:57:18.510 [main] ERROR org.apache.logging.log4j.Logger - Error in finding research with this name.
+12:57:18.511 [main] ERROR org.apache.logging.log4j.Logger - Error in creating new research
+12:57:18.517 [main] ERROR org.apache.logging.log4j.Logger - Error in finding research with this name.
+12:57:18.518 [main] ERROR org.apache.logging.log4j.Logger - Error in creating new research
+12:57:18.526 [main] ERROR org.apache.logging.log4j.Logger - Error in finding research with this name.
+12:57:18.528 [main] ERROR org.apache.logging.log4j.Logger - Error in creating new research
+12:57:18.531 [main] ERROR org.apache.logging.log4j.Logger - Error in updating research
+12:57:18.534 [main] ERROR org.apache.logging.log4j.Logger - Error in deleting research

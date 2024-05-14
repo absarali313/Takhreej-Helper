@@ -1,0 +1,8 @@
+00:43:18.768 [main] ERROR org.apache.logging.log4j.Logger - Error in retrieving HadithUnknown column 'Ù…Ù†Ø§Ù„' in 'where clause'
+00:43:18.780 [main] ERROR org.apache.logging.log4j.Logger - Error in retrieving HadithUnknown column 'ÙˆÙ�ÙŠ' in 'where clause'
+00:43:18.790 [main] ERROR org.apache.logging.log4j.Logger - Error in retrieving HadithUnknown column 'Ø§Ø¨ØµØ§Ø±ØªØ±' in 'where clause'
+00:43:18.793 [main] ERROR org.apache.logging.log4j.Logger - Error in retrieving HadithNo value specified for parameter 1
+00:44:31.935 [main] ERROR org.apache.logging.log4j.Logger - Error in retrieving HadithUnknown column 'Ù…Ù†Ø§Ù„' in 'where clause'
+00:44:31.942 [main] ERROR org.apache.logging.log4j.Logger - Error in retrieving HadithUnknown column 'Ø±Ø³ÙˆÙ„' in 'where clause'
+00:44:31.951 [main] ERROR org.apache.logging.log4j.Logger - Error in retrieving HadithUnknown column 'Ø¢Ø¨Ø§Ø¡' in 'where clause'
+00:44:31.955 [main] ERROR org.apache.logging.log4j.Logger - Error in retrieving HadithYou have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'Ù„Ø§ ANDØ© OR ØµÙˆÙ…' at line 1

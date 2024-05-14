@@ -1,0 +1,6 @@
+17:18:30.619 [AWT-EventQueue-0] ERROR BusinessLogicLayer.LoginService - Authentication failed for user: absar0306@gmail.com
+00:16:02.248 [pool-3-thread-1] ERROR org.apache.logging.log4j.Logger - Error in retrieving HadithYou have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 1
+00:16:25.554 [AWT-EventQueue-0] ERROR org.apache.logging.log4j.Logger - Error in retrieving HadithYou have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 1
+00:16:33.935 [AWT-EventQueue-0] ERROR org.apache.logging.log4j.Logger - Error in retrieving HadithYou have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 1
+00:25:55.119 [AWT-EventQueue-0] ERROR org.apache.logging.log4j.Logger - Error while getting hadith from database: No Research Found
+00:26:32.811 [AWT-EventQueue-0] ERROR org.apache.logging.log4j.Logger - Error while getting hadith from database: No Research Found

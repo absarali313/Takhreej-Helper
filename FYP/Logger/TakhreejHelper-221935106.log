@@ -1,0 +1,12 @@
+21:03:46.328 [main] ERROR org.apache.logging.log4j.Logger - Error in creating new filter
+21:05:16.502 [main] ERROR org.apache.logging.log4j.Logger - Error in creating new filter
+21:06:35.514 [main] ERROR org.apache.logging.log4j.Logger - Error in creating new filter
+21:46:59.269 [main] ERROR org.apache.logging.log4j.Logger - Error in updating research
+21:56:44.371 [main] ERROR org.apache.logging.log4j.Logger - Error in updating research
+21:58:56.244 [main] ERROR org.apache.logging.log4j.Logger - Error in updating research
+21:59:19.403 [main] ERROR org.apache.logging.log4j.Logger - Error in updating research
+22:02:38.051 [main] ERROR org.apache.logging.log4j.Logger - Error in updating research
+22:11:42.134 [main] ERROR org.apache.logging.log4j.Logger - Error in updating research
+22:12:42.543 [main] ERROR org.apache.logging.log4j.Logger - Error in updating research
+22:16:02.514 [main] ERROR org.apache.logging.log4j.Logger - Error in updating research
+22:18:07.434 [main] ERROR org.apache.logging.log4j.Logger - Error in updating research

@@ -1,0 +1,11 @@
+13:47:40.888 [main] ERROR org.apache.logging.log4j.Logger - Error: Email is already registered
+13:55:12.952 [main] ERROR org.apache.logging.log4j.Logger - Error: Email is already registered
+13:56:48.028 [main] ERROR org.apache.logging.log4j.Logger - Error: Email is already registered
+13:56:48.039 [main] ERROR org.apache.logging.log4j.Logger - Error: Email is already registered
+13:57:56.361 [main] ERROR org.apache.logging.log4j.Logger - Error: Email is already registered
+13:57:56.370 [main] ERROR org.apache.logging.log4j.Logger - Error: Email is already registered
+13:59:26.538 [main] ERROR org.apache.logging.log4j.Logger - Error: Email is already registered
+14:04:46.691 [main] ERROR org.apache.logging.log4j.Logger - Error: Email is already registered
+14:04:46.702 [main] ERROR org.apache.logging.log4j.Logger - Error: Email is already registered
+14:06:17.353 [main] ERROR org.apache.logging.log4j.Logger - Error: Email is already registered
+14:06:17.360 [main] ERROR org.apache.logging.log4j.Logger - Error: Email is already registered

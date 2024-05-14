@@ -78,6 +78,7 @@ public class ResearchPanel extends javax.swing.JPanel {
         filterLbl.setForeground(new java.awt.Color(254, 194, 96));
         filterLbl.setText("Filter:");
 
+        filterExpressionTextField.setEditable(false);
         filterExpressionTextField.setBackground(new java.awt.Color(196, 182, 182));
         filterExpressionTextField.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
 
@@ -104,7 +105,7 @@ public class ResearchPanel extends javax.swing.JPanel {
 
         searchTypeComboBox.setBackground(new java.awt.Color(196, 182, 182));
         searchTypeComboBox.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        searchTypeComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pattern", "Lemma", "Root" }));
+        searchTypeComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pattern", "Lemma", "Root", "Token" }));
         searchTypeComboBox.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 searchTypeComboBoxItemStateChanged(evt);
@@ -316,6 +317,7 @@ public class ResearchPanel extends javax.swing.JPanel {
         jScrollPane2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(47, 18, 76), 5, true));
         jScrollPane2.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
+        selectedHadithTextArea.setEditable(false);
         selectedHadithTextArea.setBackground(new java.awt.Color(196, 182, 182));
         selectedHadithTextArea.setColumns(15);
         selectedHadithTextArea.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -344,10 +346,12 @@ public class ResearchPanel extends javax.swing.JPanel {
             System.out.println("valid filter");
             if (newFilterRadioBtn.isSelected()) {
                 if (createFilter()) {
-                    System.out.println(research.getFilters().size());
+
+                    System.out.println(research.getFilters().size() + "Filter inserted ");
                     applyFilter();
                     existingFilterRadioBtn.setSelected(true);
                     JOptionPane.showMessageDialog(null, "New Filter Applied! ");
+                    filterNumComboBox.setSelectedIndex(filterNumComboBox.getItemCount() - 1);
 
                 } else {
                     JOptionPane.showMessageDialog(null, "Error while making new filter");
@@ -356,6 +360,7 @@ public class ResearchPanel extends javax.swing.JPanel {
                 System.out.println("Existing Filter");
                 if (updateFilter()) {
                     System.out.println("Upadting");
+                    fascadeBLL.updateFilterType(this.research.getResearchId(), this.research.getFilters().get(filterNumComboBox.getSelectedIndex()).getOrderNo(), searchTypeComboBox.getSelectedItem().toString());
                     applyFilter();
                     JOptionPane.showMessageDialog(null, " Filter Updated! ");
 
@@ -374,6 +379,7 @@ public class ResearchPanel extends javax.swing.JPanel {
     private void addFilterToResearch() {
 
         research.getFilters().add(new Filter(this.research.getResearchId(), filterNumComboBox.getItemCount(), filterExpressionTextField.getText(), searchTypeComboBox.getSelectedItem().toString()));
+
     }
 
     private boolean insertFilter() {
@@ -412,13 +418,17 @@ public class ResearchPanel extends javax.swing.JPanel {
         int filterIndex = 1 + findHighestValueFromComboBox(filterNumComboBox);
         filterNumComboBox.addItem(Integer.toString(filterIndex));
 
-        filterNumComboBox.setSelectedIndex(filterNumComboBox.getItemCount() - 1);
+        //  filterNumComboBox.setSelectedIndex(filterNumComboBox.getItemCount() - 1);
         return insertFilter();
     }
 
     private boolean updateFilter() {
+        // if (!newFilterRadioBtn.isSelected()) {
         research.getFilters().get(filterNumComboBox.getSelectedIndex()).setExpression(filterExpressionTextField.getText());
-        return fascadeBLL.updateFilterExpression(research.getResearchId(), filterNumComboBox.getSelectedIndex(), filterExpressionTextField.getText());
+
+        return fascadeBLL.updateFilterExpression(research.getResearchId(), research.getFilters().get(filterNumComboBox.getSelectedIndex()).getOrderNo(), filterExpressionTextField.getText());
+        //  }
+        // return false;
     }
 
     private void keywordTextFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_keywordTextFieldKeyPressed
@@ -458,6 +468,7 @@ public class ResearchPanel extends javax.swing.JPanel {
 
     private void setSearchType() {
         if (filterNumComboBox.getItemCount() > 0) {
+            System.out.println(this.research.getFilters().get(filterNumComboBox.getSelectedIndex()).getType());
             switch (this.research.getFilters().get(filterNumComboBox.getSelectedIndex()).getType()) {
                 case "Pattern":
                     searchTypeComboBox.setSelectedItem("Pattern");
@@ -467,6 +478,9 @@ public class ResearchPanel extends javax.swing.JPanel {
                     break;
                 case "Root":
                     searchTypeComboBox.setSelectedItem("Root");
+                    break;
+                case "Token":
+                    searchTypeComboBox.setSelectedItem("Token");
                     break;
 
                 default:
@@ -610,8 +624,8 @@ public class ResearchPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_existingFilterRadioBtnActionPerformed
 
     private void searchTypeComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchTypeComboBoxActionPerformed
-        if (existingFilterRadioBtn.isSelected())
-            fascadeBLL.updateFilterType(this.research.getResearchId(), filterNumComboBox.getSelectedIndex(), searchTypeComboBox.getSelectedItem().toString());
+//        if (existingFilterRadioBtn.isSelected())
+//            fascadeBLL.updateFilterType(this.research.getResearchId(), this.research.getFilters().get(filterNumComboBox.getSelectedIndex()).getOrderNo(), searchTypeComboBox.getSelectedItem().toString());
     }//GEN-LAST:event_searchTypeComboBoxActionPerformed
 
     private void searchTypeComboBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_searchTypeComboBoxItemStateChanged
@@ -650,7 +664,7 @@ public class ResearchPanel extends javax.swing.JPanel {
 
     private void undoBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_undoBtnMouseClicked
 
-        if (!filterExpressionArr.isEmpty()) {
+        if (filterExpressionArr.size() > 1) {
             filterExpressionArr.remove(filterExpressionArr.size() - 1);
 
             if (!filterExpressionArr.isEmpty() && (filterExpressionArr.getLast().equals("AND") || filterExpressionArr.getLast().equals("OR"))) {
@@ -745,10 +759,13 @@ public class ResearchPanel extends javax.swing.JPanel {
 
     private void applyFilter() {
         if (!fascadeBLL.getResearch(this.research.getName()).getFilters().isEmpty()) {
-            ArrayList<Hadith> hadiths = fascadeBLL.searchHadiths(fascadeBLL.getResearch(this.research.getName()), filterNumComboBox.getSelectedIndex());
+
+           // ArrayList<Hadith> hadiths = fascadeBLL.searchHadiths(fascadeBLL.getResearch(this.research.getName()), filterNumComboBox.getSelectedIndex());
+
             ExecutorService executorService = Executors.newSingleThreadExecutor();
 
             executorService.execute(() -> {
+                ArrayList<Hadith> hadiths = fascadeBLL.searchHadiths(fascadeBLL.getResearch(this.research.getName()), filterNumComboBox.getSelectedIndex());
 
                 populateHadithTable(hadiths); // Optionally, you can perform additional tasks after init() completes
                 // For example, update UI components, notify other parts of your application, etc.

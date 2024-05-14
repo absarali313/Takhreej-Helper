@@ -1,0 +1,12 @@
+22:07:24.780 [AWT-EventQueue-0] ERROR org.apache.logging.log4j.Logger - Error in retrieving Hadith
+15:14:13.424 [main] ERROR org.apache.logging.log4j.Logger - Error in creating new filter
+15:22:03.454 [main] ERROR org.apache.logging.log4j.Logger - Error in creating new filter
+15:28:20.682 [main] ERROR org.apache.logging.log4j.Logger - Error in creating new filter
+15:28:41.663 [main] ERROR org.apache.logging.log4j.Logger - Error in creating new filter
+15:32:09.871 [main] ERROR org.apache.logging.log4j.Logger - Error in creating new filter
+15:36:50.714 [main] ERROR org.apache.logging.log4j.Logger - Error in creating new filter
+15:37:10.677 [main] ERROR org.apache.logging.log4j.Logger - Error in creating new filter
+15:43:21.787 [main] ERROR org.apache.logging.log4j.Logger - Error in creating new filter
+15:45:39.273 [main] ERROR org.apache.logging.log4j.Logger - Error in creating new filter
+15:48:25.197 [main] ERROR org.apache.logging.log4j.Logger - Error in creating new filter
+16:02:32.175 [main] ERROR org.apache.logging.log4j.Logger - Error in creating new filter

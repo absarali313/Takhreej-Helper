@@ -45,6 +45,9 @@ public class SmartSearchPanel extends javax.swing.JPanel {
         hadithTextArea = new javax.swing.JTextArea();
         ahadeesInResearchTableScrollPane = new javax.swing.JScrollPane();
         hadithTable = new javax.swing.JTable();
+        translateBtn = new javax.swing.JButton();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jTextArea2 = new javax.swing.JTextArea();
 
         setBackground(new java.awt.Color(7, 7, 57));
 
@@ -65,6 +68,7 @@ public class SmartSearchPanel extends javax.swing.JPanel {
             }
         });
 
+        hadithTextArea.setBackground(new java.awt.Color(196, 182, 182));
         hadithTextArea.setColumns(20);
         hadithTextArea.setRows(5);
         jScrollPane1.setViewportView(hadithTextArea);
@@ -80,7 +84,7 @@ public class SmartSearchPanel extends javax.swing.JPanel {
                     .addGroup(newFilterBackPanelLayout.createSequentialGroup()
                         .addComponent(filterLbl)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(searchBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(searchBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(14, 14, 14))
         );
         newFilterBackPanelLayout.setVerticalGroup(
@@ -131,6 +135,39 @@ public class SmartSearchPanel extends javax.swing.JPanel {
             }
         });
         ahadeesInResearchTableScrollPane.setViewportView(hadithTable);
+        if (hadithTable.getColumnModel().getColumnCount() > 0) {
+            hadithTable.getColumnModel().getColumn(0).setMinWidth(40);
+            hadithTable.getColumnModel().getColumn(0).setMaxWidth(40);
+            hadithTable.getColumnModel().getColumn(1).setMinWidth(60);
+            hadithTable.getColumnModel().getColumn(1).setMaxWidth(60);
+            hadithTable.getColumnModel().getColumn(2).setMinWidth(120);
+            hadithTable.getColumnModel().getColumn(2).setMaxWidth(120);
+            hadithTable.getColumnModel().getColumn(4).setMinWidth(300);
+            hadithTable.getColumnModel().getColumn(4).setMaxWidth(500);
+        }
+
+        translateBtn.setBackground(new java.awt.Color(254, 194, 96));
+        translateBtn.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        translateBtn.setForeground(new java.awt.Color(59, 24, 95));
+        translateBtn.setText("Translate");
+        translateBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                translateBtnActionPerformed(evt);
+            }
+        });
+
+        jScrollPane4.setBackground(new java.awt.Color(47, 18, 76));
+        jScrollPane4.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(47, 18, 76), 5, true));
+        jScrollPane4.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+
+        jTextArea2.setEditable(false);
+        jTextArea2.setBackground(new java.awt.Color(196, 182, 182));
+        jTextArea2.setColumns(15);
+        jTextArea2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jTextArea2.setLineWrap(true);
+        jTextArea2.setRows(5);
+        jTextArea2.setBorder(null);
+        jScrollPane4.setViewportView(jTextArea2);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -138,18 +175,27 @@ public class SmartSearchPanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(29, 29, 29)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(newFilterBackPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ahadeesInResearchTableScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 1185, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(translateBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(newFilterBackPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 414, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(ahadeesInResearchTableScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 1185, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(38, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(31, 31, 31)
-                .addComponent(newFilterBackPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(newFilterBackPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(ahadeesInResearchTableScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(translateBtn)
+                .addGap(29, 29, 29)
+                .addComponent(ahadeesInResearchTableScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(56, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -166,9 +212,17 @@ public class SmartSearchPanel extends javax.swing.JPanel {
         int row = source.rowAtPoint(evt.getPoint());
         if (hadithTable.getValueAt(row, 3) != null) {
             String matn = hadithTable.getValueAt(row, 3).toString();
-            //jTextArea2.setText(matn);
+            jTextArea2.setText(matn);
         }
     }//GEN-LAST:event_hadithTableMouseClicked
+
+    private void translateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_translateBtnActionPerformed
+        if (!jTextArea2.getText().equals("")) {
+            String englishHadith = fascadeBLL.getTranslationToEnglish(jTextArea2.getText());
+            jTextArea2.setText(englishHadith);
+        } else
+        JOptionPane.showMessageDialog(null, "Please select a hadith from below table.", "Warning", JOptionPane.WARNING_MESSAGE);
+    }//GEN-LAST:event_translateBtnActionPerformed
 
     private void search() {
         if (hadithTextArea.getText().replaceAll(" ", "") != "" && !hadithTextArea.getText().equals("")) {
@@ -214,7 +268,10 @@ public class SmartSearchPanel extends javax.swing.JPanel {
     public javax.swing.JTable hadithTable;
     private javax.swing.JTextArea hadithTextArea;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JTextArea jTextArea2;
     private javax.swing.JPanel newFilterBackPanel;
     private javax.swing.JButton searchBtn;
+    private javax.swing.JButton translateBtn;
     // End of variables declaration//GEN-END:variables
 }

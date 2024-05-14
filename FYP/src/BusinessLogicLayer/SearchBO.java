@@ -43,6 +43,10 @@ public class SearchBO implements ISearchBO {
             else if (research.getFilters().get(i).getType().equals("Root")) {
                 hadithIds.addAll(searchHadithsByRoots(research, i));
             }
+            else if(research.getFilters().get(i).getType().equals("Token"))
+            {
+                hadithIds.addAll(searchHadithsByToken(research,i));
+            }
             
         }
         hadithIds = keepAtLeastXTimesElements(hadithIds, filterIndex + 1);
@@ -64,6 +68,22 @@ public class SearchBO implements ISearchBO {
         FilterConverterBO converter = new FilterConverterBO(new FascadeDAO());
         ArrayList<String> filterArray = fascadeBLL.convert(research.getFilters().get(filterIndex).getExpression());
         expression = converter.convertToFilter(filterArray);
+        System.out.println(expression);
+        hadithIdsRegex.addAll(fascadeDAO.getFilteredHadithIds(expression));
+
+        ArrayList<Integer> hadithIds = hadithIdsRegex;
+
+        return hadithIds;
+    }
+    
+        public ArrayList<Integer> searchHadithsByToken(Research research, int filterIndex) {
+        ArrayList<Hadith> hadiths = new ArrayList<Hadith>();
+        ArrayList<Integer> hadithIdsRegex = new ArrayList<Integer>();
+
+        String expression;
+        FilterConverterBO converter = new FilterConverterBO(new FascadeDAO());
+        ArrayList<String> filterArray = fascadeBLL.convert(research.getFilters().get(filterIndex).getExpression());
+        expression = converter.convertTokenToFilter(filterArray);
         System.out.println(expression);
         hadithIdsRegex.addAll(fascadeDAO.getFilteredHadithIds(expression));
 

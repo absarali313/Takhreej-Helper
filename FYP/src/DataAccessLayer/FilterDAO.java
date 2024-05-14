@@ -35,6 +35,7 @@ public class FilterDAO implements IFilterDAO {
         }
     }
 
+    
     @Override
     public boolean updateFilter(int researchId, int orderNo, String filter) {
         String query = "UPDATE filter SET expression = ? WHERE researchId = ? AND orderNo = ?";
@@ -55,8 +56,8 @@ public class FilterDAO implements IFilterDAO {
                 return false;
             }
         } catch (SQLException e) {
-            System.out.println("Failed");
-            Log.getLogger().error("Error in updating filter", e.getMessage());
+            System.out.println("Error in updating filter" +  e.getMessage());
+            Log.getLogger().error("Error in updating filter" +  e.getMessage());
             return false;
         }
     }
@@ -84,9 +85,7 @@ public class FilterDAO implements IFilterDAO {
             return false;
         }
     }
-
-    @Override
-    public boolean deleteFilter(int researchId, int orderNum) {
+ public boolean deleteFilter(int researchId, int orderNum) {
 
         String query = "DELETE FROM filter WHERE researchId = ? AND orderNo = ?";
         try (PreparedStatement preparedStatement = DBhandler.getInstance().getConnection().prepareStatement(query)) {
@@ -105,6 +104,8 @@ public class FilterDAO implements IFilterDAO {
             return false;
         }
     }
+    @Override
+   
 
     public ArrayList<Filter> getFilters(int researchId) {
         ArrayList<Filter> filters = new ArrayList<Filter>();

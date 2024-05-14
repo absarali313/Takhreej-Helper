@@ -1,0 +1,7 @@
+00:26:34.927 [AWT-EventQueue-0] ERROR org.apache.logging.log4j.Logger - Error while getting hadith from database: No Research Found
+15:23:42.684 [AWT-EventQueue-0] ERROR org.apache.logging.log4j.Logger - Error in retrieving HadithGot error 'nothing to repeat at offset 0' from regexp
+15:23:45.504 [AWT-EventQueue-0] ERROR org.apache.logging.log4j.Logger - Error in retrieving HadithGot error 'nothing to repeat at offset 0' from regexp
+15:24:04.927 [AWT-EventQueue-0] ERROR org.apache.logging.log4j.Logger - Error in retrieving HadithGot error 'nothing to repeat at offset 0' from regexp
+15:24:09.113 [AWT-EventQueue-0] ERROR org.apache.logging.log4j.Logger - Error in retrieving HadithGot error 'nothing to repeat at offset 0' from regexp
+01:20:24.586 [AWT-EventQueue-0] ERROR org.apache.logging.log4j.Logger - Error in retrieving HadithGot error 'nothing to repeat at offset 0' from regexp
+01:20:28.066 [pool-3-thread-1] ERROR org.apache.logging.log4j.Logger - Error in retrieving HadithGot error 'nothing to repeat at offset 0' from regexp
