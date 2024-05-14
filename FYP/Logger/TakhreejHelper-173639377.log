@@ -1,0 +1,9 @@
+17:34:37.192 [main] ERROR org.apache.logging.log4j.Logger - Error inserting user: Column 'name' cannot be null
+17:34:37.210 [main] ERROR org.apache.logging.log4j.Logger - Error: Email is already registered
+17:35:04.016 [main] ERROR org.apache.logging.log4j.Logger - Error in creating new filter
+17:35:04.045 [main] ERROR org.apache.logging.log4j.Logger - Error in updating research
+17:35:04.071 [main] ERROR org.apache.logging.log4j.Logger - Error in creating new filter
+17:36:39.355 [main] ERROR org.apache.logging.log4j.Logger - Error in retrieving HadithUnknown column 'Ù…Ù†Ø§Ù„' in 'where clause'
+17:36:39.362 [main] ERROR org.apache.logging.log4j.Logger - Error in retrieving HadithUnknown column 'Ø±Ø³ÙˆÙ„' in 'where clause'
+17:36:39.364 [main] ERROR org.apache.logging.log4j.Logger - Error in retrieving HadithUnknown column 'Ø¢Ø¨Ø§Ø¡' in 'where clause'
+17:36:39.372 [main] ERROR org.apache.logging.log4j.Logger - Error in retrieving HadithYou have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'Ù„Ø§ ANDØ© OR ØµÙˆÙ…' at line 1

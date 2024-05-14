@@ -51,6 +51,7 @@ public class RegisterDALTest {
         boolean result = instance.insertUser(user);
         // Verify the result
         assertFalse(result); // Expecting false as the email is already registered
+        
     }
   @Test
     public void testInsertUser_SuccessfulInsertion() {

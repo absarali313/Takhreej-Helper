@@ -1,0 +1,11 @@
+12:46:02.804 [AWT-EventQueue-0] ERROR org.apache.logging.log4j.Logger - Error in retrieving Hadith
+16:21:59.354 [main] ERROR org.apache.logging.log4j.Logger - Error inserting user: Column 'name' cannot be null
+16:21:59.371 [main] ERROR org.apache.logging.log4j.Logger - Error: Email is already registered
+16:22:19.815 [main] ERROR org.apache.logging.log4j.Logger - Error in creating new filter
+16:22:19.832 [main] ERROR org.apache.logging.log4j.Logger - Error in updating research
+16:22:19.856 [main] ERROR org.apache.logging.log4j.Logger - Error in creating new filter
+16:22:19.976 [main] ERROR org.apache.logging.log4j.Logger - Error in creating new filter
+16:22:19.990 [main] ERROR org.apache.logging.log4j.Logger - Error in creating new filter
+16:22:20.102 [main] ERROR org.apache.logging.log4j.Logger - Error in creating new filter
+16:22:44.154 [main] ERROR org.apache.logging.log4j.Logger - Error in retrieving HadithUnknown column 'Ù…Ù†Ø§Ù„' in 'where clause'
+16:22:44.160 [main] ERROR org.apache.logging.log4j.Logger - Error in retrieving HadithUnknown column 'Ø±Ø³ÙˆÙ„' in 'where clause'

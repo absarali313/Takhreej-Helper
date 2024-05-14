@@ -4,6 +4,9 @@
  */
 package BusinessLogicLayer;
 
+import DataAccessLayer.FascadeDAO;
+import DataAccessLayer.IFascadeDAO;
+import TransferObject.Research;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -39,69 +42,113 @@ public class FilterBOTest {
     /**
      * Test of createFilter method, of class FilterBO.
      */
-    @Test
-    public void testCreateFilter() {
-        System.out.println("createFilter");
-        int researchId = 0;
-        int orderNo = 0;
-        String expression = "";
-        String type = "";
-        FilterBO instance = null;
-        boolean expResult = false;
-        boolean result = instance.createFilter(researchId, orderNo, expression, type);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+      @Test
+    public void testCreateFilter_Success() {
+        // Arrange
+        IFascadeDAO fascadeDAO = new FascadeDAO(); // Instantiate the concrete implementation
+        FilterBO instance = new FilterBO(fascadeDAO);
+        String researchName = "Test Research";
+        String filterExpression = "غزوAND?";
+        String filterType = "Pattern";
+        ResearchBO researchBO = new ResearchBO(fascadeDAO);
+        researchBO.createResearch(researchName);
+        Research researchTest = researchBO.getResearch(researchName);
+        // Act: Attempt to create a filter
+        boolean result = instance.createFilter(researchTest.getResearchId(), 1, filterExpression, filterType);
+        // Assert: Verify that the filter creation succeeds
+        assertTrue(result);
+        instance.deleteFilter(researchTest.getResearchId(), 1);
+       
     }
-
+    @Test
+    public void testCreateFilter_Failure() {
+        // Arrange
+        IFascadeDAO fascadeDAO = new FascadeDAO(); // Instantiate the concrete implementation
+        FilterBO instance = new FilterBO(fascadeDAO);
+        String researchName = "Test Research";
+        String filterExpression = "غزو";
+        String filterType = "Pattern";
+        ResearchBO researchBO = new ResearchBO(fascadeDAO);
+        researchBO.createResearch(researchName);
+       // Research researchTest = researchBO.getResearch(researchName);
+        // Act: Attempt to create a filter
+        boolean result = instance.createFilter(-1, 1, filterExpression, filterType);
+        // Assert: Verify that the filter creation succeeds
+        assertFalse(result);
+    }
     /**
      * Test of updateFilterExpression method, of class FilterBO.
      */
-    @Test
-    public void testUpdateFilterExpression() {
-        System.out.println("updateFilterExpression");
-        int id = 0;
-        int orderNo = 0;
-        String expression = "";
-        FilterBO instance = null;
-        boolean expResult = false;
-        boolean result = instance.updateFilterExpression(id, orderNo, expression);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+      @Test
+    public void testUpdateFilterExpression_Success() {
+        // Arrange
+        IFascadeDAO fascadeDAO = new FascadeDAO(); // Instantiate the concrete implementation
+        FilterBO instance = new FilterBO(fascadeDAO);
+        String researchName = "checking";
+        String filterExpression = "Filter Expression";
+        String newExpression = "New Filter Expression";
+        String filterType = "Type";
+        ResearchBO researchBO = new ResearchBO(fascadeDAO);
+        researchBO.createResearch(researchName);
+        Research researchTest = researchBO.getResearch(researchName);
+        instance.createFilter(researchTest.getResearchId(),1, filterExpression, filterType);
+        boolean result = instance.updateFilterExpression(researchTest.getResearchId(),1, newExpression);
+        // Assert: Verify that the filter expression is updated successfully
+        assertTrue(result);
+        researchBO.deleteResearch(researchTest.getResearchId());
+        instance.deleteFilter(researchTest.getResearchId(), 1);
+    }
+         @Test
+    public void testUpdateFilterExpression_Failure() {
+        // Arrange
+        IFascadeDAO fascadeDAO = new FascadeDAO(); // Instantiate the concrete implementation
+        FilterBO instance = new FilterBO(fascadeDAO);
+        String researchName = "checking";
+        String filterExpression = "Filter Expression";
+        String newExpression = "New Filter Expression";
+        String filterType = "Type";
+        ResearchBO researchBO = new ResearchBO(fascadeDAO);
+        researchBO.createResearch(researchName);
+        Research researchTest = researchBO.getResearch(researchName);
+        instance.createFilter(researchTest.getResearchId(),1, filterExpression, filterType);
+        boolean result = instance.updateFilterExpression(-1,1, newExpression);
+        // Assert: Verify that the filter expression is updated successfully
+        assertFalse(result);
+    }
+       @Test
+    public void testDeleteFilterExpression_Success() {
+        // Arrange
+        IFascadeDAO fascadeDAO = new FascadeDAO(); // Instantiate the concrete implementation
+        FilterBO instance = new FilterBO(fascadeDAO);
+        String researchName = "Namaz new research";
+        String filterExpression = "زكا ةزكاة ?";
+        String filterType = "Type";
+        ResearchBO researchBO = new ResearchBO(fascadeDAO);
+        researchBO.createResearch(researchName);
+        Research researchTest = researchBO.getResearch(researchName);
+        instance.createFilter(researchTest.getResearchId(),1, filterExpression, filterType);
+        boolean result = instance.deleteFilter(researchTest.getResearchId(), 1);
+        assertTrue(result);
+        researchBO.deleteResearch(researchTest.getResearchId());
+        
+    }
+        @Test
+    public void testDeleteFilterExpression_Failure() {
+        // Arrange
+        IFascadeDAO fascadeDAO = new FascadeDAO(); // Instantiate the concrete implementation
+        FilterBO instance = new FilterBO(fascadeDAO);
+        String researchName = "Namaz new research";
+        String filterExpression = "زكا ةزكاة ?";
+        String filterType = "Type";
+        ResearchBO researchBO = new ResearchBO(fascadeDAO);
+        researchBO.createResearch(researchName);
+        Research researchTest = researchBO.getResearch(researchName);
+        instance.createFilter(researchTest.getResearchId(),1, filterExpression, filterType);
+        boolean result = instance.deleteFilter(-1, 1);
+        assertFalse(result);
+        researchBO.deleteResearch(researchTest.getResearchId());
+        
     }
 
-    /**
-     * Test of updateFilterType method, of class FilterBO.
-     */
-    @Test
-    public void testUpdateFilterType() {
-        System.out.println("updateFilterType");
-        int id = 0;
-        int orderNo = 0;
-        String type = "";
-        FilterBO instance = null;
-        boolean expResult = false;
-        boolean result = instance.updateFilterType(id, orderNo, type);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of deleteFilter method, of class FilterBO.
-     */
-    @Test
-    public void testDeleteFilter() {
-        System.out.println("deleteFilter");
-        int id = 0;
-        int orderNum = 0;
-        FilterBO instance = null;
-        boolean expResult = false;
-        boolean result = instance.deleteFilter(id, orderNum);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
     
 }

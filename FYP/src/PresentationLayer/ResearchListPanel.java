@@ -661,7 +661,7 @@ public class ResearchListPanel extends javax.swing.JPanel {
             LandingPage landingPage = (LandingPage) mainPanel.getTopLevelAncestor();
             CardLayout cardLayout = (CardLayout) mainPanel.getLayout();
             cardLayout.show(mainPanel, "card3");
-
+            landingPage.researchPanel1.resetFields();
             landingPage.researchPanel1.setReseach(research);
         }
 

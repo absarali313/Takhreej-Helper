@@ -1,4 +1,5 @@
-00:45:00.798 [main] ERROR org.apache.logging.log4j.Logger - Error in retrieving HadithUnknown column 'Ù…Ù†Ø§Ù„' in 'where clause'
-00:45:00.809 [main] ERROR org.apache.logging.log4j.Logger - Error in retrieving HadithUnknown column 'Ù�Ù‚Ù…' in 'where clause'
-00:45:00.815 [main] ERROR org.apache.logging.log4j.Logger - Error in retrieving HadithUnknown column 'Ø§Ø¨ØµØ§Ø±ØªØ±' in 'where clause'
-00:45:00.816 [main] ERROR org.apache.logging.log4j.Logger - Error in retrieving HadithNo value specified for parameter 1
+17:37:03.534 [main] ERROR org.apache.logging.log4j.Logger - Error in retrieving HadithUnknown column 'Ù…Ù†Ø§Ù„' in 'where clause'
+17:37:03.542 [main] ERROR org.apache.logging.log4j.Logger - Error in retrieving HadithUnknown column 'Ù�Ù‚Ù…' in 'where clause'
+17:37:03.552 [main] ERROR org.apache.logging.log4j.Logger - Error in retrieving HadithUnknown column 'Ø§Ø¨ØµØ§Ø±ØªØ±' in 'where clause'
+17:37:03.554 [main] ERROR org.apache.logging.log4j.Logger - Error in retrieving HadithNo value specified for parameter 1
+17:38:15.225 [main] ERROR org.apache.logging.log4j.Logger - Error in creating new filter

@@ -49,7 +49,17 @@ public class RegistrationServiceTest {
     @Test
     public void testIsEmailRegistered() {
         System.out.println("isEmailRegistered");
-        String email = "absar@gmail.com";
+        String email = "absar0306@gmail.com";
+        RegistrationService instance = new RegistrationService();
+        boolean expResult = true;
+        boolean result = instance.isEmailRegistered(email);
+        assertEquals(expResult, result);
+
+    }
+     @Test
+    public void testIsEmailRegistered_unRegistered() {
+        System.out.println("isEmailRegistered");
+        String email = "abr@gmail.com";
         RegistrationService instance = new RegistrationService();
         boolean expResult = false;
         boolean result = instance.isEmailRegistered(email);

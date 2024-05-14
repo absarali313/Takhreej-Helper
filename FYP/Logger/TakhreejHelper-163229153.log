@@ -1,0 +1,11 @@
+16:26:23.986 [main] ERROR org.apache.logging.log4j.Logger - Error in creating new filter
+16:26:24.016 [main] ERROR org.apache.logging.log4j.Logger - Error in updating research
+16:26:24.037 [main] ERROR org.apache.logging.log4j.Logger - Error in creating new filter
+16:30:28.829 [main] ERROR org.apache.logging.log4j.Logger - Error inserting user: Column 'name' cannot be null
+16:30:28.849 [main] ERROR org.apache.logging.log4j.Logger - Error: Email is already registered
+16:31:19.796 [main] ERROR org.apache.logging.log4j.Logger - Error inserting user: Column 'name' cannot be null
+16:31:19.811 [main] ERROR org.apache.logging.log4j.Logger - Error: Email is already registered
+16:31:29.360 [main] ERROR org.apache.logging.log4j.Logger - Error inserting user: Column 'name' cannot be null
+16:31:29.372 [main] ERROR org.apache.logging.log4j.Logger - Error: Email is already registered
+16:31:55.368 [main] ERROR org.apache.logging.log4j.Logger - Error inserting user: Column 'name' cannot be null
+16:31:55.378 [main] ERROR org.apache.logging.log4j.Logger - Error: Email is already registered

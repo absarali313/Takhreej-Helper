@@ -56,9 +56,9 @@ public class ResearchPanel extends javax.swing.JPanel {
         existingFilterRadioBtn = new javax.swing.JRadioButton();
         resetIcon = new javax.swing.JLabel();
         filterLbl1 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        selectedHadithTextArea = new javax.swing.JTextArea();
         translateBtn = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        selectedHadithTextArea = new javax.swing.JTextPane();
 
         setBackground(new java.awt.Color(7, 7, 57));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -313,21 +313,6 @@ public class ResearchPanel extends javax.swing.JPanel {
 
         add(allFiltersBackPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 30, 210, 120));
 
-        jScrollPane2.setBackground(new java.awt.Color(47, 18, 76));
-        jScrollPane2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(47, 18, 76), 5, true));
-        jScrollPane2.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-
-        selectedHadithTextArea.setEditable(false);
-        selectedHadithTextArea.setBackground(new java.awt.Color(196, 182, 182));
-        selectedHadithTextArea.setColumns(15);
-        selectedHadithTextArea.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        selectedHadithTextArea.setLineWrap(true);
-        selectedHadithTextArea.setRows(5);
-        selectedHadithTextArea.setBorder(null);
-        jScrollPane2.setViewportView(selectedHadithTextArea);
-
-        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 30, 380, 120));
-
         translateBtn.setBackground(new java.awt.Color(254, 194, 96));
         translateBtn.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         translateBtn.setForeground(new java.awt.Color(59, 24, 95));
@@ -338,6 +323,11 @@ public class ResearchPanel extends javax.swing.JPanel {
             }
         });
         add(translateBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(1100, 160, 110, -1));
+
+        selectedHadithTextArea.setBackground(new java.awt.Color(196, 182, 182));
+        jScrollPane1.setViewportView(selectedHadithTextArea);
+
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 30, 350, 120));
     }// </editor-fold>//GEN-END:initComponents
 
     private void applyFilterBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_applyFilterBtnActionPerformed
@@ -603,6 +593,11 @@ public class ResearchPanel extends javax.swing.JPanel {
         if (hadithTable.getValueAt(row, 3) != null) {
             String matn = hadithTable.getValueAt(row, 3).toString();
             selectedHadithTextArea.setText(matn);
+            String[] wordsToBeHighlighted = filterExpressionTextField.getText().split(" ");
+            for (String word : wordsToBeHighlighted) {
+                int startingIndex = Highlighter.findStringStartIndex(word, selectedHadithTextArea);
+                Highlighter.changeColor(startingIndex, startingIndex + word.length(), selectedHadithTextArea);
+            }
         }
     }//GEN-LAST:event_hadithTableMouseClicked
 
@@ -760,15 +755,15 @@ public class ResearchPanel extends javax.swing.JPanel {
     private void applyFilter() {
         if (!fascadeBLL.getResearch(this.research.getName()).getFilters().isEmpty()) {
 
-           // ArrayList<Hadith> hadiths = fascadeBLL.searchHadiths(fascadeBLL.getResearch(this.research.getName()), filterNumComboBox.getSelectedIndex());
-
+            // ArrayList<Hadith> hadiths = fascadeBLL.searchHadiths(fascadeBLL.getResearch(this.research.getName()), filterNumComboBox.getSelectedIndex());
             ExecutorService executorService = Executors.newSingleThreadExecutor();
 
             executorService.execute(() -> {
                 ArrayList<Hadith> hadiths = fascadeBLL.searchHadiths(fascadeBLL.getResearch(this.research.getName()), filterNumComboBox.getSelectedIndex());
-
-                populateHadithTable(hadiths); // Optionally, you can perform additional tasks after init() completes
-                // For example, update UI components, notify other parts of your application, etc.
+                try {
+                    populateHadithTable(hadiths); // Optionally, you can perform additional tasks after init() completes
+                } catch (Exception e) {
+                }// For example, update UI components, notify other parts of your application, etc.
                 executorService.shutdown(); // Shutdown the executor when done
             });
         }
@@ -803,6 +798,17 @@ public class ResearchPanel extends javax.swing.JPanel {
         newFilterRadioBtn.setEnabled(value);
         existingFilterRadioBtn.setEnabled(value);
     }
+
+    public void resetFields() {
+        keywordTextField.setText("");
+        filterExpressionTextField.setText("");
+        selectedHadithTextArea.setText("");
+        DefaultTableModel model = (DefaultTableModel) hadithTable.getModel();
+        model.setRowCount(0);
+
+        hadithTable.setModel(model);
+
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane ahadeesInResearchTableScrollPane;
     private javax.swing.JPanel allFiltersBackPanel;
@@ -816,14 +822,14 @@ public class ResearchPanel extends javax.swing.JPanel {
     private javax.swing.JComboBox<String> filterOperatorsComboBox;
     private javax.swing.ButtonGroup filterTypeBtnGroup;
     public javax.swing.JTable hadithTable;
-    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField keywordTextField;
     private javax.swing.JPanel newFilterBackPanel;
     private javax.swing.JRadioButton newFilterRadioBtn;
     private javax.swing.JCheckBox notCheckSelected;
     private javax.swing.JLabel resetIcon;
     private javax.swing.JComboBox<String> searchTypeComboBox;
-    private javax.swing.JTextArea selectedHadithTextArea;
+    private javax.swing.JTextPane selectedHadithTextArea;
     private javax.swing.JButton translateBtn;
     private javax.swing.JLabel undoBtn;
     // End of variables declaration//GEN-END:variables
